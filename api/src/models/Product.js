@@ -23,4 +23,8 @@ module.exports = (sequelize) => {
             defaultValue: false 
             
         },
+        img:{
+            type:DataTypes.STRING,
+             allowNull:false 
+        },
     })}
