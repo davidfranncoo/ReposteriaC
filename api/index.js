@@ -18,14 +18,15 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app');
-const { conn } = require('./src/db');
-// const getApiData=require("./src/Controlers.js/controlers.js") 
+const { conn } = require('./src/db'); 
+ const getApi=require("./src/controllers/controlers") 
 const port=process.env.PORT || 3001;
 // Syncing all the models at once.
 conn.sync({ force: true}).then(() => {
   server.listen(3001, async() => {
-    //await  getApiData() cargar toda la api a la base de dato
+    await  getApi()// cargar toda la api a la base de dato
     console.log("DB Created");
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
   });
 }); 
+ 

@@ -1,6 +1,9 @@
 const { Router } = require('express');
 const axios= require("axios")
 const getApiData=require("../../data/data") 
+const {Product}= require("../db")
+
+
 
  
 
@@ -10,9 +13,11 @@ const getApiData=require("../../data/data")
 const router = Router();
 
 router.get("/",async (req,res)=>{
-
+   
     try {
         const data = await getApiData();
+        const aver=await  Product.findAll()
+        console.log("aveeeeer",aver)
         res.send(data);
       } catch (error) {
         console.error("Error al obtener los datos:", error);
