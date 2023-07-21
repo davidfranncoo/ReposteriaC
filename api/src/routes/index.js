@@ -12,15 +12,16 @@ const {Product}= require("../db")
 
 const router = Router();
 
-router.get("/",async (req,res)=>{
+router.get("/product",async (req,res)=>{
+  console.log("111111", Product)
    
     try {
-        const data = await getApiData();
-        const aver=await  Product.findAll()
-        console.log("aveeeeer",aver)
+        const data = await Product.findAll();
+       
+      
         res.send(data);
       } catch (error) {
-        console.error("Error al obtener los datos:", error);
+      
         res.status(500).send("Error en el servidor");
       }
 })
