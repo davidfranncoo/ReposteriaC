@@ -3,23 +3,31 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./navproduct.css"
 
 
-export default function NavProduct(){
+export default function NavProduct({data,categoria}){
 
 
-
+    const product=[]
+     data.map((e)=>{
+      if(e.category===categoria){
+        product.push(e)
+      }  
+    })
+    
+   
     return (
         <div>
-            <di className="div_product">
-                <h2>Tostas</h2>
-                <Link to="/productos">
+            <div className="div_product">
+                <h2>{categoria}</h2>
+                <Link to={"/product/"+ categoria}>
                     <button>Ver mas</button>
                     </Link>
-            </di>
+            </div>
             <div className="div_img">
                  
-              <img src="https://i.pinimg.com/564x/92/53/60/925360679a61bd2815cebb907263f4a1.jpg" alt="torta1"></img>  
-              <img src="https://i.pinimg.com/564x/7f/17/fe/7f17feae04ca59f5d703fb0e0dc3d24f.jpg" alt="imagen1"></img>  
-              <img src="https://i.pinimg.com/564x/ac/d5/04/acd50476fd6fedb17d3da239b89016a5.jpg" alt="imagen1"></img>  
+              <img src={product[0].img} alt="torta1"></img>  
+              <img src={product[1].img} alt="imagen1"></img>  
+              <img src={product[2].img} alt="imagen1"></img> 
+              <img src={product[3].img} alt="imagen1"></img> 
               
             </div>
 

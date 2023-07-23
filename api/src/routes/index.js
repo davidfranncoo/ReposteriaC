@@ -26,4 +26,23 @@ router.get("/product",async (req,res)=>{
       }
 })
 
+router.get("/product/:category",async(req,res)=>{
+  const category=req.params.category;
+  try {
+    const data= await Product.findAll({
+      where:{
+        category:category
+      }
+    })
+   if(data.length===0){
+    return res.send("no hay categoria ")
+   }
+    return res.send(data);
+    
+  } catch (error) {
+    return res.status(500).send("No existe esta categoria");
+  }
+  
+
+})
 module.exports = router;
