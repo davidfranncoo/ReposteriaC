@@ -1,0 +1,11 @@
+.div_producto{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.div_producto img{
+    width: 12rem;
+    height: 14rem;
+    padding: 1rem;
+}

@@ -4,6 +4,7 @@ import Register from "../src/component/Register/Register"
 import Carrito from "../src/component/Carrito/carrito"
 import Productos from "../src/component/Productos/producto"
 import Admin from "../src/component/Admin/admin"
+import DetailCard from './component/DetailsCard/detailcard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/carrito" component={Carrito}/>
           <Route exact path="/product/:category" component={Productos}/>
           <Route exact path="/admin" component={Admin}/>
+          <Route exact path="/detail/:id" component={DetailCard}/>
    </Switch>    
     </div>
     </Router>

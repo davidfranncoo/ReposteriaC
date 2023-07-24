@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Nav/nav"
+import "./producto.css"
+import {Link} from "react-router-dom";
+
 import CardProduct from "../CardProduc/cardproduct.jsx";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import categoryProduct from "../../action/categoryproduct"
@@ -8,7 +11,6 @@ import categoryProduct from "../../action/categoryproduct"
 export default function Productos(){
 
 const params=useParams()
-console.log("parametrooo",params.category)
 
 
 const [productData, setProductData] = useState();
@@ -18,7 +20,7 @@ const [productData, setProductData] = useState();
     const fetchData = async () => {
       try {
         const data = await categoryProduct(params.category);
-        await console.log("1111",data)
+        await console.log("222",data)
         setProductData(data);
         setLoading(false);
       } catch (error) {
@@ -36,8 +38,25 @@ const [productData, setProductData] = useState();
         <div>
             <Nav/>
             PRODUCTOS
+       
+        {loading === true ? (
+        <div>cargandoooo</div>
+      ) : (
+        
+         <div className="div_producto">
 
-            <CardProduct/>
+       {   productData.map((e)=>{
+            return(
+              <Link to={"/detail/" + e.id}>
+
+              <CardProduct name={e.name} img={e.img}/> 
+              </Link>
+              )
+            })
+         }
+            </div>
+      )}
+         
 
         </div>
     )
