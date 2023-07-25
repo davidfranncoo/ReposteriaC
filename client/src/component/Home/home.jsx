@@ -1,11 +1,14 @@
+//para trar reac ponemos rafce
 import React, { useEffect, useState } from "react";
 import Nav from "../Nav/nav";
 import NavProduct from "../NavProduct/navproduct";
 import GetData from "../../action/dataproduct";
 
-import axios from "axios";
+
 
 export default function Home() {
+
+
   const [productData, setProductData] = useState();
   const [loading, setLoading] = useState(true);
 

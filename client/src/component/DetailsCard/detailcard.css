@@ -1,0 +1,16 @@
+.details{
+    display: flex;
+}
+
+.details img{
+    width: 13rem;
+    height: 15rem;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.formulario h3{
+    padding:1rem 0 1rem 0;
+}

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import "./nav.css"
 
 export default function Nav() {
   return (
     <div>
-      <nav>
+      <nav className="nav">
         <ul>
           <Link to="/">
             <li>Inicio</li>
