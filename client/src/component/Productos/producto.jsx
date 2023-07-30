@@ -20,7 +20,7 @@ const [productData, setProductData] = useState();
     const fetchData = async () => {
       try {
         const data = await categoryProduct(params.category);
-        await console.log("222",data)
+  
         setProductData(data);
         setLoading(false);
       } catch (error) {
@@ -45,11 +45,11 @@ const [productData, setProductData] = useState();
         
          <div className="div_producto">
 
-       {   productData.map((e)=>{
+       {   productData.map((e,index)=>{
             return(
               <Link to={"/detail/" + e.id}>
 
-              <CardProduct name={e.name} img={e.img}/> 
+              <CardProduct key={e.index} name={e.name} img={e.img}/> 
               </Link>
               )
             })
