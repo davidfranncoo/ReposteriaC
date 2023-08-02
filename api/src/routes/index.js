@@ -65,14 +65,19 @@ router.post("/carrito", async (req, res) => {
   try {
     if(idname&&precio&&descripcion&&texto){
 
-      await Carrito.create({
+      const createCarrito= await Carrito.create({
         idname:idname,
         precio:precio,
         texto:texto,
         descripcion:descripcion,
       })
 
-
+      const findProduct= await Product.findAll({
+        where:{
+            id:idname
+        }
+})
+await createCarrito.addProducts(findProduct)
       return res.send("se agrego la el pregucto")
 
     }
@@ -81,14 +86,19 @@ router.post("/carrito", async (req, res) => {
     return res.status(400).send("erro al agregar")
   }
 })
-
+ 
 
 router.get("/carrito", async (req, res) => {
 
 
 
   try {
-    const data = await Carrito.findAll();
+    const data = await Carrito.findAll( { include: [
+      {
+        model: Product,
+        attributes: ["img", "name"],
+      },
+    ],});
 
     res.send(data);
   } catch (error) {

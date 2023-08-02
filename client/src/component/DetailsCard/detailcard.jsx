@@ -82,7 +82,7 @@ function handlerPrecio(e){
     });
     alert("Agregado al carrito");
     // Redirigimos al usuario a la página de inicio
-    // window.history.back();
+     window.history.back();
   }
 
   return (

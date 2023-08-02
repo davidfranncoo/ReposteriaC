@@ -2,10 +2,11 @@ import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Nav from "../Nav/nav";
 import GetCarrito from "../../action/getcarrito";
+import CardCarrito from "../CarCarrito/carcarrito";
 
 export default function Carrito(){
     
-        const [infoCarrito, setCarrito] = useState();
+        const [infoCarrito, setCarrito] = useState([]);
         const [loading, setLoading] = useState(true);
       
         useEffect(() => {
@@ -28,19 +29,14 @@ export default function Carrito(){
         <div>
            <Nav/>  
     {
-        loading===true?
-         <div>cargando</div>
+        loading===true || infoCarrito.length===0?
+         <div>No hay productos</div>
          :
-         <div> <h1>Productos en el carrito</h1>
-         <main>
-          <img src=""/>
-          <h2>detalle</h2>
-          <h2>precio</h2>
-
-
-          <h3>el total es $1000</h3>
-          <button>pagar</button>
-         </main></div>   
+         
+         <div>
+          
+            <CardCarrito data={infoCarrito}/>
+         </div>   
 
     }
         

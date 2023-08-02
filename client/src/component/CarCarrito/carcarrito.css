@@ -1,0 +1,10 @@
+.cardcarrito img{
+    width: 4rem;
+    height: 4rem;
+
+
+}
+.cardcarrito{
+    display: flex;
+    justify-content: space-around;
+}
