@@ -12,15 +12,23 @@ module.exports = (sequelize) => {
         },
         name:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull: false
+            
         },
         age:{
             type:DataTypes.INTEGER,
-            allowNull:false,
+            
+           
         },
-        sex:{
+        password:{
             type:DataTypes.STRING,
-            allowNull:false,
-        },
+            allowNull: false
+        },  
+        email:{
+            type:DataTypes.STRING,
+            allowNull: false
+            
+        }
+
     })
     } 
