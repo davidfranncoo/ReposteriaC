@@ -1,9 +1,11 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+const morgan = require('morgan');//? se encarga de entender los solocitudes HTTP
 const routes = require('./routes/index.js');
 const session = require('express-session');//! 
+const authRouter = require('./routes/auth.js');
+var passport = require('passport');
 
 
 require('./db.js');
@@ -25,13 +27,20 @@ server.use((req, res, next) => {
   next();
 });
 
-
+//?-------sesion-------------------
+server.use(require('express-session')({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+server.use(passport.authenticate('session'));
 
 
 
 
  //! ingreso de cuenta
 server.use('/', routes);
+server.use('/', authRouter);
 
 // server.use(session(
 //   {

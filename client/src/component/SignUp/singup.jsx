@@ -1,11 +1,13 @@
 import React,{useState} from "react";
 import createUser from "../../action/createUser";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 import "./signin.css"
 export default function SignUp(){
 
 
     const [datos,setDatos]=useState({
-        name:"",
+        username:"",
         email:"",
         password:""
 
@@ -15,6 +17,11 @@ export default function SignUp(){
         e.preventDefault()
         console.log("formulario",datos)
         createUser(datos)
+        setDatos({
+            username:"",
+            email:"",
+            password:""
+        })
         
     }
     function handlerInputEmail(e) {
@@ -25,13 +32,10 @@ export default function SignUp(){
     }
     function handlerInputPassword(e) {
         
-        setDatos({...datos,password:e.target.value})
-        
-            
+        setDatos({...datos,password:e.target.value})  
         }
     function handlerInputName(e) {
-        
-            setDatos({...datos,name:e.target.value})
+            setDatos({...datos,username:e.target.value})
             
                 
             }
@@ -45,23 +49,31 @@ export default function SignUp(){
 
             <form   onSubmit={(e)=>handlerSubmit(e)}>
             <label>Name<input 
-                type="name"
+                type="username"
+                value={datos.username}
+
                 onChange={(e)=>handlerInputName(e)}
                 ></input></label>
 
                 <label>Correo<input 
                 type="email"
+                value={datos.email}
+
                 onChange={(e)=>handlerInputEmail(e)}
                 ></input></label>
 
                 <label>Contraseña<input 
                 type="password"
+                value={datos.password}
                 onChange={(e)=>handlerInputPassword(e)}
                 ></input></label>
 
-                <button type="submit">Sing Up</button>
+                <button type="submit">Crear Usuario</button>
                 
             </form>
+            <Link to={"/login"}>
+                <button >Log in</button>
+            </Link>
         </div>
     )
 }

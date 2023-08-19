@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             allowNull: false
         },
-        name:{
+        username:{
             type:DataTypes.STRING,
             allowNull: false
             

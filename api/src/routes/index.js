@@ -1,115 +1,136 @@
 const { Router } = require("express");
-
-
-const axios = require("axios");
 const getApiData = require("../../data/data");
 const { Product, Carrito, User } = require("../db");
-const cookieparser = require('cookie-parser');//! interprete, se encarga de leer las cookies que nos estan enviando
-const session = require('express-session');//! 
-
-
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
+//const cookieparser = require("cookie-parser"); //! interprete, se encarga de leer las cookies que nos estan enviando
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const router = Router();
 
 
+// -------------------SESION DE TOKEN----------------
+// router.use(require('express-session')({
+//   secret: 'secret',
+//   resave: false,
+//   saveUninitialized: false
+// }));
 
-// -------------------sesion----------------
-router.use(session(
-  {
-    name: 'sid',
-    secret:'secret', // Debería estar en un archivo de environment( para encriptar))
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-      maxAge: 1000 * 60 * 60 * 2 // Está en milisegundos --> 2hs
-    }
-  }
-));
+// router.use(passport.initialize());
+// router.use(passport.session()); 
+
+// passport.use(new LocalStrategy(
+//   function(email, password, done) {
+//     console.log("Intento de inicio de sesión para el email:", email);
+//     User.findOne({ email: email }, function(err, user) {
+//       if (err) { return done(err); }
+//       if (!user) { return done(null, false); }
+//       if (user.password != password) { return done(null, false); }
+//       return done(null, user);
+//     });
+//   }
+// ));
+  
 
 
-router.use((req, res, next) => {
+
+// passport.deserializeUser(function(id, done) {
+//   User.findOne({where:{
+//     id:id
+//   }})
+//   .then((user) => {
+//     done(null, user);
+//       })
+//       .catch(err => {
+//         return done(err); 
+//       })
+//     });
+    
+//     passport.serializeUser(function(user, done) {
+//       console.log("serilizacioooooon", user)
+//       done(null, user.id);
+//     });
  
- next();
-});
-
-const redirectLogin = (req, res, next) => {
-
-  //! verificar que este y si no est redirige a login
-  if(!req.session.userId) {
-
-
-    res.redirect('/login');
-  } else {
-    next();
-  }
-}
-const redirectHome = (req, res, next) => {
-  if(req.session.userId) {
+//   router.use((req, res, next) => {
    
-    res.redirect('/home');
-  } else {
-    next();
-  }
-}
-router.get('/', (req, res) => {
-  const { userId } = req.session;
+//     next();
+//   });
+  
+// function isAuthenticated(req, res, next) {
+//   if(req.isAuthenticated()) {
+//     next();
+//   } else {
+//     res.redirect('/login');
+//   }
+// }
 
-  // res.send(`
-  //   <h1>Bienvenidos a Henry!</h1>
-  //   ${userId ? `
-  //     <a href='/home'>Perfil</a>
-  //     <form method='post' action='/logout'>
-  //       <button>Salir</button>
-  //     </form>
-  //     ` : `
-  //     <a href='/login'>Ingresar</a>
-  //     <a href='/register'>Registrarse</a>
-  //     `}
-  // `)
+// router.post('/login', 
+//   passport.authenticate('local', {
+//     failureRedirect: '/login' // Redirige a la página de inicio de sesión en caso de error
+//    // Mensaje de error flash
+//   }),
+//   function(req, res) {
+//     res.redirect('/');
+//   });
 
-  res.send("se guardo el userid si es que hay")
-});
+// -------------------USUARIO----------------------
 
 
-// ---------------USUARIO----------------------
 
 router.post("/singup", async (req, res) => {
-
-  const {name,email,password}=req.body
+  const { username, email, password } = req.body;
   try {
-    
-    if(name&&email&&password){
-      
-      const findEmail= await User.findOne({
-        where:{
-          email:email
-        }
-      })
-     
+    if (username && email && password) {
+      const findEmail = await User.findOne({
+        where: {
+          email: email,
+        },
+      });
 
-      if(findEmail){
-        return res.status(300).send("ya hay un usuario con este email")
-
+      if (findEmail) {
+        return res.status(300).send("ya hay un usuario con este email");
       }
       await User.create({
-        name:name,
-        email:email,
-        password:password,
-      
-      })
- 
-    
+        username: username,
+        email: email,
+        password: password,
+      });
 
-      return res.status(200 ).send("se creo el usuario")
-
+      return res.status(200).send("se creo el usuario");
     }
-    return res.status(401).send("faltan datos")
+    return res.status(401).send("faltan datos");
   } catch (error) {
-    return res.status(400).send("erro al agregar")
+    return res.status(400).send("erro al agregar");
   }
-})
+});
+ 
+// router.post("/login", async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+
+    
+//     const seachUser=await User.findOne({
+//       where: {
+//         email:email,
+//       }}
+//     )
+//     console.log("useeeer",seachUser)
+//     if(seachUser===null){
+//       return res.status(302).send("El Email no esta registrado")
+//     }
+//     if(seachUser!==null && seachUser.password!==password) {
+//      return  res.status(301).send("El Password es incorrecto")
+      
+//     }
+    
+//     // Simulamos un inicio de sesión exitoso.
+//     return res.status(200).send("Inicio de sesión exitoso");
+//   } catch (error) {
+
+//     return res.status(401).send("Se produjo un error");
+//   }
+
+// });
+
+
 
 
 
@@ -121,10 +142,7 @@ router.post("/singup", async (req, res) => {
 
 // --------------PRODUCTO----------------------
 
-
 router.get("/product", async (req, res) => {
-
-
   try {
     const data = await Product.findAll();
 
@@ -160,7 +178,7 @@ router.get("/detail/:id", async (req, res) => {
         id: idProduct,
       },
     });
-    if (data.length === 0) {
+    if (data.length === 0) { 
       return res.send("no hay producto");
     }
     return res.send(data);
@@ -169,59 +187,49 @@ router.get("/detail/:id", async (req, res) => {
   }
 });
 
-
-
 // ---------------------CARRITO-----------------------
 
-
-
 router.post("/carrito", async (req, res) => {
+  const { idname, descripcion, precio, texto } = req.body;
 
-  const {idname,descripcion,precio,texto}=req.body
-
- 
   try {
-    if(idname&&precio&&descripcion&&texto){
+    if (idname && precio && descripcion && texto) {
+      const createCarrito = await Carrito.create({
+        idname: idname,
+        precio: precio,
+        texto: texto,
+        descripcion: descripcion,
+      });
 
-      const createCarrito= await Carrito.create({
-        idname:idname,
-        precio:precio,
-        texto:texto,
-        descripcion:descripcion,
-      })
-
-      const findProduct= await Product.findAll({
-        where:{
-            id:idname
-        }
-})
-await createCarrito.addProducts(findProduct)
-      return res.send("se agrego la el pregucto")
-
+      const findProduct = await Product.findAll({
+        where: {
+          id: idname,
+        },
+      });
+      await createCarrito.addProducts(findProduct);
+      return res.send("se agrego la el pregucto");
     }
-    return res.status(401).send("faltan datos")
+    return res.status(401).send("faltan datos");
   } catch (error) {
-    return res.status(400).send("erro al agregar")
+    return res.status(400).send("erro al agregar");
   }
-})
- 
+});
 
 router.get("/carrito", async (req, res) => {
-
-
-
   try {
-    const data = await Carrito.findAll( { include: [
-      {
-        model: Product,
-        attributes: ["img", "name"],
-      },
-    ],});
+    const data = await Carrito.findAll({
+      include: [
+        {
+          model: Product,
+          attributes: ["img", "name"],
+        },
+      ],
+    });
 
     res.send(data);
   } catch (error) {
     res.status(500).send("Error en el servidor");
   }
-})
+});
 
 module.exports = router;

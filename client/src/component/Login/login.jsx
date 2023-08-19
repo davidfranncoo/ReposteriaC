@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import loginUser from "../../action/loginUser"
+import "./login.css"
 export default function Login(){
 
     const [datos,setDatos]=useState({
@@ -11,7 +12,8 @@ export default function Login(){
 
     function handlerSubmit(e){
         e.preventDefault()
-        console.log("formulario",datos)
+     
+        loginUser(datos)
         
     }
     function handlerInputEmail(e) {
@@ -33,7 +35,7 @@ export default function Login(){
            
                 <h1>Ingresa Sesion</h1>
 
-            <form   onSubmit={(e)=>handlerSubmit(e)}>
+            <form className="div_login"  onSubmit={(e)=>handlerSubmit(e)}>
                 <label>Correo<input 
                 type="email"
                 onChange={(e)=>handlerInputEmail(e)}

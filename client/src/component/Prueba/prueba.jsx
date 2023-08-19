@@ -1,12 +1,22 @@
 import React,{useState} from "react";
 
 
-import { useAuth0 } from "@auth0/auth0-react";
+export default function pruebaSesion(){
+  return (
+    <div>
 
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
-};
-
-export default LoginButton;
+    <h1>Sign in</h1>
+<form action="/login/password" method="post">
+    <section>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required autofocus/>
+    </section>
+    <section>
+        <label for="current-password">Password</label>
+        <input id="current-password" name="password" type="password" autocomplete="current-password" required/>
+    </section>
+    <button type="submit">Sign in</button>
+</form>
+    </div>
+  )
+}
