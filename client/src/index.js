@@ -1,24 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createRoot } from 'react-dom/client';
-import { Auth0Provider } from '@auth0/auth0-react';
+import {store} from "./store/index";
+import {Provider} from "react-redux";
+import axios  from "axios"
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
- <Auth0Provider
- domain="dev-if0ox65v0pou1gcj.uk.auth0.com"
-    clientId="7zkJtbIUvo4OpUj1tXxaIv5GsM2tTH8m"
-//     authorizationParams={{
-//         redirect_uri: window.location.origin
-//       }}
-      >
+ //axios.defaults.baseURL="http://localhost:3001" //!deploy
+//axios.defaults.baseURL="https://countries-production-67fa.up.railway.app/" //!deploy
 
+ReactDOM.render(
+  <Provider store={store}>
+  <React.StrictMode>
     <App />
- </Auth0Provider>
-  
+  </React.StrictMode>,
+  </Provider>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

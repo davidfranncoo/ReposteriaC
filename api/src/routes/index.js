@@ -145,6 +145,7 @@ router.post("/singup", async (req, res) => {
 router.get("/product", async (req, res) => {
   try {
     const data = await Product.findAll();
+    
 
     res.send(data);
   } catch (error) {

@@ -1,30 +1,17 @@
 //para trar reac ponemos rafce
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../../action/index";
 import Nav from "../Nav/nav";
 import NavProduct from "../NavProduct/navproduct";
-import GetData from "../../action/dataproduct";
-
-
 
 export default function Home() {
-
-
-  const [productData, setProductData] = useState();
+  const dispatch = useDispatch();
+  const productData = useSelector((state) => state.product) || [];
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await GetData();
-        setProductData(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error al obtener los datos", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    dispatch(getProduct()).then(() => setLoading(false));
   }, []);
 
   return (
