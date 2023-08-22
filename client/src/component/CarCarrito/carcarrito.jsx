@@ -26,7 +26,7 @@ export default function CardCarrito(props){
           {
             product.map((e)=>{
                 return (
-                    <div className="cardcarrito">
+                    <div key={e.id} className="cardcarrito">
                         <img src={e.Products[0].img}/>
                         <h3>{e.Products[0].name}</h3>
                         <h2>$ {e.precio}</h2>

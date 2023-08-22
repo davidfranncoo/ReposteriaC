@@ -1,80 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Nav from "../Nav/nav";
-import GetDetail from "../../action/detailcard";
+//import GetDetail from "../../action/detailcard";
 import "./detailcard.css";
-import sendProduct from "../../action/sendProduct";
+import { getDetail,
+  sendProduct } from "../../action";
+
+import { useDispatch, useSelector } from "react-redux";
 
 export default function DetailCard() {
   const precio = 1900;
+  const dispatch = useDispatch();
+  const productData = useSelector((state) => state.detailProduct) || [];
 
   // -------------------------- OBTENER INFORMACION-------------------
-
   const params = useParams();
-  const [productData, setProductData] = useState();
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await GetDetail(params.id);
-        setProductData(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error al obtener los datos", error);
-        setLoading(false);
-      }
-    };
-    fetchData();
+    dispatch(getDetail(params.id)).then(() => setLoading(false));
   }, []);
-  
 
   const [contador, setContador] = useState(precio);
   const [form, setForm] = useState({
     idname: "",
     precio: contador,
     descripcion: [],
-    texto:""
-   
+    texto: "",
   });
 
-
-
   /*----------------------- CARGAR INFORMACION EN EL IMPUT --------------------------------------------------  */
- 
- 
-function handlerPrecio(e){
-  const kg = e.target.value;
-  const total= kg * precio;
-  setContador(total);
-  setForm({...form,precio:total,idname:productData[0].id})
-  
-  
-}
+
+  function handlerPrecio(e) {
+    const kg = e.target.value;
+    const total = kg * precio;
+    setContador(total);
+    setForm({ ...form, precio: total, idname: productData[0].id });
+  }
 
   /*----------------------- CARGAR DESCRIPCION(DETALLES DE LA TORTA) --------------------------------------------------  */
 
   function handerDetail(e) {
- 
-    const detail=e.target.value;
-    const idd=e.target.id;
-    const detail2=form.descripcion
-   
-  
-     const detail3= detail2.filter((c)=>c.id!==idd)
-  
-    detail3.push({id:e.target.id,value:e.target.value})
-    setForm({...form,descripcion:detail3})
-   
+    const detail = e.target.value;
+    const idd = e.target.id;
+    const detail2 = form.descripcion;
+
+    const detail3 = detail2.filter((c) => c.id !== idd);
+
+    detail3.push({ id: e.target.id, value: e.target.value });
+    setForm({ ...form, descripcion: detail3 });
   }
-  function handerlTexto(e){
-    setForm({...form,texto:e.target.value})
+  function handerlTexto(e) {
+    setForm({ ...form, texto: e.target.value });
   }
 
   function handlerSubmit(e) {
     e.preventDefault();
 
-   sendProduct(form)
+    sendProduct(form);
+   
     setForm({
       idname: "",
       precio: "",
@@ -82,7 +67,7 @@ function handlerPrecio(e){
     });
     alert("Agregado al carrito");
     // Redirigimos al usuario a la página de inicio
-     window.history.back();
+    window.history.back();
   }
 
   return (
@@ -103,11 +88,6 @@ function handlerPrecio(e){
             <div>
               <form className="formulario" onSubmit={(e) => handlerSubmit(e)}>
                 <h3>Elije los detalles de tu {productData[0].name}</h3>
-
-
-
-
-
 
                 <label
                   htmlFor="cantidad"
@@ -134,15 +114,13 @@ function handlerPrecio(e){
                 <label htmlFor="bizcochuelo">Bizcochuelo de:</label>
                 <select
                   id="bizcochuelo"
-                 
                   onChange={(e) => {
                     handerDetail(e);
                   }}
                 >
-                  
                   <option value="" defaultValue></option>
-                  
-                  <option value="Chocolate" >Chocolate</option>
+
+                  <option value="Chocolate">Chocolate</option>
                   <option value="Vainilla">Vainilla</option>
                   <option value="Naranja">Naranaja</option>
                   <option value="Limon">Limon</option>
@@ -158,7 +136,7 @@ function handlerPrecio(e){
                   name=""
                 >
                   <option value="" defaultValue></option>
-                
+
                   <option value="1.Mouses de chocolate">
                     Mouses de chocolate
                   </option>
@@ -183,9 +161,9 @@ function handlerPrecio(e){
                   }}
                   name=""
                 >
-                    <option value="" defaultValue></option>
+                  <option value="" defaultValue></option>
 
-                  <option value="2.Mouses de chocolate" >
+                  <option value="2.Mouses de chocolate">
                     Mouses de chocolate
                   </option>
                   <option value="2.MMouses de dulce de leche">
@@ -201,8 +179,17 @@ function handlerPrecio(e){
                 </select>
                 {/*-----------------------  --------------------------------------------------  */}
 
-                <label htmlFor="texto">Detalles que quieras que agreguemos:</label>
-                <input type="text" id="texto" name="texto" onChange={(e)=>{handerlTexto(e)}}></input>
+                <label htmlFor="texto">
+                  Detalles que quieras que agreguemos:
+                </label>
+                <input
+                  type="text"
+                  id="texto"
+                  name="texto"
+                  onChange={(e) => {
+                    handerlTexto(e);
+                  }}
+                ></input>
                 <h2>Total: ${contador}</h2>
 
                 {/*----------------------- BOTONES --------------------------------------------------  */}

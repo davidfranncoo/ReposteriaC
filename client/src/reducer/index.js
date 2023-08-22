@@ -1,6 +1,8 @@
 const intialState={
 product:[],
-productSeach:[]
+productSeach:[],
+detailProduct:[],
+myCArrito:[]
 }
 export default function rootRecuducer(state=intialState,action){
  
@@ -19,9 +21,22 @@ export default function rootRecuducer(state=intialState,action){
                 productSeach:action.payload
 
             }
-            default:
-                return state;
-
-
-
+        case "ID_DETAIL":
+            return {
+                ...state,
+                detailProduct:action.payload
+            }
+        case "GET_CARRITO":
+            return {
+                ...state,
+                myCarrito:action.payload
+            }
+            
+        case "SEND_PRODUCT":
+            return {
+                ...state,
+            }    
+                
+                default:
+                    return state;
 }}
