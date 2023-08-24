@@ -5,6 +5,7 @@ const morgan = require('morgan');//? se encarga de entender los solocitudes HTTP
 const routes = require('./routes/index.js');
 const session = require('express-session');//! 
 const authRouter = require('./routes/auth.js');
+const authLogin=require("./routes/login.js")
 var passport = require('passport');
 
 
@@ -40,7 +41,8 @@ server.use(passport.authenticate('session'));
 
  //! ingreso de cuenta
 server.use('/', routes);
-server.use('/', authRouter);
+//server.use('/', authRouter);
+server.use('/', authLogin);
 
 // server.use(session(
 //   {

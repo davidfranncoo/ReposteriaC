@@ -55,9 +55,7 @@ export function getCarrito(){
 }
 
 export function sendProduct(payload){
-    console.log("estoy acaaa")
-   
-      
+
         const response =  axios.post(`http://localhost:3001/carrito`,payload);
         const data = response.data;
         
