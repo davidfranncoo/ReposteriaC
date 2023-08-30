@@ -16,7 +16,6 @@ export default function Inicio(){
         <Link>
         <button>Sing Up</button>
         </Link>
-
         </div>
     )
 }

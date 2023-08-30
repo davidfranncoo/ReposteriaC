@@ -5,6 +5,9 @@ const { Product, Carrito, User } = require("../db");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const router = Router();
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // Número de rondas de sal para la encriptación
+
 
 
 // -------------------SESION DE TOKEN----------------
@@ -77,6 +80,8 @@ const router = Router();
 
 router.post("/singup", async (req, res) => {
   const { username, email, password } = req.body;
+
+
   try {
     if (username && email && password) {
       const findEmail = await User.findOne({
@@ -88,11 +93,28 @@ router.post("/singup", async (req, res) => {
       if (findEmail) {
         return res.status(300).send("ya hay un usuario con este email");
       }
-      await User.create({
-        username: username,
-        email: email,
-        password: password,
-      });
+      const passwordHash=password;
+
+      bcrypt.hash(passwordHash, saltRounds, function(err, hash) {
+        if (err) {
+            console.error('Error al generar el hash:', err);
+        } else {
+            // Aquí puedes almacenar el 'hash' en tu base de datos junto con otros datos del usuario
+            console.log('Contraseña hasheada:', hash);
+           User.create({
+              username: username,
+              email: email,
+              password: hash,
+            });
+            
+        }
+    });
+   
+      // await User.create({
+      //   username: username,
+      //   email: email,
+      //   password: password,
+      // });
 
       return res.status(200).send("se creo el usuario");
     }

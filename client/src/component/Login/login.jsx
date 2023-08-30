@@ -37,7 +37,7 @@ export default function Login(){
 
             <form className="div_login"  onSubmit={(e)=>handlerSubmit(e)}>
                 <label>Correo<input 
-                type="email"
+              
                 onChange={(e)=>handlerInputEmail(e)}
                 ></input></label>
 

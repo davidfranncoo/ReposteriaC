@@ -8,13 +8,12 @@ const router = express();
 
 router.post("/login",async(req,res)=>{
     const {username,password}=req.body
-    const user = await User.findOne({
-        username
-    })
+  
+    const user = await User.findOne({where: {username: username}})
+  
     const passwordCorrect= user===null?
-    false
+    []
     : await bcrypt.compare(password,user.password)
-
     if(!passwordCorrect){
         return res.status(401).send({
             error:"usuario o passwor erroneo"
