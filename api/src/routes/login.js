@@ -1,5 +1,5 @@
 var express = require('express');
-
+const jwt= require("jsonwebtoken")
 const {User} = require('../db');
 const bcrypt=require("bcrypt")   
 const { Router } = require("express");
@@ -20,8 +20,22 @@ router.post("/login",async(req,res)=>{
         })
     }
 
+    //creamos el token 
+
+    const userFrotToken={
+        username:user.username,
+        id:user.id
+    }
+
+    //formamos el token, lo que esta en "" es lo que se debe poner en .env
+    const token= jwt.sign(userFrotToken, "1234")
+
+
+
     return res.status(200).send({
-        username:user.username
+        username:user.username,
+        id:user.id,
+        token
 
     })
 

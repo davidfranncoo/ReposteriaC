@@ -1,0 +1,14 @@
+POST http://localhost:3001/carrito
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyYW5jbyIsImlkIjoiOTZlMzBiOTktYjNhMi00YWY4LWExOWYtMmIyMWVmNWRjOGVlIiwiaWF0IjoxNjkzOTEwOTYwfQ.gfcDqS_cgBITh_nw0J4uJ3kGCWMQeP-wdgZliDwlCPg
+
+{
+  "idname": "fb33fc28-d64b-4af1-afc3-b5e0b0199c62", 
+ "precio": 3800, 
+ "descripcion": [{"id": "bizcochuelo","value": "Vainilla"},
+                 {"id": "relleno1", "value":"1.Mouses de dulce"},
+                 {"id": "relleno2", "value": "2.MMouses de dulce de leche"
+                 }], 
+ "texto": "hola quiero que seas re puta"
+     
+} 

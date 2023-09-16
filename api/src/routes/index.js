@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const getApiData = require("../../data/data");
+const jwt=require("jsonwebtoken")
 const { Product, Carrito, User } = require("../db");
 //const cookieparser = require("cookie-parser"); //! interprete, se encarga de leer las cookies que nos estan enviando
 const passport = require('passport');
@@ -8,7 +9,7 @@ const router = Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10; // Número de rondas de sal para la encriptación
 
-
+ 
 
 // -------------------SESION DE TOKEN----------------
 // router.use(require('express-session')({
@@ -19,7 +20,7 @@ const saltRounds = 10; // Número de rondas de sal para la encriptación
 
 // router.use(passport.initialize());
 // router.use(passport.session()); 
-
+ 
 // passport.use(new LocalStrategy(
 //   function(email, password, done) {
 //     console.log("Intento de inicio de sesión para el email:", email);
@@ -30,7 +31,7 @@ const saltRounds = 10; // Número de rondas de sal para la encriptación
 //       return done(null, user);
 //     });
 //   }
-// ));
+// )); 
   
 
 
@@ -80,7 +81,9 @@ const saltRounds = 10; // Número de rondas de sal para la encriptación
 
 router.post("/singup", async (req, res) => {
   const { username, email, password } = req.body;
-
+  
+ 
+ 
 
   try {
     if (username && email && password) {
@@ -164,6 +167,9 @@ router.post("/singup", async (req, res) => {
 
 // --------------PRODUCTO----------------------
 
+
+//>>>>> busco todos los prductos que mostarre en HOME
+
 router.get("/product", async (req, res) => {
   try {
     const data = await Product.findAll();
@@ -174,6 +180,8 @@ router.get("/product", async (req, res) => {
     res.status(500).send("Error en el servidor");
   }
 });
+
+//>>>>>>> aca busca producto (tortas, tartas , bandejas) de una categoria y muestro  esos productos 
 
 router.get("/product/:category", async (req, res) => {
   const category = req.params.category;
@@ -191,6 +199,9 @@ router.get("/product/:category", async (req, res) => {
     return res.status(500).send("No existe esta categoria");
   }
 });
+
+//>>>>  Busco un producto por id y lo uso en el carrito 
+
 
 router.get("/detail/:id", async (req, res) => {
   const idProduct = req.params.id;
@@ -212,8 +223,36 @@ router.get("/detail/:id", async (req, res) => {
 
 // ---------------------CARRITO-----------------------
 
+//>>>>> aca agrego un producto al carrito
+//!!>>>> autenticar usuario y agregue productos al carrito del usuario  
+
 router.post("/carrito", async (req, res) => {
   const { idname, descripcion, precio, texto } = req.body;
+
+
+  //--------------tokeeeen------------
+  const authorization= req.get("authorization")
+  let token =""
+  if( authorization && authorization.toLowerCase().startsWith("bearer")){
+    token=authorization.substring(7)
+  }
+
+  let decodedToken={}
+
+ try {
+   decodedToken= jwt.verify(token, "1234")
+
+  console.log("esto es el decode",decodedToken)
+ } catch (error) {
+  //return res.status(402).send({error:"error del token"})
+ }
+  
+
+  if(!token && !decodedToken){
+    return res.status(401).send({error:"error de token "})
+  }
+
+
 
   try {
     if (idname && precio && descripcion && texto) {
@@ -223,13 +262,20 @@ router.post("/carrito", async (req, res) => {
         texto: texto,
         descripcion: descripcion,
       });
-
-      const findProduct = await Product.findAll({
+       
+       
+      // const findProduct = await Product.findAll({
+      //   where: {
+      //     id: idname,
+      //   },
+      // });
+       const findUser = await User.findAll({
         where: {
-          id: idname,
+          id: decodedToken.id,
         },
       });
-      await createCarrito.addProducts(findProduct);
+     console.log("finduseer",findUser)
+      await createCarrito.addUsers(findUser);
       return res.send("se agrego la el pregucto");
     }
     return res.status(401).send("faltan datos");
@@ -237,6 +283,11 @@ router.post("/carrito", async (req, res) => {
     return res.status(400).send("erro al agregar");
   }
 });
+
+//>>> aca busco todos los prodcto que tiene el ususario y le muestro en su carrito
+
+//!>>>> me falta autenticar el ususario con el token y que busque sus productos
+
 
 router.get("/carrito", async (req, res) => {
   try {

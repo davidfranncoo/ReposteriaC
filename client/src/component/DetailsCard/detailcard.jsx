@@ -59,7 +59,7 @@ export default function DetailCard() {
     e.preventDefault();
 
     sendProduct(form);
-   
+     console.log("0000",form)
     setForm({
       idname: "",
       precio: "",

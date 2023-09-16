@@ -11,7 +11,6 @@ module.exports = (sequelize) => {
         precio:{
             type:DataTypes.STRING,
             // allowNull:false,
-
             
         },
         descripcion:{
