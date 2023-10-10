@@ -1,89 +1,19 @@
 const { Router } = require("express");
 const getApiData = require("../../data/data");
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const { Product, Carrito, User } = require("../db");
 //const cookieparser = require("cookie-parser"); //! interprete, se encarga de leer las cookies que nos estan enviando
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const router = Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const saltRounds = 10; // Número de rondas de sal para la encriptación
 
- 
-
-// -------------------SESION DE TOKEN----------------
-// router.use(require('express-session')({
-//   secret: 'secret',
-//   resave: false,
-//   saveUninitialized: false
-// }));
-
-// router.use(passport.initialize());
-// router.use(passport.session()); 
- 
-// passport.use(new LocalStrategy(
-//   function(email, password, done) {
-//     console.log("Intento de inicio de sesión para el email:", email);
-//     User.findOne({ email: email }, function(err, user) {
-//       if (err) { return done(err); }
-//       if (!user) { return done(null, false); }
-//       if (user.password != password) { return done(null, false); }
-//       return done(null, user);
-//     });
-//   }
-// )); 
-  
-
-
-
-// passport.deserializeUser(function(id, done) {
-//   User.findOne({where:{
-//     id:id
-//   }})
-//   .then((user) => {
-//     done(null, user);
-//       })
-//       .catch(err => {
-//         return done(err); 
-//       })
-//     });
-    
-//     passport.serializeUser(function(user, done) {
-//       console.log("serilizacioooooon", user)
-//       done(null, user.id);
-//     });
- 
-//   router.use((req, res, next) => {
-   
-//     next();
-//   });
-  
-// function isAuthenticated(req, res, next) {
-//   if(req.isAuthenticated()) {
-//     next();
-//   } else {
-//     res.redirect('/login');
-//   }
-// }
-
-// router.post('/login', 
-//   passport.authenticate('local', {
-//     failureRedirect: '/login' // Redirige a la página de inicio de sesión en caso de error
-//    // Mensaje de error flash
-//   }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
 
 // -------------------USUARIO----------------------
 
-
-
 router.post("/singup", async (req, res) => {
   const { username, email, password } = req.body;
-  
- 
- 
 
   try {
     if (username && email && password) {
@@ -96,23 +26,22 @@ router.post("/singup", async (req, res) => {
       if (findEmail) {
         return res.status(300).send("ya hay un usuario con este email");
       }
-      const passwordHash=password;
+      const passwordHash = password;
 
-      bcrypt.hash(passwordHash, saltRounds, function(err, hash) {
+      bcrypt.hash(passwordHash, saltRounds, function (err, hash) {
         if (err) {
-            console.error('Error al generar el hash:', err);
+          console.error("Error al generar el hash:", err);
         } else {
-            // Aquí puedes almacenar el 'hash' en tu base de datos junto con otros datos del usuario
-            console.log('Contraseña hasheada:', hash);
-           User.create({
-              username: username,
-              email: email,
-              password: hash,
-            });
-            
+          // Aquí puedes almacenar el 'hash' en tu base de datos junto con otros datos del usuario
+          console.log("Contraseña hasheada:", hash);
+          User.create({
+            username: username,
+            email: email,
+            password: hash,
+          });
         }
-    });
-   
+      });
+
       // await User.create({
       //   username: username,
       //   email: email,
@@ -126,54 +55,15 @@ router.post("/singup", async (req, res) => {
     return res.status(400).send("erro al agregar");
   }
 });
- 
-// router.post("/login", async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-    
-//     const seachUser=await User.findOne({
-//       where: {
-//         email:email,
-//       }}
-//     )
-//     console.log("useeeer",seachUser)
-//     if(seachUser===null){
-//       return res.status(302).send("El Email no esta registrado")
-//     }
-//     if(seachUser!==null && seachUser.password!==password) {
-//      return  res.status(301).send("El Password es incorrecto")
-      
-//     }
-    
-//     // Simulamos un inicio de sesión exitoso.
-//     return res.status(200).send("Inicio de sesión exitoso");
-//   } catch (error) {
-
-//     return res.status(401).send("Se produjo un error");
-//   }
-
-// });
-
-
-
-
-
-
-
-
-
 
 
 // --------------PRODUCTO----------------------
-
 
 //>>>>> busco todos los prductos que mostarre en HOME
 
 router.get("/product", async (req, res) => {
   try {
     const data = await Product.findAll();
-    
 
     res.send(data);
   } catch (error) {
@@ -181,7 +71,7 @@ router.get("/product", async (req, res) => {
   }
 });
 
-//>>>>>>> aca busca producto (tortas, tartas , bandejas) de una categoria y muestro  esos productos 
+//>>>>>>> aca busca producto (tortas, tartas , bandejas) de una categoria y muestro  esos productos
 
 router.get("/product/:category", async (req, res) => {
   const category = req.params.category;
@@ -200,10 +90,35 @@ router.get("/product/:category", async (req, res) => {
   }
 });
 
-//>>>>  Busco un producto por id y lo uso en el carrito 
-
+//>>>>  Busco un producto por id y lo uso en el carrito
+//!debo ver que el usurio este registrado sino inmeddiatamente lo redirijo para que se registre
 
 router.get("/detail/:id", async (req, res) => {
+  const authorization = req.get("authorization");
+
+  let token = "";
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+    token = authorization.substring(7);
+  }
+  let decodedToken = {};
+  try {
+    decodedToken = jwt.verify(token, "1234");
+    console.log("esto es el decode", decodedToken);
+  } catch (error) {
+    //return res.status(402).send({error:"error del token"})
+  }
+  console.log("111111", token);
+  console.log(
+    "para ver si tiene algn elemento",
+    Object.keys(decodedToken).length
+  );
+  if (token && Object.keys(decodedToken).length === 0) {
+    console.log("holaaaaa");
+
+    //res.redirect(302, 'https://www.ejemplo.com');
+    return res.status(302).send({ redirect: "/login" });
+  }
+
   const idProduct = req.params.id;
 
   try {
@@ -212,7 +127,7 @@ router.get("/detail/:id", async (req, res) => {
         id: idProduct,
       },
     });
-    if (data.length === 0) { 
+    if (data.length === 0) {
       return res.send("no hay producto");
     }
     return res.send(data);
@@ -222,38 +137,45 @@ router.get("/detail/:id", async (req, res) => {
 });
 
 // ---------------------CARRITO-----------------------
-
 //>>>>> aca agrego un producto al carrito
-//!!>>>> autenticar usuario y agregue productos al carrito del usuario  
+//!!>>>> autenticar usuario y agregue productos al carrito del usuario
 
 router.post("/carrito", async (req, res) => {
   const { idname, descripcion, precio, texto } = req.body;
-
-
+  /*PRIMERA PARTE : UTENTICACION
+                  a)debo ver si estoy AUTORIZATION para poder crear el producto:
+                      if---> paso a la creacion
+                      else-> Redirijo ya que debo registrarme o loguearme 
+                  */
+  //!recprdar que esto ya esta en get("detail/:id")
   //--------------tokeeeen------------
-  const authorization= req.get("authorization")
-  let token =""
-  if( authorization && authorization.toLowerCase().startsWith("bearer")){
-    token=authorization.substring(7)
+  const authorization = req.get("authorization");
+  let token = "";
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+    token = authorization.substring(7);
   }
-
-  let decodedToken={}
-
- try {
-   decodedToken= jwt.verify(token, "1234")
-
-  console.log("esto es el decode",decodedToken)
- } catch (error) {
-  //return res.status(402).send({error:"error del token"})
- }
+  let decodedToken = {};
+  try {
+    decodedToken = jwt.verify(token, "1234");
+   
+  } catch (error) {
+    //return res.status(402).send({error:"error del token"})
+  }
   
+  console.log(
+    "para ver si tiene algn elemento",
+    Object.keys(decodedToken).length
+  );
+  if (token && Object.keys(decodedToken).length === 0) {
+    console.log("holaaaaa");
 
-  if(!token && !decodedToken){
-    return res.status(401).send({error:"error de token "})
+    //res.redirect(302, 'https://www.ejemplo.com');
+    return res.status(302).send({ redirect: "/login" });
   }
-
-
-
+  /*SEGUNDA PARTE: creo el proucto si toda va en marcha 
+                       a) Desde el token debo obtener el username para poder guardarlo  
+                        b) Tengo que guardar  el idname(producto) con el username(del usuarios extraido del token)
+  */
   try {
     if (idname && precio && descripcion && texto) {
       const createCarrito = await Carrito.create({
@@ -262,19 +184,18 @@ router.post("/carrito", async (req, res) => {
         texto: texto,
         descripcion: descripcion,
       });
-       
-       
+
       // const findProduct = await Product.findAll({
       //   where: {
       //     id: idname,
       //   },
       // });
-       const findUser = await User.findAll({
+      const findUser = await User.findAll({
         where: {
           id: decodedToken.id,
         },
       });
-     console.log("finduseer",findUser)
+      console.log("finduseer", findUser);
       await createCarrito.addUsers(findUser);
       return res.send("se agrego la el pregucto");
     }
@@ -288,8 +209,8 @@ router.post("/carrito", async (req, res) => {
 
 //!>>>> me falta autenticar el ususario con el token y que busque sus productos
 
-
 router.get("/carrito", async (req, res) => {
+
   try {
     const data = await Carrito.findAll({
       include: [
@@ -300,9 +221,15 @@ router.get("/carrito", async (req, res) => {
       ],
     });
 
-    res.send(data);
+    console.log("esto es data",data)
+
+    if(!data){
+      return res.status(400).send("no hay data")
+    }
+    return res.status(200).send(data);
   } catch (error) {
-    res.status(500).send("Error en el servidor");
+    console.log("esto es el erro")
+   return res.status(500).send("Error en el servidor");
   }
 });
 

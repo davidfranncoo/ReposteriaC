@@ -28,5 +28,5 @@ conn.sync({ force: false }).then(() => {
     console.log("DB Created");
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
   });
-}); 
+});  
  
