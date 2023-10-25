@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const getApiData = require("../../data/data");
 const jwt = require("jsonwebtoken");
-const { Product, Carrito, User } = require("../db");
+const { Product, Carrito, User, ProductCarrito } = require("../db");
 //const cookieparser = require("cookie-parser"); //! interprete, se encarga de leer las cookies que nos estan enviando
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -90,10 +90,13 @@ router.get("/product/:category", async (req, res) => {
   }
 });
 
-//>>>>  Busco un producto por id y lo uso en el carrito
-//!debo ver que el usurio este registrado sino inmeddiatamente lo redirijo para que se registre
+//>>>>  Busco un producto por id y lo uso en el carrito, pero antes se corrobora que el usuario este registrado
+
 
 router.get("/detail/:id", async (req, res) => {
+
+  // --------------------- autenticacion de ususario------
+
   const authorization = req.get("authorization");
 
   let token = "";
@@ -114,12 +117,14 @@ router.get("/detail/:id", async (req, res) => {
   );
   if (token && Object.keys(decodedToken).length === 0) {
     console.log("holaaaaa");
-
     //res.redirect(302, 'https://www.ejemplo.com');
     return res.status(302).send({ redirect: "/login" });
   }
 
   const idProduct = req.params.id;
+
+
+//----------------------- si se encuentra use se muetra el producto-------------------
 
   try {
     const data = await Product.findAll({
@@ -174,7 +179,7 @@ router.post("/carrito", async (req, res) => {
   }
   /*SEGUNDA PARTE: creo el proucto si toda va en marcha 
                        a) Desde el token debo obtener el username para poder guardarlo  
-                        b) Tengo que guardar  el idname(producto) con el username(del usuarios extraido del token)
+                        b) Tengo que guardar  el idname(producto) con el id del producto en cuestion
   */
   try {
     if (idname && precio && descripcion && texto) {
@@ -207,19 +212,83 @@ router.post("/carrito", async (req, res) => {
 
 //>>> aca busco todos los prodcto que tiene el ususario y le muestro en su carrito
 
-//!>>>> me falta autenticar el ususario con el token y que busque sus productos
+//!>>>> me falta autenticar el ususario con el token y que busque sus productos  cuando ingrso al carrito
 
 router.get("/carrito", async (req, res) => {
+//>>> autentico usuario para luego obtener todos los productos que tenga en el carrito dicho  user 
+
+
+//-------------- Autenticaion de usuario-------------
+
+
+const authorization = req.get("authorization");
+
+  let token = "";
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+    token = authorization.substring(7);
+  }
+  let decodedToken = {};
+  try {
+    decodedToken = jwt.verify(token, "1234");
+    console.log("esto es el decode", decodedToken);
+  } catch (error) {
+    //return res.status(402).send({error:"error del token"})
+  }
+  console.log("111111", token);
+  console.log(
+    "para ver si tiene algn elemento",
+    Object.keys(decodedToken).length
+  );
+  if (token && Object.keys(decodedToken).length === 0) {
+    console.log("holaaaaa");
+    //res.redirect(302, 'https://www.ejemplo.com');
+    return res.status(302).send({ redirect: "/login" });
+  }
+
+
+
+
+
+ 
+//--------- usuario autenticado aso a ostrar los proudctos que tengan, si es que tienen
+//---------- if( esto son los productos en carrito)
+//---------- else( este user no tiene prodcutos en carrito)
+
+
 
   try {
-    const data = await Carrito.findAll({
-      include: [
-        {
-          model: Product,
-          attributes: ["img", "name"],
-        },
-      ],
-    });
+/*
+--------OBTENCION DE DATOS PARA MOSTRAR EN EL CARRITO SI ES Q HAY-------
+>> el CARRITO/idname === USER/id
+
+*/
+  
+    console.log("pasa por  aca!!!!!!!!!!!!!!! ")
+    const data = await ProductCarrito.findAll(
+     { where:{
+         UserId:decodedToken.id
+      }}
+
+
+
+      // include: [
+      //   {
+      //     model: Product,
+      //     attributes: ["img", "name"],
+      //   },
+      // ],
+    );
+    const dataComplete=[]
+    await data.map((e)=>{
+        const efimero=e
+        const dentro=[]
+        const exis= Product.findAll({where:[
+          id=e.UserId
+        ]})
+        dentro.push(exis)
+        
+
+    })
 
     console.log("esto es data",data)
 
