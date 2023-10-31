@@ -190,19 +190,25 @@ router.post("/carrito", async (req, res) => {
         descripcion: descripcion,
       });
 
-      // const findProduct = await Product.findAll({
-      //   where: {
-      //     id: idname,
-      //   },
-      // });
+      
       const findUser = await User.findAll({
         where: {
           id: decodedToken.id,
         },
       });
-      console.log("finduseer", findUser);
+
+      const findProduct= await Product.findAll({
+        where:{
+          id:idname,
+        }
+      })
+      // console.log("finduseer", findUser);
+      console.log("findeProduct",findProduct)
       await createCarrito.addUsers(findUser);
-      return res.send("se agrego la el pregucto");
+      await createCarrito.addProducts(findProduct);
+
+     
+      return res.send("Se agrego la el producto");
     }
     return res.status(401).send("faltan datos");
   } catch (error) {
@@ -263,34 +269,50 @@ const authorization = req.get("authorization");
 
 */
   
-    console.log("pasa por  aca!!!!!!!!!!!!!!! ")
-    const data = await ProductCarrito.findAll(
-     { where:{
-         UserId:decodedToken.id
-      }}
+   
+  console.log("esto es decodetoke.id",decodedToken.id)  
+  const data = await User.findAll({
+    include: [
+      {
+        model: Carrito,
+        include: [
+          {
+            model: Product,
+          },
+        ],
+      },
+    ],
+  });
+    
 
-
-
+      
+      
       // include: [
-      //   {
-      //     model: Product,
-      //     attributes: ["img", "name"],
-      //   },
-      // ],
-    );
-    const dataComplete=[]
-    await data.map((e)=>{
-        const efimero=e
-        const dentro=[]
-        const exis= Product.findAll({where:[
-          id=e.UserId
-        ]})
-        dentro.push(exis)
+        //   {
+          //     model: Product,
+          //     attributes: ["img", "name"],
+          //   },
+          // ],
+          // await data.map((e)=>{
+            
+          //   const y=e.CarritoId
+          //   const z= Product.findAll()
+
+
+          // })
+          // const dataComplete=[]
+    // await data.map((e)=>{
+    //     const efimero=e
+    //     const dentro=[]
+    //     const exis= Product.findAll({where:[
+    //       id=e.UserId
+    //     ]})
+    //     dentro.push(exis)
         
 
-    })
+    // })
 
-    console.log("esto es data",data)
+    console.log("ffiiiiin")
 
     if(!data){
       return res.status(400).send("no hay data")
