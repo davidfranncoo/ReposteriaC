@@ -51,6 +51,5 @@ export default function Login(){
                 <button>Sign up</button>
                 </Link>
             </form>
-        </div>
-    )
+        </div>)
 }

@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./store/index";
 import {Provider} from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
  //axios.defaults.baseURL="http://localhost:3001" //!deploy

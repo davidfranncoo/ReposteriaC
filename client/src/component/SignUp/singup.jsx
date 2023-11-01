@@ -1,8 +1,16 @@
 import React,{useState} from "react";
 import createUser from "../../action/createUser";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-import "./signin.css"
+// or less ideally
+
+
+
 export default function SignUp(){
 
 
@@ -45,35 +53,44 @@ export default function SignUp(){
     return (
         <div>
            
+
+            <Form   onSubmit={(e)=>handlerSubmit(e)}>
+                <Container>
                 <h1>Crear Usuario</h1>
 
-            <form   onSubmit={(e)=>handlerSubmit(e)}>
-            <label>Name<input 
+            <Form.Label>Nombre
+                </Form.Label>
+                <Form.Control 
                 type="username"
                 value={datos.username}
-
+                
                 onChange={(e)=>handlerInputName(e)}
-                ></input></label>
+                ></Form.Control>
 
-                <label>Correo<input 
+                <Form.Label>Correo
+                    </Form.Label>
+                    <Form.Control 
                 type="email"
                 value={datos.email}
 
                 onChange={(e)=>handlerInputEmail(e)}
-                ></input></label>
+                ></Form.Control>
 
-                <label>Contraseña<input 
+                <Form.Label>Contraseña
+                    </Form.Label>
+                    <Form.Control 
                 type="password"
                 value={datos.password}
                 onChange={(e)=>handlerInputPassword(e)}
-                ></input></label>
+                ></Form.Control>
 
-                <button type="submit">Crear Usuario</button>
-                
-            </form>
+                <Button type="submit" size="sm">Crear Usuario</Button>{' '}
+               
             <Link to={"/login"}>
-                <button >Log in</button>
+                <Button size="sm" >Ingresar</Button>
             </Link>
+                </Container>
+            </Form>
         </div>
     )
 }
