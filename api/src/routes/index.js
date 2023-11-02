@@ -24,7 +24,7 @@ router.post("/singup", async (req, res) => {
       });
 
       if (findEmail) {
-        return res.status(300).send("ya hay un usuario con este email");
+        return res.status(409).send({error:"Ya existe un usuario con este email"});
       }
       const passwordHash = password;
 
@@ -48,11 +48,11 @@ router.post("/singup", async (req, res) => {
       //   password: password,
       // });
 
-      return res.status(200).send("se creo el usuario");
+      return res.status(200).send({msg:"Se agrego Usuario Correctamente"});
     }
-    return res.status(401).send("faltan datos");
+    return res.status(400).send({error:"Faltan Datos"});
   } catch (error) {
-    return res.status(400).send("erro al agregar");
+    return res.status(400).send({error:"Erro al Crear Usuario"});
   }
 });
 
