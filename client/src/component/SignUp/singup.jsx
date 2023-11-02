@@ -12,26 +12,44 @@ import "./signin.css";
 
 export default function SignUp() {
   const [error, setError] = useState({
-    username: "",
-    email: "",
+    username:true,
+    email:true,
+    password:true,
+    usernameError:"* Debes agregar un Nombre",
+    emailError:"* Ingresa un correo valido",
+    passwordError:"* Ingresa una contraseña",
+    
+  
+
   });
+   
   function validacion(objeto) {
     const clave = Object.keys(objeto);
     const valor = Object.values(objeto);
-
-    let error = {
-      username: true,
-      email: true,
-      password: true,
-    };
-    error[clave] = valor;
-
-    if (error.username[0] === false)
-      error.username = "* Debes agregar un Nombre";
-    if (error.email[0] === false) error.email = "* Ingresa un correo valido";
-    if (error.password[0] === false)
-      error.password = "* Ingresa una contraseña";
-    return error;
+    
+    console.log("claveeee",clave)
+    console.log("Valor",valor)
+      
+     if (clave[0] === "username" && valor[0] ===false){
+      setError({...error,username:false})
+    }if (clave[0] === "username" && valor[0] ===true){
+      setError({...error,username:true})
+    }
+    if (clave[0] === "email" && valor[0] ===false){
+      setError({...error,email:false})
+    }if (clave[0] === "email" && valor[0] ===true){
+      setError({...error,email:true})
+    }  
+    if (clave[0] === "password" && valor[0] ===false){
+      setError({...error,password:false})
+    }if (clave[0] === "password" && valor[0] ===true){
+      setError({...error,password:true})
+    }
+    //   error.username = "* Debes agregar un Nombre";
+    // if (error.email[0] === false) error.email = "* Ingresa un correo valido";
+    // if (error.password[0] === false)
+    //   error.password = "* Ingresa una contraseña";
+    // return ;
   }
 
   const [datos, setDatos] = useState({
@@ -56,25 +74,25 @@ export default function SignUp() {
     if (
       !/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(e.target.value)
     ) {
-      setError(validacion({ email: false }));
+      validacion({ email: false });
     } else {
-      setError(validacion({ email: true }));
+      validacion({ email: true });
     }
   }
   function handlerInputPassword(e) {
     setDatos({ ...datos, password: e.target.value });
     if (!e.target.value) {
-      setError(validacion({ password: false }));
+      validacion({ password: false });
     } else {
-      setError(validacion({ password: true }));
+      validacion({ password: true });
     }
   }
   function handlerInputName(e) {
     setDatos({ ...datos, username: e.target.value });
     if (!e.target.value) {
-      setError(validacion({ username: false }));
+      validacion({ username: false });
     } else {
-      setError(validacion({ username: true }));
+      validacion({ username: true });
     }
   }
 
@@ -93,8 +111,8 @@ export default function SignUp() {
                 value={datos.username}
                 onChange={(e) => handlerInputName(e)}
               ></Form.Control>
-              {error.username ? (
-                <Form.Label className="error">{error.username}</Form.Label>
+              {error.username===false ? (
+                <Form.Label className="error">{error.usernameError}</Form.Label>
               ) : (
                 ""
               )}
@@ -108,8 +126,8 @@ export default function SignUp() {
                 value={datos.email}
                 onChange={(e) => handlerInputEmail(e)}
               ></Form.Control>
-              {error.email ? (
-                <Form.Label className="error">{error.email}</Form.Label>
+              {error.email===false ? (
+                <Form.Label className="error">{error.emailError}</Form.Label>
               ) : (
                 ""
               )}
@@ -124,8 +142,8 @@ export default function SignUp() {
                 value={datos.password}
                 onChange={(e) => handlerInputPassword(e)}
               ></Form.Control>
-              {error.password ? (
-                <Form.Label className="error">{error.password}</Form.Label>
+              {error.password=== false ? (
+                <Form.Label className="error">{error.passwordError}</Form.Label>
               ) : (
                 ""
               )}
@@ -135,7 +153,11 @@ export default function SignUp() {
           <br />
           <Row className="d-flex justify-content-center">
             <Col xs={7} className="d-flex justify-content-around">
-              <Button type="submit" size="sm">
+              <Button
+                type="submit"
+                size="sm"
+                disabled={!datos.username || !datos.email || !datos.password}
+              >
                 Crear Usuario
               </Button>
               {""}
