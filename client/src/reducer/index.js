@@ -3,10 +3,11 @@ product:[],
 productSeach:[],
 detailProduct:[],
 myCArrito:[],
-userStatus:[]
+userStatus:[],
+alerta:false
 }
 export default function rootRecuducer(state=intialState,action){
- 
+  console.log("esto es action",action)
  
     switch(action.type){
         case "GET_PRODUCT":
@@ -40,7 +41,13 @@ export default function rootRecuducer(state=intialState,action){
         case "TOKEN":  
             return {
                 ...state,
+                alerta:false,
                 userStatus:action.payload
+            } 
+            case "ERROR":  
+            return {
+                ...state,
+                alerta:true
             }    
                 
                 default:

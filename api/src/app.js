@@ -7,6 +7,7 @@ const session = require('express-session');//!
 const authRouter = require('./routes/auth.js');
 const authLogin=require("./routes/login.js")
 var passport = require('passport');
+const cors = require('cors');
 
 
 require('./db.js');
@@ -14,13 +15,13 @@ require('./db.js');
 const server = express();
 
 server.name = 'API';
-
+server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  //!res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); esto es deploy
+  //!res.header('Access-Control-Allow-Origin', 'http://localhost:3001'); 
   res.header('Access-Control-Allow-Origin', '*'); // * para que culaquier url le pueda hacer peticion
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');

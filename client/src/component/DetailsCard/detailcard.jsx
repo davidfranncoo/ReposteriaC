@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Nav from "../Nav/nav";
 //import GetDetail from "../../action/detailcard";
 import "./detailcard.css";
-import { getDetail,
-  sendProduct } from "../../action";
+import { getDetail, sendProduct } from "../../action";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,14 +11,19 @@ export default function DetailCard() {
   const precio = 1900;
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.detailProduct) || [];
+  const alerta = useSelector((state) => state.alerta);
 
   // -------------------------- OBTENER INFORMACION-------------------
   const params = useParams();
 
   const [loading, setLoading] = useState(true);
 
+  //? debo hacer que me redirija a "login" para poder iniciar sesion
+  const getTokenJSON = window.localStorage.getItem("TOKEN");
+  const Token = JSON.parse(getTokenJSON);
+
   useEffect(() => {
-    dispatch(getDetail(params.id)).then(() => setLoading(false));
+    dispatch(getDetail(params.id, Token)).then(() => setLoading(false));
   }, []);
 
   const [contador, setContador] = useState(precio);
@@ -59,7 +63,7 @@ export default function DetailCard() {
     e.preventDefault();
 
     sendProduct(form);
-     console.log("0000",form)
+
     setForm({
       idname: "",
       precio: "",
@@ -75,6 +79,8 @@ export default function DetailCard() {
       <Nav />
       {loading === true ? (
         <div>cargandoooo</div>
+      ) : alerta === true ? (
+        alert("Debes iniciar sesión")
       ) : (
         <>
           <div className="details">

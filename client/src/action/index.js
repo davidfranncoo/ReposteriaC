@@ -34,16 +34,33 @@ export function seachProduct(seach) {
     });
   };
 }
-export function getDetail(id) {
-  return async function (dispatch) {
-    const json = await axios("http://localhost:3001/detail/" + id);
 
-    return dispatch({
-      type: "ID_DETAIL",
-      payload: json.data,
-    });
+export function getDetail(id, token) {
+  return async function (dispatch) {
+    // aca tenemos que mandar el token
+    try {
+      const Autenticaion = `Bearer ${token}`;
+
+      const json = await axios("http://localhost:3001/detail/" + id, {
+        headers: {
+          Authorization: Autenticaion,
+        },
+      });
+
+      return dispatch({
+        type: "ID_DETAIL",
+        payload: json.data,
+      });
+    } catch (error) {
+      // HAY QUE LOGUEARSEEEEEEEEEE CARAJ MIERD DIRIA MIRTHA JE
+
+      return dispatch({
+        type: "ERROR",
+      });
+    }
   };
 }
+
 export function getCarrito() {
   return async function (dispatch) {
     const requeri = await axios.get("http://localhost:3001/carrito");
@@ -80,25 +97,19 @@ export function sendProduct(payload) {
 
 //   }
 // };
-export  function loginUser(user) {
- 
+export function loginUser(user) {
   return async function (dispatch) {
-    
     const requeri = await axios.post("http://localhost:3001/login", user);
 
-
     // ---------- INGRESO DE SESION TOKEN---------------
-    const clave=requeri.data.token
-    window.localStorage.setItem('TOKEN', clave)
-    
-
+    const clave = requeri.data.token;
+    window.localStorage.setItem("TOKEN", JSON.stringify(clave));
 
     return dispatch({
       type: "TOKEN",
       payload: requeri.data,
     });
   };
-
 }
 
 //  export default loginUser;
