@@ -38,7 +38,6 @@ server.use(passport.authenticate('session'));
 
 
 
-
  //! ingreso de cuenta
 server.use('/', routes);
 //server.use('/', authRouter);

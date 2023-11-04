@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // export function sendProduct(payload){
-   
+
 //     return async function(dispatch){
 //        const res= await axios("http://localhost:3001/carrito/",payload );
 //         console.log("esto es requei",res)
@@ -44,24 +44,61 @@ export function getDetail(id) {
     });
   };
 }
-export function getCarrito(){
-    return async function (dispatch){
-        const requeri= await axios.get("http://localhost:3001/carrito");
-        return dispatch({
-            type:"GET_CARRITO",
-            payload: requeri.data
-        })
-    }
+export function getCarrito() {
+  return async function (dispatch) {
+    const requeri = await axios.get("http://localhost:3001/carrito");
+    return dispatch({
+      type: "GET_CARRITO",
+      payload: requeri.data,
+    });
+  };
 }
 
-export function sendProduct(payload){
+export function sendProduct(payload) {
+  const response = axios.post(`http://localhost:3001/carrito`, payload);
+  const data = response.data;
 
-        const response =  axios.post(`http://localhost:3001/carrito`,payload);
-        const data = response.data;
-        
-      return ({
-        type:"SEND_PRODUCT",
-        payload:data
-      })
-    
+  return {
+    type: "SEND_PRODUCT",
+    payload: data,
   };
+}
+
+// export const loginUser=(email)=>{
+
+//   console.log("email",email)
+
+//   return async function(dispatch) {
+
+//     console.log("requeeeri")
+//     const requeri = await axios.post("http://localhost:3001/login", email);
+
+//     return dispatch({
+//       type:"TOKEN",
+//       payload:requeri
+//     })
+
+//   }
+// };
+export  function loginUser(user) {
+ 
+  return async function (dispatch) {
+    
+    const requeri = await axios.post("http://localhost:3001/login", user);
+
+
+    // ---------- INGRESO DE SESION TOKEN---------------
+    const clave=requeri.data.token
+    window.localStorage.setItem('TOKEN', clave)
+    
+
+
+    return dispatch({
+      type: "TOKEN",
+      payload: requeri.data,
+    });
+  };
+
+}
+
+//  export default loginUser;

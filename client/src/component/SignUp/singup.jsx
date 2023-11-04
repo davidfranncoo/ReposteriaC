@@ -12,38 +12,38 @@ import "./signin.css";
 
 export default function SignUp() {
   const [error, setError] = useState({
-    username:true,
-    email:true,
-    password:true,
-    usernameError:"* Debes agregar un Nombre",
-    emailError:"* Ingresa un correo valido",
-    passwordError:"* Ingresa una contraseña",
-    
-  
-
+    username: true,
+    email: true,
+    password: true,
+    usernameError: "* Debes agregar un Nombre",
+    emailError: "* Ingresa un correo valido",
+    passwordError: "* Ingresa una contraseña de 8 caracteres o más",
   });
-   
+
   function validacion(objeto) {
     const clave = Object.keys(objeto);
     const valor = Object.values(objeto);
-    
-    console.log("claveeee",clave)
-    console.log("Valor",valor)
-      
-     if (clave[0] === "username" && valor[0] ===false){
-      setError({...error,username:false})
-    }if (clave[0] === "username" && valor[0] ===true){
-      setError({...error,username:true})
+
+    console.log("claveeee", clave);
+    console.log("Valor", valor);
+
+    if (clave[0] === "username" && valor[0] === false) {
+      setError({ ...error, username: false });
     }
-    if (clave[0] === "email" && valor[0] ===false){
-      setError({...error,email:false})
-    }if (clave[0] === "email" && valor[0] ===true){
-      setError({...error,email:true})
-    }  
-    if (clave[0] === "password" && valor[0] ===false){
-      setError({...error,password:false})
-    }if (clave[0] === "password" && valor[0] ===true){
-      setError({...error,password:true})
+    if (clave[0] === "username" && valor[0] === true) {
+      setError({ ...error, username: true });
+    }
+    if (clave[0] === "email" && valor[0] === false) {
+      setError({ ...error, email: false });
+    }
+    if (clave[0] === "email" && valor[0] === true) {
+      setError({ ...error, email: true });
+    }
+    if (clave[0] === "password" && valor[0] === false) {
+      setError({ ...error, password: false });
+    }
+    if (clave[0] === "password" && valor[0] === true) {
+      setError({ ...error, password: true });
     }
     //   error.username = "* Debes agregar un Nombre";
     // if (error.email[0] === false) error.email = "* Ingresa un correo valido";
@@ -81,7 +81,7 @@ export default function SignUp() {
   }
   function handlerInputPassword(e) {
     setDatos({ ...datos, password: e.target.value });
-    if (!e.target.value) {
+    if (!/^\w{8,}$/.test(e.target.value)) {
       validacion({ password: false });
     } else {
       validacion({ password: true });
@@ -111,7 +111,7 @@ export default function SignUp() {
                 value={datos.username}
                 onChange={(e) => handlerInputName(e)}
               ></Form.Control>
-              {error.username===false ? (
+              {error.username === false ? (
                 <Form.Label className="error">{error.usernameError}</Form.Label>
               ) : (
                 ""
@@ -126,7 +126,7 @@ export default function SignUp() {
                 value={datos.email}
                 onChange={(e) => handlerInputEmail(e)}
               ></Form.Control>
-              {error.email===false ? (
+              {error.email === false ? (
                 <Form.Label className="error">{error.emailError}</Form.Label>
               ) : (
                 ""
@@ -142,7 +142,7 @@ export default function SignUp() {
                 value={datos.password}
                 onChange={(e) => handlerInputPassword(e)}
               ></Form.Control>
-              {error.password=== false ? (
+              {error.password === false ? (
                 <Form.Label className="error">{error.passwordError}</Form.Label>
               ) : (
                 ""
@@ -156,7 +156,14 @@ export default function SignUp() {
               <Button
                 type="submit"
                 size="sm"
-                disabled={!datos.username || !datos.email || !datos.password}
+                disabled={
+                  !datos.username ||
+                  !datos.email ||
+                  !datos.password ||
+                  error.username === false ||
+                  error.email === false ||
+                  error.password === false
+                }
               >
                 Crear Usuario
               </Button>

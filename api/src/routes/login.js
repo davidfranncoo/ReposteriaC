@@ -7,9 +7,9 @@ const router = express();
 
 
 router.post("/login",async(req,res)=>{
-    const {username,password}=req.body
+    const {email,password}=req.body
   
-    const user = await User.findOne({where: {username: username}})
+    const user = await User.findOne({where: {email: email}})
   
     const passwordCorrect= user===null?
     []
@@ -23,14 +23,14 @@ router.post("/login",async(req,res)=>{
     //creamos el token 
 
     const userFrotToken={
-        username:user.username,
+        username:user.username, 
         id:user.id
     }
 
     //formamos el token, lo que esta en "" es lo que se debe poner en .env
     const token= jwt.sign(userFrotToken, "1234")
 
-
+   
 
     return res.status(200).send({
         username:user.username,
