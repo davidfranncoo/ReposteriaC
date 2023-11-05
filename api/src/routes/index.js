@@ -184,7 +184,7 @@ router.post("/carrito", async (req, res) => {
         precio: precio,
         texto: texto,
         descripcion: descripcion,
-      });
+      });  
 
       const findUser = await User.findAll({
         where: {

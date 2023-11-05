@@ -71,14 +71,26 @@ export function getCarrito() {
   };
 }
 
-export function sendProduct(payload) {
-  const response = axios.post(`http://localhost:3001/carrito`, payload);
-  const data = response.data;
+export function sendProduct(payload,token) {
 
-  return {
-    type: "SEND_PRODUCT",
-    payload: data,
-  };
+
+    const autenticacion= `Bearer ${token}`
+
+
+    const response = axios.post(`http://localhost:3001/carrito`, payload,{
+      headers:{
+        Authorization:autenticacion,
+      }
+    });
+    const data = response.data;
+    console.log("dataaaaaaa de agregar el producto", data)
+  
+    return {
+      type: "SEND_PRODUCT",
+      payload: data,
+    };
+
+  
 }
 
 // export const loginUser=(email)=>{

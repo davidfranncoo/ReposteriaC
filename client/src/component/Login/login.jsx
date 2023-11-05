@@ -56,6 +56,9 @@ export default function Login() {
 
   return (
     <div className="fondo_div">
+      <Link to="/home">
+            <li>🏠</li>
+          </Link>
       <h1 className="d-flex justify-content-center">Ingresa Sesion</h1>
 
       <Form className="div_login" onSubmit={(e) => handlerSubmit(e)}>

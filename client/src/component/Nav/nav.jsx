@@ -17,6 +17,9 @@ export default function Nav() {
           <Link to="/carrito">
             <li>🛒</li>
           </Link>
+          <Link to="/login">
+            <li>👤</li>
+          </Link>
         </ul>
       </nav>
     </div>

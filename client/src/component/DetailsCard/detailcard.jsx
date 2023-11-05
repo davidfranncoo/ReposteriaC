@@ -62,7 +62,7 @@ export default function DetailCard() {
   function handlerSubmit(e) {
     e.preventDefault();
 
-    sendProduct(form);
+    sendProduct(form,Token);
 
     setForm({
       idname: "",
