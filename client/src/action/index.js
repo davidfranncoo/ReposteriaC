@@ -111,17 +111,27 @@ export function sendProduct(payload,token) {
 // };
 export function loginUser(user) {
   return async function (dispatch) {
-    const requeri = await axios.post("http://localhost:3001/login", user);
-
+  try {
+      const requeri = await axios.post("http://localhost:3001/login", user);
+    
+  const clave = requeri.data.token;
+  console.log("claveeee",requeri)
+  window.localStorage.setItem("TOKEN", JSON.stringify(clave));
+  
+  return dispatch({
+    type: "TOKEN",
+    payload: requeri.data,
+  });
+  
+} catch (error) {
+  console.log("1111111111111111")
+  return dispatch({
+    type: "TOKEN",
+    payload: {ERROR:true},
+  });
+  
+}}
+};
     // ---------- INGRESO DE SESION TOKEN---------------
-    const clave = requeri.data.token;
-    window.localStorage.setItem("TOKEN", JSON.stringify(clave));
-
-    return dispatch({
-      type: "TOKEN",
-      payload: requeri.data,
-    });
-  };
-}
 
 //  export default loginUser;

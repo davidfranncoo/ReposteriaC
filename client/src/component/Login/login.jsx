@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import {loginUser} from "../../action/index";
+import { loginUser } from "../../action/index";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -10,17 +10,22 @@ import Button from "react-bootstrap/esm/Button";
 import "./login.css";
 
 export default function Login() {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const productData = useSelector((state) => state.userStatus) || [];
+
   useEffect(() => {
-    // Realizar algún efecto cuando productData cambie
-    console.log("productData ha cambiado:", productData);
+    if (productData.ERROR === true) {
+     return alert("usuario o contraseña incorreccta");
+    }
+    if(productData.length!==0) {
+      window.location.href = "/home";
+    }
   }, [productData]);
   
+
   const [error, setError] = useState({
     email: true,
     password: true,
-
     emailError: "* Ingresa un correo valido",
     passwordError: "* Ingresa una contraseña de 8 caracteres o más",
   });
@@ -31,8 +36,13 @@ export default function Login() {
 
   function handlerSubmit(e) {
     e.preventDefault();
-    console.log("datos",datos)
+
     dispatch(loginUser(datos));
+
+    setDatos({
+      email: "",
+      password: "",
+    });
   }
   function handlerInputEmail(e) {
     setDatos({ ...datos, email: e.target.value });
@@ -57,15 +67,18 @@ export default function Login() {
   return (
     <div className="fondo_div">
       <Link to="/home">
-            <li>🏠</li>
-          </Link>
+        <li>🏠</li>
+      </Link>
       <h1 className="d-flex justify-content-center">Ingresa Sesion</h1>
 
       <Form className="div_login" onSubmit={(e) => handlerSubmit(e)}>
         <Row className="d-flex justify-content-center">
           <Col xs={7} className="d-flex flex-column">
             <Form.Label>Correo</Form.Label>
-            <input onChange={(e) => handlerInputEmail(e)}></input>
+            <input
+              onChange={(e) => handlerInputEmail(e)}
+              value={datos.email}
+            ></input>
             {error.email === false ? (
               <Form.Label className="error">{error.emailError}</Form.Label>
             ) : (
@@ -76,6 +89,7 @@ export default function Login() {
             <input
               type="password"
               onChange={(e) => handlerInputPassword(e)}
+              value={datos.password}
             ></input>
             {error.password === false ? (
               <Form.Label className="error">{error.passwordError}</Form.Label>

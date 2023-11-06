@@ -8,7 +8,7 @@ import DetailCard from './component/DetailsCard/detailcard';
 import Prueba from './component/Prueba/prueba';
 import SingUp from './component/SignUp/singup';
 import Login from './component/Login/login';
-import Inicio from './component/Inicio/inicio';
+
 
 function App() {
   return (

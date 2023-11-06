@@ -1,16 +1,13 @@
 const { Router } = require("express");
-const getApiData = require("../../data/data");
 const jwt = require("jsonwebtoken");
 const { Product, Carrito, User, ProductCarrito } = require("../db");
-//const cookieparser = require("cookie-parser"); //! interprete, se encarga de leer las cookies que nos estan enviando
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+const { getProduct, getProductByCategory } = require("../controllers/product");
 const router = Router();
 const bcrypt = require("bcrypt");
+const authenticateToken = require("../middleware/auth");
 const saltRounds = 10; // Número de rondas de sal para la encriptación
 
 // -------------------USUARIO----------------------
-
 router.post("/singup", async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -18,7 +15,7 @@ router.post("/singup", async (req, res) => {
     if (username && email && password) {
       const findEmail = await User.findOne({
         where: {
-          email: email,
+          email: email.toLowerCase(),
         },
       });
 
@@ -37,7 +34,7 @@ router.post("/singup", async (req, res) => {
           console.log("Contraseña hasheada:", hash);
           User.create({
             username: username,
-            email: email,
+            email: email.toLowerCase(),
             password: hash,
           });
         }
@@ -57,69 +54,12 @@ router.post("/singup", async (req, res) => {
   }
 });
 
-// --------------PRODUCTO----------------------
-
-//>>>>> busco todos los prductos que mostarre en HOME
-
-router.get("/product", async (req, res) => {
-  try {
-    const data = await Product.findAll();
-
-    res.send(data);
-  } catch (error) {
-    res.status(500).send("Error en el servidor");
-  }
-});
-
-//>>>>>>> aca busca producto (tortas, tartas , bandejas) de una categoria y muestro  esos productos
-
-router.get("/product/:category", async (req, res) => {
-  const category = req.params.category;
-  try {
-    const data = await Product.findAll({
-      where: {
-        category: category,
-      },
-    });
-    if (data.length === 0) {
-      return res.send("no hay categoria ");
-    }
-    return res.send(data);
-  } catch (error) {
-    return res.status(500).send("No existe esta categoria");
-  }
-});
+router.get("/product", getProduct);
+router.get("/product/:category", getProductByCategory);
 
 //>>>>  Busco un producto por id y lo uso en el carrito, pero antes se corrobora que el usuario este registrado
-
-router.get("/detail/:id", async (req, res) => {
+router.get("/detail/:id", authenticateToken, async (req, res) => {
   // --------------------- autenticacion de ususario------
-  const authorization = req.get("authorization");
-  console.log("autooooooooo", authorization);
-
-  if (!authorization) {
-    return res.status(400).send("Faltan Datos de Autorizacion");
-  }
-
-  let token = "";
-  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
-    token = authorization.substring(7);
-  }
-  let decodedToken = {};
-  try {
-    decodedToken = jwt.verify(token, "1234");
-  } catch (error) {
-    return res.status(402).send({ error: "error del token" });
-  }
-  console.log(
-    "para ver si tiene algn elemento",
-    Object.keys(decodedToken).length
-  );
-  if (token && Object.keys(decodedToken).length === 0) {
-    //res.redirect(302, 'https://www.ejemplo.com');
-    return res.status(302).send("ve a loguearte");
-    // { redirect: "/login" }
-  }
 
   const idProduct = req.params.id;
 
@@ -184,7 +124,7 @@ router.post("/carrito", async (req, res) => {
         precio: precio,
         texto: texto,
         descripcion: descripcion,
-      });  
+      });
 
       const findUser = await User.findAll({
         where: {
@@ -227,17 +167,15 @@ router.get("/carrito", async (req, res) => {
   let decodedToken = {};
   try {
     decodedToken = jwt.verify(token, "1234");
-    console.log("esto es el decode", decodedToken);
   } catch (error) {
     //return res.status(402).send({error:"error del token"})
   }
-  console.log("111111", token);
+
   console.log(
     "para ver si tiene algn elemento",
     Object.keys(decodedToken).length
   );
   if (token && Object.keys(decodedToken).length === 0) {
-    console.log("holaaaaa");
     //res.redirect(302, 'https://www.ejemplo.com');
     return res.status(302).send({ redirect: "/login" });
   }
@@ -253,7 +191,6 @@ router.get("/carrito", async (req, res) => {
 
 */
 
-    console.log("esto es decodetoke.id", decodedToken.id);
     const data = await User.findAll({
       include: [
         {
@@ -290,14 +227,11 @@ router.get("/carrito", async (req, res) => {
 
     // })
 
-    console.log("ffiiiiin");
-
     if (!data) {
       return res.status(400).send("no hay data");
     }
     return res.status(200).send(data);
   } catch (error) {
-    console.log("esto es el erro");
     return res.status(500).send("Error en el servidor");
   }
 });
