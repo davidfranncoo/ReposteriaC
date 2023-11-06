@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 const { Product, Carrito, User, ProductCarrito } = require("../db");
-const { getProduct, getProductByCategory } = require("../controllers/product");
+const { getProduct, getProductByCategory, getProductById } = require("../controllers/product");
 const router = Router();
 const bcrypt = require("bcrypt");
 const authenticateToken = require("../middleware/auth");
@@ -53,36 +53,11 @@ router.post("/singup", async (req, res) => {
     return res.status(400).send({ error: "Erro al Crear Usuario" });
   }
 });
-
 router.get("/product", getProduct);
 router.get("/product/:category", getProductByCategory);
-
-//>>>>  Busco un producto por id y lo uso en el carrito, pero antes se corrobora que el usuario este registrado
-router.get("/detail/:id", authenticateToken, async (req, res) => {
-  // --------------------- autenticacion de ususario------
-
-  const idProduct = req.params.id;
-
-  //----------------------- si se encuentra use se muetra el producto-------------------
-
-  try {
-    const data = await Product.findAll({
-      where: {
-        id: idProduct,
-      },
-    });
-    if (data.length === 0) {
-      return res.status(403).send("no hay producto");
-    }
-    return res.send(data);
-  } catch (error) {
-    return res.status(500).send("No existe el producto");
-  }
-});
+router.get("/product/detail/:id", authenticateToken, getProductById);
 
 // ---------------------CARRITO-----------------------
-//>>>>> aca agrego un producto al carrito
-//!!>>>> autenticar usuario y agregue productos al carrito del usuario
 
 router.post("/carrito", async (req, res) => {
   const { idname, descripcion, precio, texto } = req.body;

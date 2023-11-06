@@ -26,7 +26,26 @@ const getProductByCategory = async (req, res) => {
   }
 };
 
+const getProductById = async (req, res) => {
+  const idProduct = req.params.id;
+
+  try {
+    const data = await Product.findAll({
+      where: {
+        id: idProduct,
+      },
+    });
+    if (data.length === 0) {
+      return res.status(403).send("no hay producto");
+    }
+    return res.send(data);
+  } catch (error) {
+    return res.status(500).send("No existe el producto");
+  }
+};
+
 module.exports = {
   getProduct,
   getProductByCategory,
+  getProductById,
 };
