@@ -1,7 +1,11 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 const { Product, Carrito, User, ProductCarrito } = require("../db");
-const { getProduct, getProductByCategory, getProductById } = require("../controllers/product");
+const {
+  getProduct,
+  getProductByCategory,
+  getProductById,
+} = require("../controllers/product");
 const router = Router();
 const bcrypt = require("bcrypt");
 const authenticateToken = require("../middleware/auth");
