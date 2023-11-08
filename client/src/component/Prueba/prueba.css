@@ -1,7 +1,45 @@
-.naavTogle{
-    display: inline-block;
-    width:0em;
-    height: 0em;
-    vertical-align: middle;
+.bg-body-tertiary{
+    background-color: blueviolet;
+}
+.navbar-toggler-icon {
+  font-size: 0.8rem;
     
+
+}
+.navbar-toggler:focus {
+    box-shadow: none !important;  
+  
+  }
+.link-style {
+    text-decoration: none !important;
+    color:black;
+  }
+.imagen1{
+    width: 25%;
+    padding: 0.2rem;
+}
+.btn-close {
+    margin-right: 0% !important;
+  font-size: 0.8rem;
+
+  }
+.carrucel img{
+
+  height: 250px;
+  
+ 
+}
+.imagenCarru{
+  display: flex;
+  justify-content: center;
+  height: 22rem;
+  width: 20rem;
+  padding: 1rem;
+}
+.contenImg{
+width: 100%;
+
+display: flex;
+justify-content: center;
+
 }
