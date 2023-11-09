@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Nav/nav";
 import "./producto.css";
+
 import { Link } from "react-router-dom";
 import { seachProduct } from "../../action";
 import CardProduct from "../CardProduc/cardproduct.jsx";
