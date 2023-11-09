@@ -1,3 +1,6 @@
+
+
+
 .bg-body-tertiary{
     background-color: blueviolet;
 }
@@ -15,8 +18,9 @@
     color:black;
   }
 .imagen1{
-    width: 25%;
-    padding: 0.2rem;
+    width: 25%; 
+  margin-left: 5px;
+    padding: 0.1rem;
 }
 .btn-close {
     margin-right: 0% !important;
@@ -42,4 +46,33 @@ width: 100%;
 display: flex;
 justify-content: center;
 
+}
+.custom-shape-divider-top-1699454754 {
+  
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1699454754 svg {
+  position: relative;
+  display: block;
+  width: calc(139% + 1.3px);
+  height: 50px;
+}
+
+.custom-shape-divider-top-1699454754 .shape-fill {
+  fill: #FFA8EE;
+}
+
+.divProduct{
+  margin:20px ;
+}
+.footer{
+  background-color: #FFA8EE;
+  width: 100%;
+  height: 100px;
+}
+h1 .tituloHome{
+ background-color: #FFA8EE;
 }
