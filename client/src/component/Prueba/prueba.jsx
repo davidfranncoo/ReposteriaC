@@ -190,7 +190,7 @@ export default function Prueba() {
             </div>
           </Col>
           <Col className="text-center mx-auto">
-            <h3>Solo nosotros contamos con productos diversos</h3>
+            <h3 className="text-sm">Sumamente ricos!</h3>
           </Col>
         </Row>
       </div>
@@ -199,7 +199,7 @@ export default function Prueba() {
         <Row className="">
           <Col className="col-10 ">
             {" "}
-            <h1>Tortas</h1>
+            <h5 className="text-center">Tortas</h5>
           </Col>
           <Col className="col-1 ">
             <Button variant="primary">ver</Button>
@@ -212,7 +212,7 @@ export default function Prueba() {
           <Col>
             <Image className="w-100 h-50" src={Carru2} />
 
-            <h6 className="text-center mx-auto">aca va una reseña $100</h6>
+            <h6 className="text-center ">aca va una reseña $100</h6>
           </Col>
           <Col className="col-3 ">
             <Image className="w-100 h-50" src={Carru3} />
