@@ -111,7 +111,7 @@ export default function Prueba() {
         </Col>
       </Row>
 
-      <Row className="bg-secondary">
+      <Row className="carrucel_fondo">
         <Col>
           <Carousel
             className="carul"

@@ -1,4 +1,6 @@
-
+Row{
+  margin-right: none !important;
+}
 
 
 .bg-body-tertiary{
@@ -32,6 +34,10 @@
   height: 250px;
   
  
+}
+.carrucel_fondo{
+  background-color: #FFA8EE;
+  
 }
 .imagenCarru{
   display: flex;

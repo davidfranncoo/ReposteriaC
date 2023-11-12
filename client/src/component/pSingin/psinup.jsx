@@ -24,6 +24,14 @@ export default function pSingup() {
           <h1 className="d-flex justify-content-center">
             <i class="bi bi-person-circle"></i>
           </h1>
+
+        
+          <div className="d-flex flex-column">
+            <h6>Usuario</h6>
+
+            <input></input>
+          </div>
+
           <div className="d-flex flex-column">
             <h6>Correo</h6>
 
@@ -37,11 +45,11 @@ export default function pSingup() {
           </div>
             <div className="d-flex flex-column justify-content-center">
                 
-          <Link to={"/singup"}>
-            <h6>Sign up</h6>
+          <Link to={"/login"}>
+            <h6>Log in</h6>
           </Link>
 
-          <Button type="submit">Iniciar Sesion</Button>
+          <Button type="submit">Crear Usuario</Button>
             </div>
         </Form>
       </div>
