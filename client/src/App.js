@@ -8,8 +8,8 @@ import DetailCard from './component/DetailsCard/detailcard';
 import Prueba from './component/Prueba/prueba';
 import SingUp from './component/SignUp/singup';
 import Login from './component/Login/login';
-import pLogin from './component/PruebaLogin/pLogin';
-import pSingup from './component/pSingin/psinup';
+
+
 
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
  
    <Switch>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/plogin" component={pLogin}/>
-          <Route exact path="/psingup" component={pSingup}/>
+         
+        
 
           <Route exact path="/login" component={Login}/>
           <Route exact path="/singup" component={SingUp}/>

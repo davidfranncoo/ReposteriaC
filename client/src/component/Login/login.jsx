@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import iconoT from "../../Img/logo1.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { loginUser } from "../../action/index";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import "./login.css";
 
@@ -15,13 +13,12 @@ export default function Login() {
 
   useEffect(() => {
     if (productData.ERROR === true) {
-     return alert("usuario o contraseña incorreccta");
+      return alert("usuario o contraseña incorreccta");
     }
-    if(productData.length!==0) {
+    if (productData.length !== 0) {
       window.location.href = "/home";
     }
   }, [productData]);
-  
 
   const [error, setError] = useState({
     email: true,
@@ -65,16 +62,23 @@ export default function Login() {
   }
 
   return (
-    <div className="fondo_div">
-      <Link to="/home">
-        <li>🏠</li>
-      </Link>
-      <h1 className="d-flex justify-content-center">Ingresa Sesion</h1>
+    <div className="div_login">
+      <div className="Icon_back">
+        <Link to="/home">
+          <img src={iconoT} className="icon_img"></img>
+          <i class="bi bi-backspace-fill"></i>
+        </Link>
+      </div>
 
-      <Form className="div_login" onSubmit={(e) => handlerSubmit(e)}>
-        <Row className="d-flex justify-content-center">
-          <Col xs={7} className="d-flex flex-column">
-            <Form.Label>Correo</Form.Label>
+      <div className="div_form">
+        <Form onSubmit={(e) => handlerSubmit(e)}>
+          <h1 className="d-flex justify-content-center">
+            <i class="bi bi-person-circle"></i>
+          </h1>
+
+          <div className="d-flex flex-column">
+            <h6>Correo</h6>
+
             <input
               onChange={(e) => handlerInputEmail(e)}
               value={datos.email}
@@ -84,8 +88,10 @@ export default function Login() {
             ) : (
               ""
             )}
+          </div>
 
-            <Form.Label>Contraseña</Form.Label>
+          <div className="d-flex flex-column">
+            <h6>Contraseña</h6>
             <input
               type="password"
               onChange={(e) => handlerInputPassword(e)}
@@ -96,11 +102,13 @@ export default function Login() {
             ) : (
               ""
             )}
-          </Col>
-        </Row>
-        <br />
-        <Row className="d-flex justify-content-center">
-          <Col xs={7} className="d-flex justify-content-around">
+          </div>
+
+          <div className="d-flex flex-column justify-content-center">
+            <Link to={"/singup"}>
+              <h6>Sign up</h6>
+            </Link>
+
             <Button
               type="submit"
               disabled={
@@ -112,12 +120,9 @@ export default function Login() {
             >
               Iniciar Sesion
             </Button>
-            <Link to={"/singup"}>
-              <Button>Sign up</Button>
-            </Link>
-          </Col>
-        </Row>
-      </Form>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 }

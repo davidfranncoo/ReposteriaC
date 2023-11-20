@@ -7,6 +7,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./signin.css";
+import iconoT from "../../Img/logo1.png";
+
 
 // or less ideally
 
@@ -45,11 +47,7 @@ export default function SignUp() {
     if (clave[0] === "password" && valor[0] === true) {
       setError({ ...error, password: true });
     }
-    //   error.username = "* Debes agregar un Nombre";
-    // if (error.email[0] === false) error.email = "* Ingresa un correo valido";
-    // if (error.password[0] === false)
-    //   error.password = "* Ingresa una contraseña";
-    // return ;
+
   }
 
   const [datos, setDatos] = useState({
@@ -97,14 +95,33 @@ export default function SignUp() {
   }
 
   return (
-    <div className="fondo_div">
-      <Form onSubmit={(e) => handlerSubmit(e)}>
-        <Container>
-          <h1 className="d-flex justify-content-center">Crear Usuario</h1>
+    <div className="div_login">
+      <div className="Icon_back">
 
-          <Row className="d-flex justify-content-center">
-            <Col xs={7} className="d-flex flex-column">
-              <Form.Label>Nombre</Form.Label>
+      <Link to="/home">
+          <img src={iconoT} className="icon_img"></img>
+          <i class="bi bi-backspace-fill"></i>
+        </Link>
+      </div>
+
+
+      <div className="div_form">
+
+
+
+
+
+      <Form onSubmit={(e) => handlerSubmit(e)}>
+        
+
+          <h1 className="d-flex justify-content-center">
+            <i className="bi bi-person-circle"></i>
+          </h1>
+
+        
+         
+          <div className="d-flex flex-column">
+            <h6>Usuario</h6>
               <Form.Control
                 size="sm"
                 type="username"
@@ -116,10 +133,11 @@ export default function SignUp() {
               ) : (
                 ""
               )}
-
+ </div>
               {/*----------------------- correo --------------------------------------------------  */}
 
-              <Form.Label>Correo</Form.Label>
+              <div className="d-flex flex-column">
+            <h6>Correo</h6>
               <Form.Control
                 size="sm"
                 type="email"
@@ -131,8 +149,9 @@ export default function SignUp() {
               ) : (
                 ""
               )}
-
-              <Form.Label>Contraseña</Form.Label>
+ </div>
+ <div className="d-flex flex-column">
+            <h6>Contraseña</h6>
 
               {/*-----------------------  password--------------------------------------------------  */}
 
@@ -147,12 +166,13 @@ export default function SignUp() {
               ) : (
                 ""
               )}
-            </Col>
-          </Row>
-
-          <br />
-          <Row className="d-flex justify-content-center">
-            <Col xs={7} className="d-flex justify-content-around">
+          </div>
+        
+       
+          <div className="d-flex flex-column justify-content-center">
+          <Link to={"/login"}>
+            <h6>Log in</h6>
+          </Link>
               <Button
                 type="submit"
                 size="sm"
@@ -169,13 +189,10 @@ export default function SignUp() {
               </Button>
               {""}
 
-              <Link to={"/login"}>
-                <Button size="sm">Ingresar</Button>
-              </Link>
-            </Col>
-          </Row>
-        </Container>
+          
+              </div>
       </Form>
+      </div>
     </div>
   );
 }

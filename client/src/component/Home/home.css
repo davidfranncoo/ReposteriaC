@@ -1,0 +1,139 @@
+i {
+    color: white;
+    
+  }
+  
+  Row {
+    margin-right: none !important;
+  }
+  .baground_prueba {
+    background-color: rgb(216, 216, 216);
+  }
+  
+  
+  .ultimo_momento {
+    display: flex;
+    flex-direction: column;
+  
+    align-items: center;
+    position: absolute;
+    top: 3rem;
+    left: 5rem;
+    z-index: 999;
+  }
+  
+  .ultimo_momento h4 {
+    font-size: 2rem;
+  }
+  .custom-shape-divider-top-1700077761 {
+    border-top: 100px solid #AB254E;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  
+  .custom-shape-divider-top-1700077761 svg {
+    position: relative;
+    display: block;
+    width: calc(174% + 5px);
+    height: 100px;
+  }
+  
+  .custom-shape-divider-top-1700077761 .shape-fill {
+    fill: #AB254E;
+  }
+  
+  
+  
+  
+  .portaSinFondo {
+    position: absolute;
+    top: 2rem;
+    right: 4rem;
+    height: 10rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5)
+  }
+  
+  .miniaturas h4 {
+    font-size: 1.2rem;
+  }
+  
+  .miniaturas h6 {
+    font-size: 0.6rem;
+  }
+  
+  .miniaturas span {
+    font-size: 2rem;
+  }
+  
+  
+  .cajaP {
+    height: 200px;
+  }
+  
+  .columna_producto h6 {
+    margin-bottom: 0px;
+  }
+  
+  .columna_producto h4 {
+    color: #AB254E;
+    margin-bottom: 0px;
+  }
+  
+  .button_compra {
+    background-color: #fba2bc;
+    border: 0px;
+    border-radius: 1rem;
+  
+  }
+  
+  .button_compra h3 {
+    color: rgb(255, 252, 252);
+    margin: 0.2rem 1.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .contenImg {
+    width: 100%;
+  
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .titulos_subtitulos {
+    margin: 2rem 1rem 6rem 1rem;
+  }
+  
+  
+  .divProduct {
+    margin: 0px;
+  }
+  
+  
+  h1 .tituloHome {
+    background-color: #FFA8EE;
+  }
+  
+  
+  .custom-shape-divider-bottom-1700336914 {
+  
+    transform: rotate(180deg);
+  }
+  
+  .custom-shape-divider-bottom-1700336914 svg {
+    position: relative;
+    display: block;
+    width: calc(190% + 1.3px);
+    height: 30px;
+    transform: rotateY(180deg);
+  }
+  
+  .custom-shape-divider-bottom-1700336914 .shape-fill {
+    fill: #AB254E;
+  }
+    .footer {
+    
+      width: 100%;
+      height: 100px;
+    }
