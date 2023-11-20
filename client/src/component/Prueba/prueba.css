@@ -46,9 +46,9 @@ Row {
  font-size: 2rem;
 }
 .imagen1 {
-  width: 25%;
-  margin-left: 5px;
-  padding: 0.1rem;
+     width: 14%;
+    margin-left: 0.8rem;
+    padding: 0.1rem;
 }
 
 .btn-close {
@@ -125,7 +125,7 @@ Row {
 }
 
 .divProduct {
-  margin: 20px;
+  margin: 0px;
 }
 
 .footer {
@@ -153,5 +153,21 @@ h1 .tituloHome {
 }
 
 .custom-shape-divider-top-1700077761 .shape-fill {
+  fill: #AB254E;
+}
+.custom-shape-divider-bottom-1700336914 {
+ 
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1700336914 svg {
+  position: relative;
+  display: block;
+  width: calc(190% + 1.3px);
+  height: 30px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1700336914 .shape-fill {
   fill: #AB254E;
 }

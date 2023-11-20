@@ -7,8 +7,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffa8ee;
-    background-image: url('../../Img/bbblurry\ \(9\).svg');
+    background-color: #ffedfb;
+    background-image: url("../../Img/fondotorta2.jpg");
     background-size: cover; /* Para cubrir todo el contenedor */
     background-position: center; 
 }

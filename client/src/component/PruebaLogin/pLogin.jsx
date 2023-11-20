@@ -24,7 +24,7 @@ export default function pLogin() {
             <i class="bi bi-person-circle"></i>
           </h1>
           <div className="d-flex flex-column">
-            <h6>Correo</h6>
+            <h6>Correooooooooooo</h6>
 
             <input></input>
           </div>
