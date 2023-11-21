@@ -26,7 +26,7 @@ i {
     font-size: 2rem;
   }
   .custom-shape-divider-top-1700077761 {
-    border-top: 100px solid #AB254E;
+    border-top: 8rem solid #AB254E;
     width: 100%;
     overflow: hidden;
     line-height: 0;
@@ -81,14 +81,14 @@ i {
   }
   
   .button_compra {
-    background-color: #fba2bc;
+    background-color: #ff7fa5;
     border: 0px;
     border-radius: 1rem;
   
   }
   
   .button_compra h3 {
-    color: rgb(255, 252, 252);
+    color: #f4f4f4;
     margin: 0.2rem 1.5rem;
     font-size: 0.7rem;
   }

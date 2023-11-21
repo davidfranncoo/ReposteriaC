@@ -13,8 +13,8 @@ import Col from "react-bootstrap/Col";
 
 export default function Nav() {
   return (
-    <div>
-      <Row className="bg-primary">
+    <div className="fixed-top fixed-end bg-light">
+      <Row className="bg-primary ">
         <Col>
           <nav className="navbar bg-body-tertiary p-0 ">
             <div className="container-fluid p-0 bg-primary">
@@ -39,13 +39,13 @@ export default function Nav() {
                     aria-controls="offcanvasNavbar"
                     aria-label="Toggle navigation"
                   >
-                    <i class="bi bi-list-ul"></i>
+                    <i className="bi bi-list-ul"></i>
                   </button>
                 </Col>
               </Row>
 
               <div
-                className="offcanvas offcanvas-end bg-info"
+                className=" divClosed offcanvas offcanvas-end "
                 tabIndex="-1"
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
@@ -58,36 +58,67 @@ export default function Nav() {
                       </h5>
                       <button
                         type="button"
-                        className="btn-close"
+                        className="boton-closed"
                         data-bs-dismiss="offcanvas"
                         aria-label="Close"
-                      ></button>
+                      >
+                        <span className="text-white material-symbols-outlined ">
+                          close
+                        </span>
+                      </button>
                     </div>
 
-                    <div className="offcanvas-body">
+                    <div className=" offcanvas-body">
                       <div>
-                        <Link to="/home" className="link-style">
-                          Inicio
+                        <Link to="/home" className="d-flex link-style">
+                          <span className="p-1 text-white material-symbols-outlined">
+                            home
+                          </span>{" "}
+                          <h5 className=" p-1 text-white">Inicio</h5>
                         </Link>
                       </div>
                       <div>
-                        <Link to="/product/tortas" className="link-style">
-                          Tortas
+                        <Link
+                          to="/product/tortas"
+                          className=" link-style d-flex"
+                        >
+                          <span className="p-1 text-white material-symbols-outlined">
+                            cake
+                          </span>
+                          <h5 className="p-1 text-white">Tortas</h5>
                         </Link>
                       </div>
                       <div>
-                        <Link to="/product/postres" className="link-style">
-                          Postres
+                        <Link
+                          to="/product/postres"
+                          className=" d-flex link-style"
+                        >
+                          <span className="p-1 text-white material-symbols-outlined">
+                            icecream
+                          </span>
+                          <h5 className="p-1 text-white">Postres</h5>
                         </Link>
                       </div>
                       <div>
-                        <Link to="/product/tartas" className="link-style">
-                          Tartas
+                        <Link
+                          to="/product/tartas"
+                          className="d-flex link-style"
+                        >
+                          <span className="p-1 text-white material-symbols-outlined">
+                            cookie
+                          </span>
+                          <h5 className="p-1 text-white">Tartas</h5>
                         </Link>
                       </div>
                       <div>
-                        <Link to="/product/bandejas" className="link-style">
-                          Bandejas
+                        <Link
+                          to="/product/bandejas "
+                          className="d-flex link-style"
+                        >
+                          <span className="p-1 text-white material-symbols-outlined">
+                            bakery_dining
+                          </span>
+                          <h5 className="p-1 text-white">Bandejas</h5>
                         </Link>
                       </div>
                     </div>

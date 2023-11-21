@@ -1,155 +1,196 @@
 {
-    "product": [
-      {
-        
-        "name": "Torta Alta",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/24/ac/dc/24acdcad63540f35f9ae730900cdbe66.jpg"
-      },
-      {
-        "name": "Torta Lisas",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/06/0d/86/060d8635633ec41057d96bef98023abe.jpg"
-      },
-      {
-        "name": "Torta De Casamientos",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/21/b2/3e/21b23efb6475370419ecbe9143dad086.jpg"
-      },
-      {
-        "name": "Torta de 15",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/54/9d/09/549d0938e4b25db5d5f0c5934c8bc966.jpg"
-      },
-      {
+  "product": [
+    {
+      "name": "Torta Alta",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/24/ac/dc/24acdcad63540f35f9ae730900cdbe66.jpg",
+      "preciouni": 2650,
+      "preciokg": 1800
+    },
+    {
+      "name": "Torta Lisas",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/06/0d/86/060d8635633ec41057d96bef98023abe.jpg",
+      "preciouni": 4120,
+      "preciokg": 2340
+    },
+    {
+      "name": "Torta De Casamientos",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/21/b2/3e/21b23efb6475370419ecbe9143dad086.jpg",
+      "preciouni": 3250,
+      "preciokg": 1450
+    },
+    {
+      "name": "Torta de 15",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/54/9d/09/549d0938e4b25db5d5f0c5934c8bc966.jpg",
+      "preciouni": 3000,
+      "preciokg": 1200
+    },
+    {
       "name": "Torta De Número",
       "category": "tortas",
-      "state": true,
-      "img":"https://i.pinimg.com/564x/77/63/1e/77631e4eb2288177a6e3ed12f55dad21.jpg"
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/77/63/1e/77631e4eb2288177a6e3ed12f55dad21.jpg",
+      "preciouni": 3500,
+      "preciokg": 1600
     },
-      {
-        "name": "Torta Salada",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/b0/2d/c1/b02dc1713b05d77bdb2f4795aef773b9.jpg"
-      },
-       {
-      
-        "name": "Torta Frutal",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/2b/44/20/2b4420a3137738a10f6ddb7c40669309.jpg"
-      },
-       {
-        "name": "Torta Golosina",
-        "category": "tortas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/ae/91/06/ae9106013027aad296cfc2aa26e51c65.jpg"
-      }
-      , 
-      {
-        "name": "Tiramizu",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/e6/72/12/e672125c9e1e8c316d1d12be6311db9d.jpg"
-      }
-      ,
-       {
-        "name": "Selva Negra",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/0d/a2/88/0da28859b2a822c960d7614ea6aa2844.jpg" 
-      }
-      , 
-      {
-        "name": "Postre Milka",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/b6/a1/56/b6a156b879cbb802f4d35db4e0c6e1c6.jpg" 
-      }
-        , 
-        {
-        "name": "Chocotorta",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/c0/98/f9/c098f95a130e58f26df056d593cbd702.jpg"
-      } , 
-      {
-        "name": "Frutilla",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/ad/17/f3/ad17f3724d30a1eb82adb01b1227566c.jpg"
-      } , 
-      {
-        "name": "Chajá",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/79/2f/39/792f39404029d7bfb2db94fa6d0eeb3c.jpg"
-      } , 
-      {
-        "name": "Cheesecake",
-        "category": "postres",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/38/d2/8f/38d28fca6b2db4dde76e2634c475256e.jpg"
-      } ,
-      {
-        "name": "Tarta Frutal",
-        "category": "tartas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/84/65/9b/84659bfb8e491fafd88e81164631cf97.jpg"
-      },
-      {
-        "name": "Tarta Chocolate",
-        "category": "tartas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/fc/cb/28/fccb2868341061feeef33bbb274a9f2a.jpg"
-      },
-      {
-        "name": "Tarta Durazno",
-        "category": "tartas",
-        "state": true,
-        "img":"https://i.pinimg.com/736x/3b/5d/1f/3b5d1f9ca9045e337fec32b57e5fbde7.jpg"
-      },
-       {
-        "name": "Lemon Pie",
-        "category": "tartas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/07/91/1a/07911a72ea3f8384396ab3206e54f3da.jpg"
-      }, 
-      {
-        "name": "Tarta De Frutos Secos",
-        "category": "tartas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/3b/bf/98/3bbf988f8253ced3fb609ad856b3ae8f.jpg"
-      }, 
-      {
-        "name": "Bandeja Dia del Padre",
-        "category": "bandejas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/9c/2f/69/9c2f6943433dbfc10e3114bf8b051dd8.jpg"
-      }, 
-      {
-        "name": "Bandeja San Valentin",
-        "category": "bandejas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/d9/18/bd/d918bd9989caf17c1ebded882172e092.jpg"
-      }, 
-      {
-        "name": "Bandeja Dia De La Madre",
-        "category": "bandejas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/ab/c0/ae/abc0ae283fa9c594a78dbdd6c6f61e77.jpg"
-      }, 
-      {
-        "name": "Bandejas De Cumpleaños",
-        "category": "bandejas",
-        "state": true,
-        "img":"https://i.pinimg.com/564x/03/4a/84/034a843937235bb69df73f7827523be5.jpg"
-      }
-    ]
-  }
-  
+    {
+      "name": "Torta Salada",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/b0/2d/c1/b02dc1713b05d77bdb2f4795aef773b9.jpg",
+      "preciouni": 2800,
+      "preciokg": 1700
+    },
+    {
+      "name": "Torta Frutal",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/2b/44/20/2b4420a3137738a10f6ddb7c40669309.jpg",
+      "preciouni": 2400,
+      "preciokg": 1300
+    },
+    {
+      "name": "Torta Golosina",
+      "category": "tortas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/ae/91/06/ae9106013027aad296cfc2aa26e51c65.jpg",
+      "preciouni": 2600,
+      "preciokg": 1500
+    },
+    {
+      "name": "Tiramizu",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/e6/72/12/e672125c9e1e8c316d1d12be6311db9d.jpg",
+      "preciouni": 5000,
+      "preciokg": 2800
+    },
+    {
+      "name": "Selva Negra",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/0d/a2/88/0da28859b2a822c960d7614ea6aa2844.jpg",
+      "preciouni": 4500,
+      "preciokg": 2400
+    },
+    {
+      "name": "Postre Milka",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/b6/a1/56/b6a156b879cbb802f4d35db4e0c6e1c6.jpg",
+      "preciouni": 5500,
+      "preciokg": 3200
+    },
+    {
+      "name": "Chocotorta",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/c0/98/f9/c098f95a130e58f26df056d593cbd702.jpg",
+      "preciouni": 4800,
+      "preciokg": 2600
+    },
+    {
+      "name": "Frutilla",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/ad/17/f3/ad17f3724d30a1eb82adb01b1227566c.jpg",
+      "preciouni": 4200,
+      "preciokg": 2000
+    },
+    {
+      "name": "Chajá",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/79/2f/39/792f39404029d7bfb2db94fa6d0eeb3c.jpg",
+      "preciouni": 4900,
+      "preciokg": 2700
+    },
+    {
+      "name": "Cheesecake",
+      "category": "postres",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/38/d2/8f/38d28fca6b2db4dde76e2634c475256e.jpg",
+      "preciouni": 5300,
+      "preciokg": 3000
+    },
+    {
+      "name": "Tarta Frutal",
+      "category": "tartas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/84/65/9b/84659bfb8e491fafd88e81164631cf97.jpg",
+      "preciouni": 3800,
+      "preciokg": 1900
+    },
+    {
+      "name": "Tarta Chocolate",
+      "category": "tartas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/fc/cb/28/fccb2868341061feeef33bbb274a9f2a.jpg",
+      "preciouni": 4400,
+      "preciokg": 2200
+    },
+    {
+      "name": "Tarta Durazno",
+      "category": "tartas",
+      "stock": true,
+      "img": "https://i.pinimg.com/736x/3b/5d/1f/3b5d1f9ca9045e337fec32b57e5fbde7.jpg",
+      "preciouni": 4100,
+      "preciokg": 1950
+    },
+    {
+      "name": "Lemon Pie",
+      "category": "tartas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/07/91/1a/07911a72ea3f8384396ab3206e54f3da.jpg",
+      "preciouni": 3900,
+      "preciokg": 1800
+    },
+    {
+      "name": "Tarta De Frutos Secos",
+      "category": "tartas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/3b/bf/98/3bbf988f8253ced3fb609ad856b3ae8f.jpg",
+      "preciouni": 4500,
+      "preciokg": 2050
+    },
+    {
+      "name": "Bandeja Dia del Padre",
+      "category": "bandejas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/9c/2f/69/9c2f6943433dbfc10e3114bf8b051dd8.jpg",
+      "preciouni": 5200,
+      "preciokg": 2600
+    },
+    {
+      "name": "Bandeja San Valentin",
+      "category": "bandejas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/d9/18/bd/d918bd9989caf17c1ebded882172e092.jpg",
+      "preciouni": 4900,
+      "preciokg": 2400
+    },
+    {
+      "name": "Bandeja Dia De La Madre",
+      "category": "bandejas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/ab/c0/ae/abc0ae283fa9c594a78dbdd6c6f61e77.jpg",
+      "preciouni": 4800,
+      "preciokg": 2300
+    },
+    {
+      "name": "Bandejas De Cumpleaños",
+      "category": "bandejas",
+      "stock": true,
+      "img": "https://i.pinimg.com/564x/03/4a/84/034a843937235bb69df73f7827523be5.jpg",
+      "preciouni": 5000,
+      "preciokg": 2500
+    }
+  ]
+}

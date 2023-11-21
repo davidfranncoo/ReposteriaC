@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             allowNull: false
         },
-        
+
         name:{ 
             type:DataTypes.STRING,
             allowNull:false,
@@ -19,12 +19,20 @@ module.exports = (sequelize) => {
             type:DataTypes.STRING,
             allowNull:false,
         },
-        state:{
+        stock:{
             type:DataTypes.BOOLEAN,
             defaultValue: false 
             
         },
         img:{
+            type:DataTypes.TEXT,
+             allowNull:false 
+        },
+        preciouni:{
+            type:DataTypes.TEXT,
+             allowNull:false 
+        },
+        preciokg:{
             type:DataTypes.TEXT,
              allowNull:false 
         }
