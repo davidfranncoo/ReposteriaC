@@ -5,9 +5,9 @@ import Carrito from "../src/component/Carrito/carrito"
 import Productos from "../src/component/Productos/producto"
 import Admin from "../src/component/Admin/admin"
 import DetailCard from './component/DetailsCard/detailcard';
-import Prueba from './component/Prueba/prueba';
 import SingUp from './component/SignUp/singup';
 import Login from './component/Login/login';
+import CardProduct from './component/CardProduct/carsProduct';
 
 
 
@@ -19,6 +19,8 @@ function App() {
  
    <Switch>
           <Route exact path="/" component={Home}/>
+          <Route exact path="/products/:category" component={CardProduct}/>
+
           <Route exact path="/login" component={Login}/>
           <Route exact path="/singup" component={SingUp}/>
           <Route exact path="/home" component={Home}/>
@@ -27,7 +29,7 @@ function App() {
           <Route exact path="/product/:category" component={Productos}/>
           <Route exact path="/admin" component={Admin}/>
           <Route exact path="/detail/:id" component={DetailCard}/>
-          <Route exact path="/prueba" component={Prueba}/>
+        
       
    </Switch>    
     </div>

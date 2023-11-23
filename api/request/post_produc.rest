@@ -1,14 +1,11 @@
 POST http://localhost:3001/carrito
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyYW5jbyIsImlkIjoiMGExMGIyNWQtNmJjNC00ZjIxLWJiYjUtNTVjZTJhYWZjODNhIiwiaWF0IjoxNjk4NzA2ODg4fQ.vuSRkAXaEHzU3G7LYYMSP-X93_BOmYP28yrpXX4Mc5A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImYiLCJpZCI6IjczM2RjNzFlLWQ0NTktNDRkMC04MmNmLTBlZjA3MmQ5NjliOCIsImlhdCI6MTcwMDc2MTM2M30.0xiqs9AokNgvKVmi4lY2cO_UFHhE1RKNDlXhmopGGOY
 
 {
-  "idname": "0f5a2eea-0972-4603-a3a3-3d61ee19bdef", 
+  "idname": "d856d086-fb49-4fb5-8012-516cdc500331", 
  "precio": 3800, 
- "descripcion": [{"id": "bizcochuelo","value": "Vainilla"},
-                 {"id": "relleno1", "value":"1.Mouses de dulce"},
-                 {"id": "relleno2", "value": "2.MMouses de dulce de leche"
-                 }], 
- "texto": "hola "
-      
+ "descripcion": [], 
+ "texto":true
+   
 } 

@@ -13,7 +13,7 @@ import Col from "react-bootstrap/Col";
 
 export default function Nav() {
   return (
-    <div className="fixed-top fixed-end bg-light">
+    <div className="fixed-top fixed-end bg-light position-relative">
       <Row className="bg-primary ">
         <Col>
           <nav className="navbar bg-body-tertiary p-0 ">
@@ -70,7 +70,7 @@ export default function Nav() {
 
                     <div className=" offcanvas-body">
                       <div>
-                        <Link to="/home" className="d-flex link-style">
+                        <Link to="/" className="d-flex link-style">
                           <span className="p-1 text-white material-symbols-outlined">
                             home
                           </span>{" "}
@@ -79,7 +79,7 @@ export default function Nav() {
                       </div>
                       <div>
                         <Link
-                          to="/product/tortas"
+                          to="/products/tortas"
                           className=" link-style d-flex"
                         >
                           <span className="p-1 text-white material-symbols-outlined">
@@ -90,7 +90,7 @@ export default function Nav() {
                       </div>
                       <div>
                         <Link
-                          to="/product/postres"
+                          to="/products/postres"
                           className=" d-flex link-style"
                         >
                           <span className="p-1 text-white material-symbols-outlined">
@@ -101,7 +101,7 @@ export default function Nav() {
                       </div>
                       <div>
                         <Link
-                          to="/product/tartas"
+                          to="/products/tartas"
                           className="d-flex link-style"
                         >
                           <span className="p-1 text-white material-symbols-outlined">
@@ -112,7 +112,7 @@ export default function Nav() {
                       </div>
                       <div>
                         <Link
-                          to="/product/bandejas "
+                          to="/products/bandejas "
                           className="d-flex link-style"
                         >
                           <span className="p-1 text-white material-symbols-outlined">

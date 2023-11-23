@@ -4,7 +4,7 @@ import "./producto.css";
 
 import { Link } from "react-router-dom";
 import { seachProduct } from "../../action";
-import CardProduct from "../CardProduc/cardproduct.jsx";
+
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,7 +30,7 @@ export default function Productos() {
         <div className="div_producto">
           {productData.map((e) => (
             <Link key={e.id} to={"/detail/" + e.id}>
-              <CardProduct name={e.name} img={e.img} />
+            
             </Link>
           ))}
         </div>
