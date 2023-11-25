@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import iconoT from "../../Img/logo1.png";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from 'react-router-dom';
 import { loginUser } from "../../action/index";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";

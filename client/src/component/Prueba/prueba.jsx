@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from 'react-router-dom';
 import "./prueba.css";
 
 import Carru2 from "../../Img/torta2.jpg";

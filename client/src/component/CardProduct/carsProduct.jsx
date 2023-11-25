@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Image from "react-bootstrap/esm/Image";
-import Nav from "../Nav/nav";
+import NavBar from "../Nav/nav";
 import "./cardProduct.css";
 import { getDetail, getProduct } from "../../action";
 import Productone from "../oneProduct/oneProduct";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from 'react-router-dom';
 
 export default function cardProduct() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ export default function cardProduct() {
   return (
     <div>
       <div>
-        <Nav />
+        <NavBar />
         {loading === true ? (
           <h1>cargandooo</h1>
         ) : (

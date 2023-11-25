@@ -1,6 +1,6 @@
 //para trar reac ponemos rafce
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from 'react-router-dom';
 import Carru2 from "../../Img/torta2.jpg";
 import Carru3 from "../../Img/torta3.jpg";
 import tortaPng from "../../Img/tortasinfondo.png";
@@ -13,7 +13,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../action/index";
-import Nav from "../Nav/nav";
+import NavBar from "../Nav/nav";
 import NavProduct from "../NavProduct/navproduct";
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <div>
-      <Nav />
+      <NavBar />
 
       {loading === true ? (
         <div>cargandoooo</div>

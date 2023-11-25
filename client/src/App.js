@@ -1,38 +1,30 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from "../src/component/Home/home"
-import Register from "../src/component/Register/Register"
-import Carrito from "../src/component/Carrito/carrito"
-import Productos from "../src/component/Productos/producto"
-import Admin from "../src/component/Admin/admin"
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '../src/component/Home/home';
+import Register from '../src/component/Register/Register';
+import Carrito from '../src/component/Carrito/carrito';
+import Productos from '../src/component/Productos/producto';
+import Admin from '../src/component/Admin/admin';
 import DetailCard from './component/DetailsCard/detailcard';
 import SingUp from './component/SignUp/singup';
 import Login from './component/Login/login';
 import CardProduct from './component/CardProduct/carsProduct';
 
-
-
-
 function App() {
   return (
     <Router>
-    <div >
- 
-   <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/products/:category" component={CardProduct}/>
-
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/singup" component={SingUp}/>
-          <Route exact path="/home" component={Home}/>
-          <Route exact path="/register" component={Register}/>
-          <Route exact path="/carrito" component={Carrito}/>
-          <Route exact path="/product/:category" component={Productos}/>
-          <Route exact path="/admin" component={Admin}/>
-          <Route exact path="/detail/:id" component={DetailCard}/>
-        
-      
-   </Switch>    
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:category" element={<CardProduct />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/singup" element={<SingUp />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/product/:category" element={<Productos />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/detail/:id" element={<DetailCard />} />
+      </Routes>
     </Router>
   );
 }

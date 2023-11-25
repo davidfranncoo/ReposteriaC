@@ -10,19 +10,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./scss/custom.scss"
+import { createRoot } from 'react-dom/client';
 
+const root = createRoot(document.getElementById('root'));
 
 
  //axios.defaults.baseURL="http://localhost:3001" //!deploy
 //axios.defaults.baseURL="https://countries-production-67fa.up.railway.app/" //!deploy
 
-ReactDOM.render(
+root.render(
   <Provider store={store}>
   <React.StrictMode>
     <App />
   </React.StrictMode>
   </Provider>,
-  document.getElementById('root')
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

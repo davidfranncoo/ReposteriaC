@@ -5,7 +5,7 @@ import "./producto.css";
 import { Link } from "react-router-dom";
 import { seachProduct } from "../../action";
 
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Productos() {
