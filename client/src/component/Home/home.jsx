@@ -33,6 +33,7 @@ export default function Home() {
         <div>cargandoooo</div>
       ) : (
         <div className="baground_prueba container-fluid p-0">
+        
           <div className="ultimo_momento">
             <h4 className=" text-center text-white ">
               Pedí tu torta a
@@ -42,6 +43,8 @@ export default function Home() {
               Aquí
             </Button>
           </div>
+      
+          <div className="divider_shape">{" "}</div>
           <div className="custom-shape-divider-top-1700077761">
             <svg
               data-name="Layer 1"
@@ -127,7 +130,7 @@ export default function Home() {
                     return (
                       <Col key={index} className=" columna_producto d-flex flex-column align-items-center">
                         <h6 className="text-center ">{e.name}</h6>
-                        <Image className="w-100 h-50" src={e.img} />
+                        <Image className="w-75 h-50" src={e.img} />
 
                         <h4 className="">${e.preciouni} </h4>
                         <button className="button_compra">
@@ -163,7 +166,7 @@ export default function Home() {
                     return (
                       <Col key={index} className=" columna_producto d-flex flex-column align-items-center">
                         <h6 className="text-center ">{e.name}</h6>
-                        <Image className="w-100 h-50" src={e.img} />
+                        <Image className="w-75 h-50" src={e.img} />
 
                         <h4 className="">${e.preciouni} </h4>
                         <button className="button_compra">
@@ -199,7 +202,7 @@ export default function Home() {
                     return (
                       <Col key={index} className=" columna_producto d-flex flex-column align-items-center">
                         <h6 className="text-center ">{e.name}</h6>
-                        <Image className="w-100 h-50" src={e.img} />
+                        <Image className="w-75 h-50" src={e.img} />
 
                         <h4 className="">${e.preciouni} </h4>
                         <button className="button_compra">

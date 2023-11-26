@@ -8,6 +8,12 @@ Row {
 }
 
 
+.relative-example{
+    position: sticky;
+  top: 0;
+  z-index: 999;
+
+}
 .bg-body-tertiary {
     background-color: blueviolet;
 }

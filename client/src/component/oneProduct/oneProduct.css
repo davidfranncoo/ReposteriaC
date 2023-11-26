@@ -1,0 +1,68 @@
+.div_card_product{
+    display: flex;
+    background-color: rgb(216, 216, 216);
+    flex-direction: column;
+    align-items: center;
+
+}
+.img_cardProduct2{
+    width: 350px;
+    height: 400px;
+}
+.text-center{
+    font-size: 35px;
+}
+.precio_card{
+    font-size: 50px;
+}
+.precio_card2{
+    font-size: 35px;
+    padding-left: 0.5rem;
+    
+}
+.div2-contador{
+
+    border: 0.1em solid #be2d58 ;
+    border-radius: 0.2em;
+   height: 1.6em;
+   
+    width: 6rem;
+    
+    
+}
+.h6_contador{
+    display: flex;
+    color: black;
+    margin-top: 0.1rem;
+    font-size: 2rem;
+    margin: 0px;
+}
+.input_number h6{
+    font-size: 2rem;
+    display: flex;
+    overflow: hidden;
+    vertical-align: top;
+
+}
+
+.button_compra2{
+    border-color: #be2d58;
+    border-radius: 0.2rem;
+    width: 3rem;
+    margin-left: 1rem;
+    height: 1.6rem;
+    overflow: hidden;
+    background-color: #be2d58;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.button_compra2 span{
+    color: aliceblue;
+    font-size: 1.5rem;
+   
+   
+
+}

@@ -22,7 +22,7 @@ import Nav from 'react-bootstrap/Nav';
 export default function NavBar() {
   return (
   
-    <div className="bg-primary fixed-top">
+    <div className=" relative-example">
        
       {[false].map((expand) => (
         <Navbar key={expand}  expand={expand} className="bg-primary ">
@@ -30,13 +30,18 @@ export default function NavBar() {
             <div className="d-flex">
 
             <Navbar.Brand href="/home"> <Image src={img1} className="imagen1 p-0" />
-            <Link href="/carrito">
+           
+                  </Navbar.Brand>
+                  <Link  className="navbar-toggler collapsed" to="/carrito">
                     <i className="bi bi-cart3"></i>
-                  </Link>
-  
-                  <Link href="/login">
+                  </Link>  
+                  <Link  className="navbar-toggler collapsed" to="/login">
+                    
                     <i className="bi bi-person"></i>
-                  </Link></Navbar.Brand>
+                  </Link> 
+  
+  
+                 
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} >
               <i className="bi bi-list-ul"></i>
               </Navbar.Toggle>

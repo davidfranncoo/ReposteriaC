@@ -13,20 +13,25 @@ i {
   
   .ultimo_momento {
     display: flex;
+    margin-top: 1rem;
     flex-direction: column;
-  
+    width: 60%;
     align-items: center;
     position: absolute;
-    top: 3rem;
-    left: 5rem;
-    z-index: 999;
+    
+    z-index: 998;
   }
   
   .ultimo_momento h4 {
-    font-size: 2rem;
+    font-size: 55px;
+  }
+  .divider_shape{
+   
+    background-color: #AB254E;
+  height: 100px;
   }
   .custom-shape-divider-top-1700077761 {
-    border-top: 8rem solid #AB254E;
+   
     width: 100%;
     overflow: hidden;
     line-height: 0;
@@ -36,7 +41,7 @@ i {
     position: relative;
     display: block;
     width: calc(174% + 5px);
-    height: 100px;
+    
   }
   
   .custom-shape-divider-top-1700077761 .shape-fill {
@@ -48,9 +53,10 @@ i {
   
   .portaSinFondo {
     position: absolute;
-    top: 2rem;
-    right: 4rem;
-    height: 10rem;
+    top: 3rem;
+    right: 5%;
+    width: 14%;
+   
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5)
   }
   
@@ -67,9 +73,6 @@ i {
   }
   
   
-  .cajaP {
-    height: 200px;
-  }
   
   .columna_producto h6 {
     margin-bottom: 0px;

@@ -1,25 +1,9 @@
 .row_Card{
     background-color: rgb(216, 216, 216);
 }
-.div_card_product{
-    background-color: rgb(216, 216, 216);
-}
-.columna_producto{
-    width: 5rem;
-}
-.h6_contador{
-    display: flex;
-    color: black;
-    margin-top: 0.1rem;
-    font-size: 0.7rem;
-    margin: 0px;
-}
-.div_contador{
-    display: flex;
-    align-items: center;  
-    
-    
-}
+
+
+
 
 .div2-contador{
     
@@ -40,39 +24,6 @@
     background-color: rgba(152, 195, 232, 0);
 
 }
-.input_number h6{
-    font-size: 0.8rem;
-    display: flex;
-    overflow: hidden;
-    vertical-align: top;
 
-}
 
-.img_cardProduct{
-    width: 7rem;
-}
-.button_compra2{
-    border-color: #FF7FA5;
-    border-radius: 0.2rem;
-    width: 2rem;
-    margin-left: 1rem;
-    height: 1rem;
-    overflow: hidden;
-    background-color: #FF7FA5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-}
-.precio_card2{
-    font-size: 0.9rem;
-    padding-left: 0.5rem;
-    
-}
-.button_compra2 span{
-    color: aliceblue;
-    font-size: 0.8rem;
-   
-   
 
-}
