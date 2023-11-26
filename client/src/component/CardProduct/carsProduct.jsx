@@ -27,7 +27,16 @@ export default function cardProduct() {
   // useEffect(() => {
   //   dispatch(getDetail(params.category, Token)).then(() => setLoading(false));
   // }, []);
-
+  useEffect(() => {
+    console.log("hay ssesion activa")
+    const loggedUserJSON = window.localStorage.getItem('token')
+    if (loggedUserJSON) {
+      // const user = JSON.parse(loggedUserJSON)
+      // setUser(user)
+      // noteService.setToken(user.token)
+    }
+    console.log(" no hay sesion debes ingresar ")
+  }, [])
   return (
     <div>
       <div>

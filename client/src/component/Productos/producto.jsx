@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Productos() {
+
   const dispatch = useDispatch();
   const params = useParams();
   const productData = useSelector((state) => state.productSeach) || [];
@@ -19,6 +20,17 @@ export default function Productos() {
   useEffect(() => {
     dispatch(seachProduct(params)).then(() => setLoading(false));
   }, []);
+  // ----- corrobora sesionn en lcoal storage
+  useEffect(() => {
+    console.log("hay ssesion activa")
+    const loggedUserJSON = window.localStorage.getItem('token')
+    if (loggedUserJSON) {
+      // const user = JSON.parse(loggedUserJSON)
+      // setUser(user)
+      // noteService.setToken(user.token)
+    }
+    console.log(" no hay sesion debes ingresar ")
+  }, [])
 
   return (
     <div>
