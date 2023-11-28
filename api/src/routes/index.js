@@ -73,6 +73,7 @@ router.post("/carrito", async (req, res) => {
   //!recprdar que esto ya esta en get("detail/:id")
   //--------------tokeeeen------------
   const authorization = req.get("authorization");
+  console.log("viendoo",authorization)
   let token = "";
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     token = authorization.substring(7);
@@ -138,7 +139,7 @@ router.get("/carrito", async (req, res) => {
   //-------------- Autenticaion de usuario-------------
 
   const authorization = req.get("authorization");
-
+  console.log("holaaaaaa", authorization)
   let token = "";
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     token = authorization.substring(7);
@@ -147,7 +148,7 @@ router.get("/carrito", async (req, res) => {
   try {
     decodedToken = jwt.verify(token, "1234");
   } catch (error) {
-    //return res.status(402).send({error:"error del token"})
+    return res.status(402).send({error:"error del token"})
   }
 
   console.log(
@@ -169,42 +170,25 @@ router.get("/carrito", async (req, res) => {
 >> el CARRITO/idname === USER/id
 
 */
+console.log("tok",token)
+console.log("decode t tokeeeeee",decodedToken)
 
     const data = await User.findAll({
+      where: {
+        id: decodedToken.id
+      },
       include: [
         {
           model: Carrito,
           include: [
             {
-              model: Product,
-            },
-          ],
-        },
-      ],
+              model: Product
+            }
+          ]
+        }
+      ]
     });
-
-    // include: [
-    //   {
-    //     model: Product,
-    //     attributes: ["img", "name"],
-    //   },
-    // ],
-    // await data.map((e)=>{
-
-    //   const y=e.CarritoId
-    //   const z= Product.findAll()
-
-    // })
-    // const dataComplete=[]
-    // await data.map((e)=>{
-    //     const efimero=e
-    //     const dentro=[]
-    //     const exis= Product.findAll({where:[
-    //       id=e.UserId
-    //     ]})
-    //     dentro.push(exis)
-
-    // })
+    console.log("esto es dataaa",data)
 
     if (!data) {
       return res.status(400).send("no hay data");

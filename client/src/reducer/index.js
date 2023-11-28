@@ -4,10 +4,11 @@ productSeach:[],
 detailProduct:[],
 myCArrito:[],
 userStatus:[],
+login:[],
 alerta:false
 }
 export default function rootRecuducer(state=intialState,action){
-  console.log("esto es action",action)
+   
  
     switch(action.type){
         case "GET_PRODUCT":
@@ -48,7 +49,13 @@ export default function rootRecuducer(state=intialState,action){
             return {
                 ...state,
                 alerta:true
-            }    
+            }   
+        case "GET_LOGIN":
+            return {
+                ...state,
+                login:action.payload
+
+            }
                 
                 default:
                     return state;

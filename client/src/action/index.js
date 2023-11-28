@@ -1,18 +1,5 @@
 import axios from "axios";
 
-// export function sendProduct(payload){
-
-//     return async function(dispatch){
-//        const res= await axios("http://localhost:3001/carrito/",payload );
-//         console.log("esto es requei",res)
-
-//         return dispatch({
-//             type:"SEND_PRODUCT",
-//             res,
-//         })
-//     }
-// }
-
 export function getProduct() {
   return async function (dispatch) {
     const json = await axios("http://localhost:3001/product");
@@ -60,8 +47,20 @@ export function getDetail(id, token) {
 }
 
 export function getCarrito() {
+  const noParse=window.localStorage.getItem("TOKEN")
+  const token= JSON.parse(noParse);
+
+
   return async function (dispatch) {
-    const requeri = await axios.get("http://localhost:3001/carrito");
+    const autenticacion = `Bearer ${token}`;
+   
+    const requeri = await axios.get("http://localhost:3001/carrito",{
+      headers:{
+        Authorization:autenticacion,
+      }
+    });
+
+
     return dispatch({
       type: "GET_CARRITO",
       payload: requeri.data,
@@ -78,7 +77,6 @@ export function sendProduct(payload, token) {
     },
   });
   const data = response.data;
-  console.log("dataaaaaaa de agregar el producto", data);
 
   return {
     type: "SEND_PRODUCT",
@@ -86,29 +84,13 @@ export function sendProduct(payload, token) {
   };
 }
 
-// export const loginUser=(email)=>{
-
-//   console.log("email",email)
-
-//   return async function(dispatch) {
-
-//     console.log("requeeeri")
-//     const requeri = await axios.post("http://localhost:3001/login", email);
-
-//     return dispatch({
-//       type:"TOKEN",
-//       payload:requeri
-//     })
-
-//   }
-// };
 export function loginUser(user) {
   return async function (dispatch) {
     try {
       const requeri = await axios.post("http://localhost:3001/login", user);
 
       const clave = requeri.data.token;
-      console.log("claveeee", requeri);
+
       window.localStorage.setItem("TOKEN", JSON.stringify(clave));
 
       return dispatch({
@@ -116,7 +98,6 @@ export function loginUser(user) {
         payload: requeri.data,
       });
     } catch (error) {
-      console.log("1111111111111111");
       return dispatch({
         type: "TOKEN",
         payload: { ERROR: true },
@@ -124,6 +105,21 @@ export function loginUser(user) {
     }
   };
 }
-// ---------- INGRESO DE SESION TOKEN---------------
+export function getLogin() {
+  const loggedUserJSON = window.localStorage.getItem('TOKEN');
+  console.log("logueeee",loggedUserJSON)
+  if(loggedUserJSON){
 
-//  export default loginUser;
+    return {
+      type: "GET_LOGIN",
+      payload: loggedUserJSON,
+    };
+  }
+  else{
+    return {
+      type: "GET_LOGIN",
+      payload: "ERROR_LOGIN",
+    };
+  }
+  
+}

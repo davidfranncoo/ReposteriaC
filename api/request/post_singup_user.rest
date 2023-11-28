@@ -2,8 +2,8 @@ POST http://localhost:3001/singup
 content-type: application/json 
 
 {
-    "username":"f",
-    "email":"f@g.com",
-    "password":"1234"
+    "username":"g",
+    "email":"g@g.com",
+    "password":"12345678"
    
 }

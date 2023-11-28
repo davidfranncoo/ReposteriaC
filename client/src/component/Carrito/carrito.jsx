@@ -9,22 +9,23 @@ import { getCarrito } from "../../action";
 export default function Carrito() {
   const dispatch = useDispatch();
   const infoCarrito = useSelector((state) => state.myCarrito) || [];
-
   const [loading, setLoading] = useState(true);
+ 
+  
 
   useEffect(() => {
     dispatch(getCarrito()).then(() => setLoading(false));
   }, []);
-  console.log("######", infoCarrito);
+ 
 
   return (
     <div>
       <Nav />
-      {loading === true || infoCarrito.length === 0 ? (
+      {loading === true? (
         <div>No hay productos</div>
       ) : (
         <div>
-          <CardCarrito data={infoCarrito} />
+          holaaa
         </div>
       )}
     </div>
