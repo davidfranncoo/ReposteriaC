@@ -11,6 +11,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Nav from "react-bootstrap/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../action";
+import ButtonLogin from "../ButtonLogin/buttonLogin.jsx"
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ export default function NavBar() {
 console.log("holaaaa", infoUser)
   }, [infoUser]);
 
+   function handlerSesion(){
+    window.localStorage.clear("TOKEN");
+    window.location.reload();
+   
+   }
 
   return (
     <div className=" relative-example">
@@ -50,6 +56,7 @@ console.log("holaaaa", infoUser)
               <Link className="navbar-toggler collapsed" to="/login">
                 <i className="bi bi-person"></i>
               </Link>
+              <ButtonLogin/>
               {
                 token?<div>
 
@@ -61,7 +68,7 @@ console.log("holaaaa", infoUser)
               <h6></h6>
 
              </Button>
-             <Button>
+             <Button  onClick={handlerSesion}>
                 <h6>cerrar sesion</h6>
               </Button>
                 </div>
@@ -69,7 +76,7 @@ console.log("holaaaa", infoUser)
               :
 
               <Button>
-                <h6>Cerrar sesion</h6>
+                <h6>iniciar sesion</h6>
               </Button>
               
              
