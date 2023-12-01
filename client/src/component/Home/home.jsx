@@ -20,6 +20,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.product) || [];
   const [loading, setLoading] = useState(true);
+  
   var contador = 0;
   useEffect(() => {
     dispatch(getProduct()).then(() => setLoading(false));

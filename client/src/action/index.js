@@ -123,3 +123,26 @@ export function getLogin() {
   }
   
 }
+export function getUser(){
+  const loggedUserJSON = window.localStorage.getItem('TOKEN');
+  const user =JSON.parse(loggedUserJSON)
+  
+  const autenticacion = `Bearer ${user}`;
+  return async function (dispatch) {
+
+    const response = await  axios.get(`http://localhost:3001/user`, {
+      headers: {
+        Authorization: autenticacion,
+      },
+    });
+   
+    return dispatch(
+
+      {
+        type: "GET_USER",
+        payload: response.data,
+      }
+      )
+  
+  }
+  }

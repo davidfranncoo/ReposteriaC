@@ -5,11 +5,13 @@ detailProduct:[],
 myCArrito:[],
 userStatus:[],
 login:[],
-alerta:false
+alerta:false,
+user:[]
 }
 export default function rootRecuducer(state=intialState,action){
    
- 
+ console.log("···········MSGNFSGF",action)
+
     switch(action.type){
         case "GET_PRODUCT":
             
@@ -55,6 +57,11 @@ export default function rootRecuducer(state=intialState,action){
                 ...state,
                 login:action.payload
 
+            }
+        case "GET_USER":
+            return {
+                ...state,
+                    user:action.payload
             }
                 
                 default:

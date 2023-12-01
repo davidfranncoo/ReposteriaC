@@ -57,6 +57,24 @@ router.post("/singup", async (req, res) => {
     return res.status(400).send({ error: "Erro al Crear Usuario" });
   }
 });
+
+router.get("/user", authenticateToken, async (req, res) => {
+ 
+  try {
+    const infouser = req.user;
+    console.log("Info de usuario:", infouser); // Agrega este log para verificar la información del usuario
+
+    if (infouser) {
+      return res.status(200).send(infouser);
+    }  
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(400).send({ error: "Hay un error" });
+  }
+});
+
+
+
 router.get("/product", getProduct);
 router.get("/product/:category", getProductByCategory);
 router.get("/product/detail/:id", authenticateToken, getProductById);
