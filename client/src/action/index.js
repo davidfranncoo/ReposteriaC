@@ -107,7 +107,7 @@ export function loginUser(user) {
 }
 export function getLogin() {
   const loggedUserJSON = window.localStorage.getItem('TOKEN');
-  console.log("logueeee",loggedUserJSON)
+ 
   if(loggedUserJSON){
 
     return {

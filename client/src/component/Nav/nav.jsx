@@ -1,45 +1,25 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Link } from "react-router-dom"; // Agrupando múltiples imports de react-router-dom
 import "./nav.css";
 import img1 from "../../Img/lodecaleb-white.png";
-import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import Nav from "react-bootstrap/Nav";
+import { Image, Container, Navbar, Button, Offcanvas, Nav } from "react-bootstrap"; // Agrupando múltiples imports de react-bootstrap
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../action";
-import ButtonLogin from "../ButtonLogin/buttonLogin.jsx"
+import ButtonLogin from "../ButtonLogin/buttonLogin.jsx";
 
 export default function NavBar() {
   const dispatch = useDispatch();
-  const infoUser = useSelector((state) => state.user) || [];
-  const token= window.localStorage.getItem("TOKEN")
-  
 
-  if(token ){
-    useEffect(() => {
-      dispatch(getUser());
-     
-    }, []);
-  
-  }else{
-    console.log(" NO hay uausriao")
+  const [desplegable, setDesplegable] = useState(false);
 
+  function hanlerDesplegableLogin() {
+    if (desplegable === true) {
+      return setDesplegable(false);
+    }
+    if (desplegable === false) {
+      setDesplegable(true);
+    }
   }
-  useEffect(() => {
-   
-console.log("holaaaa", infoUser)
-  }, [infoUser]);
-
-   function handlerSesion(){
-    window.localStorage.clear("TOKEN");
-    window.location.reload();
-   
-   }
-
   return (
     <div className=" relative-example">
       {[false].map((expand) => (
@@ -53,34 +33,15 @@ console.log("holaaaa", infoUser)
               <Link className="navbar-toggler collapsed" to="/carrito">
                 <i className="bi bi-cart3"></i>
               </Link>
-              <Link className="navbar-toggler collapsed" to="/login">
+              <button
+                className="navbar-toggler collapsed"
+                onClick={hanlerDesplegableLogin}
+              >
                 <i className="bi bi-person"></i>
-              </Link>
-              <ButtonLogin/>
-              {
-                token?<div>
+              </button>
 
+              {desplegable === true ? <ButtonLogin /> : null}
 
-              <Button>
-                <h6>{`hola ${infoUser.username}`}</h6>
-
-             
-              <h6></h6>
-
-             </Button>
-             <Button  onClick={handlerSesion}>
-                <h6>cerrar sesion</h6>
-              </Button>
-                </div>
-
-              :
-
-              <Button>
-                <h6>iniciar sesion</h6>
-              </Button>
-              
-             
-}
               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}>
                 <i className="bi bi-list-ul"></i>
               </Navbar.Toggle>

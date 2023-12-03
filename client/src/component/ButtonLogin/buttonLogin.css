@@ -1,0 +1,18 @@
+.buttonlogin{
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.864);
+    width:150px;
+    height: 200px;
+    border-radius: 2px;
+}
+
+.h6_login{
+    color: #E4597C;
+    margin: 0.5rem;
+}
+.img_perfil{
+    width: 50px;
+    margin: 5px;
+}

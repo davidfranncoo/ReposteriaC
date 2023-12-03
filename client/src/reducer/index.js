@@ -10,8 +10,6 @@ user:[]
 }
 export default function rootRecuducer(state=intialState,action){
    
- console.log("···········MSGNFSGF",action)
-
     switch(action.type){
         case "GET_PRODUCT":
             
