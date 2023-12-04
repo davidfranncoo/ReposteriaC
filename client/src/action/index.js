@@ -47,19 +47,17 @@ export function getDetail(id, token) {
 }
 
 export function getCarrito() {
-  const noParse=window.localStorage.getItem("TOKEN")
-  const token= JSON.parse(noParse);
-
+  const noParse = window.localStorage.getItem("TOKEN");
+  const token = JSON.parse(noParse);
 
   return async function (dispatch) {
     const autenticacion = `Bearer ${token}`;
-   
-    const requeri = await axios.get("http://localhost:3001/carrito",{
-      headers:{
-        Authorization:autenticacion,
-      }
-    });
 
+    const requeri = await axios.get("http://localhost:3001/carrito", {
+      headers: {
+        Authorization: autenticacion,
+      },
+    });
 
     return dispatch({
       type: "GET_CARRITO",
@@ -106,43 +104,35 @@ export function loginUser(user) {
   };
 }
 export function getLogin() {
-  const loggedUserJSON = window.localStorage.getItem('TOKEN');
- 
-  if(loggedUserJSON){
+  const loggedUserJSON = window.localStorage.getItem("TOKEN");
 
+  if (loggedUserJSON) {
     return {
       type: "GET_LOGIN",
       payload: loggedUserJSON,
     };
-  }
-  else{
+  } else {
     return {
       type: "GET_LOGIN",
       payload: "ERROR_LOGIN",
     };
   }
-  
 }
-export function getUser(){
-  const loggedUserJSON = window.localStorage.getItem('TOKEN');
-  const user =JSON.parse(loggedUserJSON)
-  
+export function getUser() {
+  const loggedUserJSON = window.localStorage.getItem("TOKEN");
+  const user = JSON.parse(loggedUserJSON);
+
   const autenticacion = `Bearer ${user}`;
   return async function (dispatch) {
-
-    const response = await  axios.get(`http://localhost:3001/user`, {
+    const response = await axios.get(`http://localhost:3001/user`, {
       headers: {
         Authorization: autenticacion,
       },
     });
-   
-    return dispatch(
 
-      {
-        type: "GET_USER",
-        payload: response.data,
-      }
-      )
-  
-  }
-  }
+    return dispatch({
+      type: "GET_USER",
+      payload: response.data,
+    });
+  };
+}

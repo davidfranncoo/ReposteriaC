@@ -35,7 +35,7 @@ router.post("/singup", async (req, res) => {
           console.error("Error al generar el hash:", err);
         } else {
           // Aquí puedes almacenar el 'hash' en tu base de datos junto con otros datos del usuario
-          console.log("Contraseña hasheada:", hash);
+         
           User.create({
             username: username,
             email: email.toLowerCase(),
@@ -68,7 +68,7 @@ router.get("/user", authenticateToken, async (req, res) => {
       return res.status(200).send(infouser);
     }  
   } catch (error) {
-    console.error("Error:", error);
+   
     return res.status(400).send({ error: "Hay un error" });
   }
 });
@@ -91,7 +91,7 @@ router.post("/carrito", async (req, res) => {
   //!recprdar que esto ya esta en get("detail/:id")
   //--------------tokeeeen------------
   const authorization = req.get("authorization");
-  console.log("viendoo",authorization)
+
   let token = "";
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     token = authorization.substring(7);
@@ -115,6 +115,8 @@ router.post("/carrito", async (req, res) => {
                        a) Desde el token debo obtener el username para poder guardarlo  
                         b) Tengo que guardar  el idname(producto) con el id del producto en cuestion
   */
+ console.log("esto llega",decodedToken)
+
   try {
     if (idname && precio && descripcion && texto) {
       const createCarrito = await Carrito.create({
@@ -129,17 +131,18 @@ router.post("/carrito", async (req, res) => {
           id: decodedToken.id,
         },
       });
-
+ 
       const findProduct = await Product.findAll({
         where: {
           id: idname,
         },
       });
-
+      
+     
       await createCarrito.addUsers(findUser);
       await createCarrito.addProducts(findProduct);
 
-      return res.send("Se agrego la el producto");
+      return res.status(200).send("Se agrego la el producto");
     }
     return res.status(401).send("faltan datos");
   } catch (error) {
@@ -157,7 +160,7 @@ router.get("/carrito", async (req, res) => {
   //-------------- Autenticaion de usuario-------------
 
   const authorization = req.get("authorization");
-  console.log("holaaaaaa", authorization)
+
   let token = "";
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     token = authorization.substring(7);
@@ -188,8 +191,7 @@ router.get("/carrito", async (req, res) => {
 >> el CARRITO/idname === USER/id
 
 */
-console.log("tok",token)
-console.log("decode t tokeeeeee",decodedToken)
+
 
     const data = await User.findAll({
       where: {
@@ -206,7 +208,7 @@ console.log("decode t tokeeeeee",decodedToken)
         }
       ]
     });
-    console.log("esto es dataaa",data)
+  
 
     if (!data) {
       return res.status(400).send("no hay data");

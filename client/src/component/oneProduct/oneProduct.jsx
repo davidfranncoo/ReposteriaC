@@ -8,9 +8,10 @@ import { getDetail, sendProduct } from "../../action";
 
 
 export default function OneProduct({ id, name, img, precio2 }) {
-  const Token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImYiLCJpZCI6ImVkZDRhZGExLWZiYTMtNDc3Zi1hZGY2LWE0YjA1NWIxYTBmNCIsImlhdCI6MTcwMTAzOTIzOH0.or_crCiTwUZXSNiGkfpnUFQu-uYlrXFhHZ9gS82x2iM";
-
+  const sinparsear=window.localStorage.getItem("TOKEN")
+  const Token= JSON.parse(sinparsear)
+  
+ 
   const [precio, setPrecio] = useState(precio2);
   const [contador, setContador] = useState(1);
   const [product, setProduct] = useState({
