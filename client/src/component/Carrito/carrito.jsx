@@ -13,6 +13,7 @@ export default function Carrito() {
   const dispatch = useDispatch();
   const infoCarrito = useSelector((state) => state.myCarrito) || [];
   const [loading, setLoading] = useState(true);
+  const [acc, setAcc] = useState(0);
   const [infoLoading, setinfoLoading] = useState(false);
 
   useEffect(() => {
@@ -22,8 +23,17 @@ export default function Carrito() {
       dispatch(getCarrito()).then(() => setLoading(false));
 
       if (infoCarrito[0] != undefined) {
+        console.log("0000", infoCarrito[0].Carritos[0].id)
         setinfoLoading(true);
-        console.log("dataaa");
+        
+        const total = infoCarrito[0].Carritos.reduce((sum, e) => {
+          // Suponiendo que 'e.Products[0].preciouni' contiene el precio del producto
+          const precioProducto = parseFloat(e.Products[0].preciouni) || 0;
+          return sum + precioProducto;
+        }, 0);
+
+        // Establecer el total en el estado
+        setAcc(total);
       }
     }
   }, [loading]);
@@ -35,18 +45,11 @@ export default function Carrito() {
         <div>No hay productos</div>
       ) : (
         <div>
-          <div className="d-flex align-items-center justify-content-around">
-            <img className="w-25" src={img1} />
-            <h6>tota alta</h6>
-            <h1>$150</h1>
-            <button>eliminar</button>
-          </div>
-
           <div>
             {infoCarrito[0].Carritos.map((e) => {
               return (
                 <CardCarrito
-                  key={e.Products[0].idname}
+                 id={e.id}
                   name={e.Products[0].name}
                   img={e.Products[0].img}
                   precio={e.Products[0].preciouni}
@@ -54,6 +57,8 @@ export default function Carrito() {
               );
             })}
           </div>
+          <br />
+          <h1>total ${acc}</h1>
           <Button>Comprar</Button>
         </div>
       )}

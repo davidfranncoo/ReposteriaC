@@ -61,6 +61,10 @@ export default function rootRecuducer(state=intialState,action){
                 ...state,
                     user:action.payload
             }
+            case "DELETE_ONE_CARRITO":
+                return{
+                    ...state
+                }
                 
                 default:
                     return state;

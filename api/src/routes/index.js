@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
-const { Product, Carrito, User, ProductCarrito } = require("../db");
+const { Product, Carrito, User, ProductCarrito,UserCarrito } = require("../db");
 const {
   getProduct,
   getProductByCategory,
@@ -218,5 +218,54 @@ router.get("/carrito", async (req, res) => {
     return res.status(500).send("Error en el servidor");
   }
 });
+
+router.delete("/carrito",authenticateToken, async (req, res) => {
+
+ const {id}=req.body
+ console.log("idddddd",id)
+ try {
+  
+   await Carrito.destroy({
+    where: {
+    id: id
+    }
+   });
+  return res.status(200).send("se elimino prodducto del carrito  correctamente")
+ } catch (error) {
+
+  return res.status(400).setDefaultEncoding({error:"hay error para eliminar"})
+  
+ }
+})
+router.delete("/carrito/compra",authenticateToken, async (req, res) => {
+const {idsCarritos}=req.body
+console.log("delete1",idsCarritos)
+
+  
+
+
+
+
+  try {
+
+
+    await Promise.all(
+      idsCarritos.map(async (e) => {
+        await Carrito.destroy({
+          where: {
+            id: e
+          }
+        });
+      })
+    );
+
+   return res.status(200).send("se elimino prodducto del carrito  correctamente")
+  } catch (error) {
+ 
+   return res.status(400).send({error:"hay error para eliminar"})
+   
+  }
+ })
+ 
 
 module.exports = router;

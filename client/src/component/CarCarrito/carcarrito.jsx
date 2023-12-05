@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./carcarrito.css";
+import { useDispatch } from "react-redux";
+import { deleteCarritoUni } from "../../action";
 
 
-export default function CardCarrito({name,precio,img}) {
-  console.log("holaaaa")
- 
-  const [total, setTotal] = useState(0);
 
-  // useEffect(() => {
-  //   const newTotal = product.reduce((acumulador, e) => {
-  //     const strin = e.precio;
-  //     const numbe = parseFloat(strin);
-  //     return acumulador + numbe;
-  //   }, 0);
 
-  //   setTotal(newTotal);
-  // }, [product]);
+
+export default function CardCarrito({name,precio,img, id}) {
+  const dispatch=useDispatch()
+ console.log("esto es la key ",id)
+
+  function hanlerDelete(){
+
+   dispatch( deleteCarritoUni(id))
+   window.location.reload();
+
+  }
+  
 
   return (
    
@@ -23,7 +25,7 @@ export default function CardCarrito({name,precio,img}) {
         <img className="w-25" src={img} />
         <h6>{name}</h6>
         <h1>${precio}</h1>
-        <button>eliminar</button>
+        <button onClick={hanlerDelete}>  eliminar</button>
       </div>
    
   );

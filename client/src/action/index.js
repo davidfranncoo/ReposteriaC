@@ -136,3 +136,25 @@ export function getUser() {
     });
   };
 }
+export  function deleteCarritoUni(id){
+  return async function(){
+
+    const noParse =window.localStorage.getItem("TOKEN")
+    const token = JSON.parse(noParse)
+    console.log("Iddddd",token)
+    const autenticacion = `Bearer ${token}`;
+   await axios.delete(`http://localhost:3001/carrito`,{
+      headers:{
+        Authorization: autenticacion,
+      }, data: { id: id },
+    })
+    
+    console.log("listo se debe eliminar")
+    return {
+      type:"DELETE_ONE_CARRITO",
+      
+    }
+    
+  }
+  }
+

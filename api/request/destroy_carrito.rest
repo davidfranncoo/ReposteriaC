@@ -1,0 +1,8 @@
+DELETE http://localhost:3001/carrito/compra
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvZmlhIiwiaWQiOiJlMTUxOTI2Mi01NGY1LTQ0NDUtOWEzOC0zOWRiNDQzOGZlOGYiLCJpYXQiOjE3MDE3MTgwNzd9.l5Ee8DBVPlIKo4c-NyUHAoCdeokEfrFPBHeACqp5zBM
+
+{
+  "idsCarritos": ["4","5","6","7","8"]
+}
+  

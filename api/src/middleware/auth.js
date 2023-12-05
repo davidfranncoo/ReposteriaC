@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 function authenticateToken(req, res, next) {
   const authorization = req.get("authorization");
   
-
+console.log("autoooooo",authorization)
   if (!authorization) {
     return res.status(400).send("Faltan Datos de Autorizacion");
   }
