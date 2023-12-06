@@ -63,7 +63,9 @@ export default function rootRecuducer(state=intialState,action){
             }
             case "DELETE_ONE_CARRITO":
                 return{
-                    ...state
+                    ...state,
+                    myCarrito:action.payload
+                
                 }
                 
                 default:

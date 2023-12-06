@@ -9,7 +9,6 @@ export function getProduct() {
     });
   };
 }
-
 export function seachProduct(seach) {
   return async function (dispatch) {
     const category = seach.category;
@@ -21,7 +20,6 @@ export function seachProduct(seach) {
     });
   };
 }
-
 export function getDetail(id, token) {
   return async function (dispatch) {
     // aca tenemos que mandar el token
@@ -45,7 +43,6 @@ export function getDetail(id, token) {
     }
   };
 }
-
 export function getCarrito() {
   const noParse = window.localStorage.getItem("TOKEN");
   const token = JSON.parse(noParse);
@@ -65,7 +62,22 @@ export function getCarrito() {
     });
   };
 }
-
+export function deleteOneCarrito(info) {
+  return async function (dispatch) {
+    return dispatch({
+      type: "GET_CARRITO",
+      payload: info,
+    });
+  };
+}
+export function deleteteAllCarrito(info) {
+  return async function (dispatch) {
+    return dispatch({
+      type: "GET_CARRITO",
+      payload: info,
+    });
+  };
+}
 export function sendProduct(payload, token) {
   const autenticacion = `Bearer ${token}`;
 
@@ -81,7 +93,6 @@ export function sendProduct(payload, token) {
     payload: data,
   };
 }
-
 export function loginUser(user) {
   return async function (dispatch) {
     try {
@@ -136,25 +147,39 @@ export function getUser() {
     });
   };
 }
-export  function deleteCarritoUni(id){
-  return async function(){
+export function deleteCarritoUni(id) {
+  return async function () {
+    const noParse = window.localStorage.getItem("TOKEN");
+    const token = JSON.parse(noParse);
 
-    const noParse =window.localStorage.getItem("TOKEN")
-    const token = JSON.parse(noParse)
-    console.log("Iddddd",token)
     const autenticacion = `Bearer ${token}`;
-   await axios.delete(`http://localhost:3001/carrito`,{
-      headers:{
+    await axios.delete(`http://localhost:3001/carrito`, {
+      headers: {
         Authorization: autenticacion,
-      }, data: { id: id },
-    })
-    
-    console.log("listo se debe eliminar")
-    return {
-      type:"DELETE_ONE_CARRITO",
-      
-    }
-    
-  }
-  }
+      },
+      data: { id: id },
+    });
 
+    return {
+      type: "DELETE_ONE_CARRITO",
+    };
+  };
+}
+export function deleteAllCarrito(ids){
+  return async function () {
+    const noParse = window.localStorage.getItem("TOKEN");
+    const token = JSON.parse(noParse);
+
+    const autenticacion = `Bearer ${token}`;
+    await axios.delete(`http://localhost:3001/carrito/compra`, {
+      headers: {
+        Authorization: autenticacion,
+      },
+      data: { idsCarritos: ids },
+    });
+
+    return {
+      type: "DELETE_ONE_CARRITO",
+    };
+  };
+}

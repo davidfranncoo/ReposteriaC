@@ -3,30 +3,21 @@ import "./carcarrito.css";
 import { useDispatch } from "react-redux";
 import { deleteCarritoUni } from "../../action";
 
+export default function CardCarrito({ name, precio, img, id, oneDelete }) {
+  const dispatch = useDispatch();
 
+  function hanlerDelete() {
+    dispatch(deleteCarritoUni(id));
 
-
-
-export default function CardCarrito({name,precio,img, id}) {
-  const dispatch=useDispatch()
- console.log("esto es la key ",id)
-
-  function hanlerDelete(){
-
-   dispatch( deleteCarritoUni(id))
-   window.location.reload();
-
+    oneDelete();
   }
-  
 
   return (
-   
-      <div className="d-flex align-items-center justify-content-around">
-        <img className="w-25" src={img} />
-        <h6>{name}</h6>
-        <h1>${precio}</h1>
-        <button onClick={hanlerDelete}>  eliminar</button>
-      </div>
-   
+    <div className="d-flex align-items-center justify-content-around">
+      <img className="w-25" src={img} />
+      <h6>{name}</h6>
+      <h1>${precio}</h1>
+      <button onClick={hanlerDelete}> eliminar</button>
+    </div>
   );
 }

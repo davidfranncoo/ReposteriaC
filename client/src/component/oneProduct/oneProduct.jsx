@@ -42,7 +42,7 @@ export default function OneProduct({ id, name, img, precio2 }) {
   function handlerSubmit(e) {
     e.preventDefault();
     sendProduct(product, Token);
-    console.log("esto es set product ", product);
+   
     setProduct({
       idname: id, // aquí puedes utilizar el id del producto si lo tienes
       precio: precio2,
