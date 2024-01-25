@@ -1,5 +1,13 @@
 .row_Card{
     background-color: rgb(216, 216, 216);
+    display: grid;
+    grid-template-columns: 
+    repeat(
+        auto-fit,
+        minmax(150px,1fr)
+    );
+    gap: 32px;
+    padding: 6%;
 }
 
 

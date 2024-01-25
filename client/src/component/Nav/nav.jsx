@@ -2,14 +2,19 @@ import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom"; // Agrupando múltiples imports de react-router-dom
 import "./nav.css";
 import img1 from "../../Img/lodecaleb-white.png";
-import { Image, Container, Navbar, Button, Offcanvas, Nav } from "react-bootstrap"; // Agrupando múltiples imports de react-bootstrap
+import {
+  Image,
+  Container,
+  Navbar,
+  Button,
+  Offcanvas,
+  Nav,
+} from "react-bootstrap"; // Agrupando múltiples imports de react-bootstrap
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../action";
+
 import ButtonLogin from "../ButtonLogin/buttonLogin.jsx";
 
 export default function NavBar() {
-  const dispatch = useDispatch();
-
   const [desplegable, setDesplegable] = useState(false);
 
   function hanlerDesplegableLogin() {
@@ -30,7 +35,10 @@ export default function NavBar() {
                 {" "}
                 <Image src={img1} className="imagen1 p-0" />
               </Navbar.Brand>
-              <Link className="navbar-toggler collapsed" to="/carrito">
+              <Link
+                className="navbar-toggler collapsed d-flex align-items-center"
+                to="/carrito"
+              >
                 <i className="bi bi-cart3"></i>
               </Link>
               <button
@@ -54,16 +62,56 @@ export default function NavBar() {
             >
               <Offcanvas.Header closeButton className="bg-primary">
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  <Image src={img1} className="imagen1 p-0" />
+                  <Image src={img1} className="imagen2 p-0" />
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Link to="/home">Home</Link>
-                  <Link to="/products/tortas">Tortas</Link>
-                  <Link to="/products/postres">Postres</Link>
-                  <Link to="/products/tartas">Tartas</Link>
-                  <Link to="/poroducts/bandejas">Bandejas</Link>
+              <Offcanvas.Body className="body_nav">
+                <Nav className="justify-content-end flex-grow-1 pe-3 ">
+                  <Link className=" d-flex text-decoration-none" to="/home">
+                    <span className="p-1 text-primary material-symbols-outlined">
+                      home
+                    </span>
+                    <h4>Home</h4>
+                  </Link>
+                  <Link
+                    className="d-flex text-decoration-none"
+                    to="/products/tortas"
+                  >
+                    {" "}
+                    <span className="p-1 text-primary material-symbols-outlined">
+                      cake
+                    </span>
+                    <h4>Tortas</h4>
+                  </Link>
+                  <Link
+                    className=" d-flex text-decoration-none"
+                    to="/products/postres"
+                  >
+                    {" "}
+                    <span className="p-1 text-primary material-symbols-outlined">
+                      icecream{" "}
+                    </span>
+                    <h4>Postres</h4>
+                  </Link>
+                  <Link
+                    className="d-flex text-decoration-none"
+                    to="/products/tartas"
+                  >
+                    {" "}
+                    <span className="p-1 text-primary material-symbols-outlined">
+                      cookie
+                    </span>
+                    <h4>Tartas</h4>
+                  </Link>
+                  <Link
+                    className="d-flex text-decoration-none"
+                    to="/poroducts/bandejas"
+                  >
+                    <span className="p-1 text-primary material-symbols-outlined">
+                      bakery_dining
+                    </span>{" "}
+                    <h4>Bandejas</h4>
+                  </Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

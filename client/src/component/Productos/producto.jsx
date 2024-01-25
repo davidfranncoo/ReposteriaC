@@ -39,7 +39,7 @@ export default function Productos() {
       {loading === true ? (
         <div>cargandoooo</div>
       ) : (
-        <div className="div_producto">
+        <div className=" div_producto">
           {productData.map((e) => (
             <Link key={e.id} to={"/detail/" + e.id}>
             

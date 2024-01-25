@@ -40,15 +40,15 @@ export default function cardProduct() {
         {loading=== true || login===true || login=== 'ERROR_LOGIN'? (
           <h1>cargandooo</h1>
         ) : (
-          <Row className="row_Card">
+          <div className=" row_Card">
             {producdata.map((e, index) => {
               return (
-                <Col   key={e.id} className="  columna_producto d-flex flex-column align-items-center">
+             
                   <Productone  id={e.id} img={e.img} name={e.name} precio2={e.preciouni} />
-                </Col>
+                
               );
             })}
-          </Row>
+          </div>
         )}
       </div>
     </div>

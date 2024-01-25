@@ -3,6 +3,8 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Image from "react-bootstrap/esm/Image";
 import Nav from "../Nav/nav";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import "./oneProduct.css"
 import { getDetail, sendProduct } from "../../action";
 
@@ -55,15 +57,41 @@ export default function OneProduct({ id, name, img, precio2 }) {
   }
 
   return (
-    <div className="pt-2 div_card_product">
-      <Image className="img_cardProduct2" src={img} />
+
+
+    <div className=" pt-2 div_card_product">
+          <Card style={{ width: '11rem' }}>
+      <Card.Img className="img_cardProduct2" variant="top" src={img} />
+      <Card.Body>
+        <Card.Text>
+         {name}
+        </Card.Text>
+        <Card.Title>${precio}</Card.Title>
+          
+<div className="input-group mb-3">
+  <Button className="btn btn-outline-secondary" type="button">-</Button>
+  <input type="text" className="form-control" placeholder="" aria-label="Texto de ejemplo con complementos de dos botones"/>
+  <Button className="btn btn-outline-secondary" type="button">+</Button>  
+
+
+        <Button variant="primary">
+        <span className="material-symbols-outlined">shopping_cart</span>
+
+        </Button>
+
+</div>
+  
+      </Card.Body>
+    </Card>
+
+      {/* <Image className="img_cardProduct2" src={img} />
       <h6 className="text-center ">{name}</h6>
       <div className="d-flex align-items-center ">
         <h4 className="precio_card">${precio} </h4>
         <h4 className="precio_card2">ARS </h4>
-      </div>
+      </div> */}
 
-      <div className="div_contador d-flex">
+      {/* <div className="div_contador d-flex">
         <div className="div2-contador d-flex justify-content-around align-items-center">
           <button
             className="input_number"
@@ -91,7 +119,7 @@ export default function OneProduct({ id, name, img, precio2 }) {
         >
           <span className="material-symbols-outlined">shopping_cart</span>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

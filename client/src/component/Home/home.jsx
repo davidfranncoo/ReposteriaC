@@ -1,16 +1,9 @@
 //para trar reac ponemos rafce
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import Carru2 from "../../Img/torta2.jpg";
-import Carru3 from "../../Img/torta3.jpg";
 import tortaPng from "../../Img/tortasinfondo.png";
-import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
 import "./home.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
-import Button from "react-bootstrap/Button";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../action/index";
 import NavBar from "../Nav/nav";
