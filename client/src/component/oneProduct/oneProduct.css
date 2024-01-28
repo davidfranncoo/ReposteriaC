@@ -5,6 +5,10 @@
     align-items: center;
 
 }
+.responsive-card{
+    width: 11rem;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
 .img_cardProduct2{
     width: auto;
     height: 150px;
@@ -63,6 +67,13 @@
     color: aliceblue;
     font-size: 1.5rem;
    
-   
+    
 
 }
+
+    @media (max-width: 700px) {
+        .card-body {
+     
+          padding: 5px !important;
+        }
+      }

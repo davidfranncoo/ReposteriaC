@@ -60,21 +60,31 @@ export default function OneProduct({ id, name, img, precio2 }) {
 
 
     <div className=" pt-2 div_card_product">
-          <Card style={{ width: '11rem' }}>
+            <Card className="responsive-card">
       <Card.Img className="img_cardProduct2" variant="top" src={img} />
       <Card.Body>
         <Card.Text>
          {name}
         </Card.Text>
         <Card.Title>${precio}</Card.Title>
-          
-<div className="input-group mb-3">
+
+
+        {/* <div className="input-group mb-3">
   <Button className="btn btn-outline-secondary" type="button">-</Button>
   <input type="text" className="form-control" placeholder="" aria-label="Texto de ejemplo con complementos de dos botones"/>
   <Button className="btn btn-outline-secondary" type="button">+</Button>  
 
 
-        <Button variant="primary">
+</div> */}
+
+          
+<div className="input-group ">
+  <Button className="btn btn-outline-secondary" variant="info" type="button">-</Button>
+  <input type="text" className="form-control" placeholder="" aria-label="Texto de ejemplo con complementos de dos botones"/>
+  <Button className="btn btn-outline-secondary" variant="info" type="button">+</Button>  
+
+
+        <Button variant="primary" >
         <span className="material-symbols-outlined">shopping_cart</span>
 
         </Button>
