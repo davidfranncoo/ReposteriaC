@@ -8,3 +8,17 @@
     display: flex;
     justify-content: space-around;
 }
+.one-store{
+    border-radius: 15px;
+    background-color: aliceblue;
+    margin : 40px 0px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.one-store img{
+border-radius: 5%;
+height: 250px;
+margin: 10px;
+}
+.one-store h6{
+    font-size: 50px;
+}

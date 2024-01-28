@@ -70,7 +70,19 @@
     
 
 }
+.contador-card{
+    
+    font-size: 25px;
+    padding: 0px 8px ;
 
+}
+.card-body {
+     
+    padding: 10px !important;
+  }
+.input-group {
+    justify-content: space-around;
+}
     @media (max-width: 700px) {
         .card-body {
      

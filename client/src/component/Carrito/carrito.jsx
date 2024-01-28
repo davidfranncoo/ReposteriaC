@@ -67,8 +67,9 @@ export default function Carrito() {
   }
 
   return (
-    <div>
+    <>
       <Nav />
+    <div className="carrito-div">
       {loading === true || infoLoading === true ? (
         <div>No hay productos</div>
       ) : (
@@ -95,11 +96,15 @@ export default function Carrito() {
               ))
             )}
           </div>
+          <div className="boton-comprar">
+
           <br />
-          <h1>Total ${acc}</h1>
+          <h1>Total: ${acc}</h1>
           <Button onClick={hanlerCompra}>Comprar</Button>
+          </div>
         </div>
       )}
     </div>
+    </>
   );
 }

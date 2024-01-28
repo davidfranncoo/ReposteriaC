@@ -6,6 +6,7 @@ import "./home.css";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../action/index";
+import CardHome from "../CardHome/cardHome";
 import NavBar from "../Nav/nav";
 import NavProduct from "../NavProduct/navproduct";
 
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <div>
       <NavBar />
+     
 
       {loading === true ? (
         <div>cargandoooo</div>
@@ -67,7 +69,7 @@ export default function Home() {
                   ¡Listo para recoger y celebrar!
                 </h6>
               </Col>
-
+           
               <Col className="col-3 text-center p-1">
                 <span className="material-symbols-outlined">cake</span>
                 <h4>Crea Tu Torta</h4>
@@ -79,7 +81,7 @@ export default function Home() {
               </Col>
               <Col className="col-3 text-center p-1">
                 <span className="material-symbols-outlined">
-                  calendar_month
+                  calendar_month 
                 </span>
                 <h4>Agenda tu Pedido</h4>
 
@@ -110,34 +112,30 @@ export default function Home() {
                 {" "}
                 <h4 className="text-center ">------- Tortas -------</h4>
               </Col>
-
+                
+              
               <Col className="col-1 ">
                 <Link to="/products/tortas">ver</Link>
               </Col>
             </Row>
 
-            <Container fluid>
-              <Row className="cajaP">
+              <div className="row_Card">
                 {productData.map((e,index) => {
                   if (e.category === "tortas" && contador < 4) {
                     contador++;
                     return (
-                      <Col key={index} className=" columna_producto d-flex flex-column align-items-center">
-                        <h6 className="text-center ">{e.name}</h6>
-                        <Image className="w-75 h-50" src={e.img} />
 
-                        <h4 className="">${e.preciouni} </h4>
-                        <button className="button_compra">
-                          <h3>comprar</h3>
-                        </button>
-                      </Col>
+                      <div key={index} className=" ">
+                         <CardHome categori={"tortas"} name={e.name} img={e.img} preciouni={e.preciouni} />
+                       
+                      </div>
                     );
                   }
 
                   return;
                 })}
-              </Row>
-            </Container>
+              </div>
+          
           </div>
 
           <div className="divProduct">
