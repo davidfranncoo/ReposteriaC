@@ -74,7 +74,16 @@ i {
     font-size: 2rem;
   }
   
-  
+  .text-center-home{
+    background-color: #ff7fa58d;
+    width: 50%;
+    height: 40px;
+    display: flex;
+    font-size: 35px;
+    border-radius: 10%;
+    align-items: center;
+    padding: 5%;
+  }
   
   .columna_producto h6 {
     margin-bottom: 0px;
@@ -133,7 +142,9 @@ i {
     height: 30px;
     transform: rotateY(180deg);
   }
-  
+  .link-home{
+    font-size: 30px;
+  }
   .custom-shape-divider-bottom-1700336914 .shape-fill {
     fill: #AB254E;
   }

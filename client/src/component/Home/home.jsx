@@ -1,6 +1,6 @@
 //para trar reac ponemos rafce
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import tortaPng from "../../Img/tortasinfondo.png";
 import "./home.css";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
@@ -14,7 +14,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.product) || [];
   const [loading, setLoading] = useState(true);
-  
+
   var contador = 0;
   useEffect(() => {
     dispatch(getProduct()).then(() => setLoading(false));
@@ -23,13 +23,11 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-     
 
       {loading === true ? (
         <div>cargandoooo</div>
       ) : (
         <div className="baground_prueba container-fluid p-0">
-        
           <div className="ultimo_momento">
             <h4 className=" text-center text-white ">
               Pedí tu torta a
@@ -39,8 +37,8 @@ export default function Home() {
               Aquí
             </Button>
           </div>
-      
-          <div className="divider_shape">{" "}</div>
+
+          <div className="divider_shape"> </div>
           <div className="custom-shape-divider-top-1700077761">
             <svg
               data-name="Layer 1"
@@ -69,7 +67,7 @@ export default function Home() {
                   ¡Listo para recoger y celebrar!
                 </h6>
               </Col>
-           
+
               <Col className="col-3 text-center p-1">
                 <span className="material-symbols-outlined">cake</span>
                 <h4>Crea Tu Torta</h4>
@@ -81,7 +79,7 @@ export default function Home() {
               </Col>
               <Col className="col-3 text-center p-1">
                 <span className="material-symbols-outlined">
-                  calendar_month 
+                  calendar_month
                 </span>
                 <h4>Agenda tu Pedido</h4>
 
@@ -110,104 +108,98 @@ export default function Home() {
             <Row className="">
               <Col className="col-10 ">
                 {" "}
-                <h4 className="text-center ">------- Tortas -------</h4>
+                <h4 className="text-center-home "> Tortas</h4>
               </Col>
-                
-              
+
               <Col className="col-1 ">
-                <Link to="/products/tortas">ver</Link>
+                <Link  className="link-home" to="/products/tortas">ver</Link>
               </Col>
             </Row>
 
-              <div className="row_Card">
-                {productData.map((e,index) => {
-                  if (e.category === "tortas" && contador < 4) {
+            <div className="row_Card">
+              {productData.map((e, index) => {
+                if (e.category === "tortas" && contador < 4) {
+                  contador++;
+                  return (
+                    <div key={index} className=" ">
+                      <CardHome
+                        categori={"tortas"}
+                        name={e.name}
+                        img={e.img}
+                        preciouni={e.preciouni}
+                      />
+                    </div>
+                  );
+                }
+                return;
+              })}
+            </div>
+          </div>
+
+          <div className="divProduct">
+            <Row className="">
+              <Col className="col-10 ">
+                {" "}
+                <h4 className="text-center-home ">Postres </h4>
+              </Col>
+
+              <Col className="col-1 ">
+                <Link className="link-home" to="/products/postres">ver</Link>
+              </Col>
+            </Row>
+
+            <div className="row_Card">
+                {productData.map((e, index) => {
+                  if (e.category === "postres" && contador < 8) {
                     contador++;
                     return (
-
                       <div key={index} className=" ">
-                         <CardHome categori={"tortas"} name={e.name} img={e.img} preciouni={e.preciouni} />
-                       
-                      </div>
+                      <CardHome
+                        categori={"postres"}
+                        name={e.name}
+                        img={e.img}
+                        preciouni={e.preciouni}
+                      />
+                    </div>
+                    );
+                  }
+
+                  return;
+                })}
+              
+            </div>
+          </div>
+
+          <div className="divProduct">
+            <Row className="">
+              <Col className="col-10 ">
+                {" "}
+                <h4 className="text-center-home ">Tartas </h4>
+              </Col>
+
+              <Col className="col-1 ">
+                <Link className="link-home" to="/products/tartas">ver</Link>
+              </Col>
+            </Row>
+            <div className="row_Card">
+                {productData.map((e, index) => {
+                  if (e.category === "tartas" && contador < 12) {
+                    contador++;
+                    return (
+                      <div key={index} className=" ">
+                      <CardHome
+                        categori={"tartas"}
+                        name={e.name}
+                        img={e.img}
+                        preciouni={e.preciouni}
+                      />
+                    </div>
                     );
                   }
 
                   return;
                 })}
               </div>
-          
-          </div>
-
-          <div className="divProduct">
-            <Row className="">
-              <Col className="col-10 ">
-                {" "}
-                <h4 className="text-center ">------- Postres -------</h4>
-              </Col>
-
-              <Col className="col-1 ">
-                <Link to="/products/postres">ver</Link>
-              </Col>
-            </Row>
-
-            <Container fluid>
-              <Row className="cajaP">
-                {productData.map((e,index) => {
-                  if (e.category === "postres" && contador < 8) {
-                    contador++;
-                    return (
-                      <Col key={index} className=" columna_producto d-flex flex-column align-items-center">
-                        <h6 className="text-center ">{e.name}</h6>
-                        <Image className="w-75 h-50" src={e.img} />
-
-                        <h4 className="">${e.preciouni} </h4>
-                        <button className="button_compra">
-                          <h3>comprar</h3>
-                        </button>
-                      </Col>
-                    );
-                  }
-
-                  return;
-                })}
-              </Row>
-            </Container>
-          </div>
-
-          <div className="divProduct">
-            <Row className="">
-              <Col className="col-10 ">
-                {" "}
-                <h4 className="text-center ">------- Tartas -------</h4>
-              </Col>
-
-              <Col className="col-1 ">
-                <Link to="/products/tartas">ver</Link>
-              </Col>
-            </Row>
-
-            <Container fluid>
-              <Row className="cajaP">
-                {productData.map((e,index) => {
-                  if (e.category === "tartas" && contador < 12) {
-                    contador++;
-                    return (
-                      <Col key={index} className=" columna_producto d-flex flex-column align-items-center">
-                        <h6 className="text-center ">{e.name}</h6>
-                        <Image className="w-75 h-50" src={e.img} />
-
-                        <h4 className="">${e.preciouni} </h4>
-                        <button className="button_compra">
-                          <h3>comprar</h3>
-                        </button>
-                      </Col>
-                    );
-                  }
-
-                  return;
-                })}
-              </Row>
-            </Container>
           </div>
 
           <br />
