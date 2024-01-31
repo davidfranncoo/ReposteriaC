@@ -5,15 +5,25 @@ import { Link } from 'react-router-dom';
 import { loginUser } from "../../action/index";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
+import Alerta from "../Alerta/alerta.jsx"
+
+
 import "./login.css";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const [alerta,setAlerta]=useState(false)
   const productData = useSelector((state) => state.userStatus) || [];
 
   useEffect(() => {
     if (productData.ERROR === true) {
-      return alert("usuario o contraseña incorreccta");
+      setAlerta(true) 
+
+
+     setTimeout(() => {
+      setAlerta(false);
+    }, 3000);
+
     }
     if (productData.length !== 0) {
       window.location.href = "/home";
@@ -63,6 +73,12 @@ export default function Login() {
 
   return (
     <div className="div_login">
+      {
+          alerta==true?
+          <Alerta tipo={"agrego_producto"}/>
+        :
+        <></>
+        }
       <div className="Icon_back">
         <Link to="/home">
           <img src={iconoT} className="icon_img"></img>

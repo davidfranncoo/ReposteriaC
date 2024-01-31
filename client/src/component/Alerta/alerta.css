@@ -1,0 +1,24 @@
+.alert-container {
+    position: fixed;
+    top: -100px; /* Coloca la alerta fuera de la pantalla superior */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: slideIn 0.5s ease-in-out forwards;
+  }
+  
+  .alert-container.show {
+    top: 50px; /* Ajusta la posición de la alerta visible */
+  }
+  
+  @keyframes slideIn {
+    from {
+      top: -100px;
+      opacity: 0;
+    }
+    to {
+      top: 50px; /* Ajusta la posición final de la alerta visible */
+      opacity: 1;
+    }
+  }
+  

@@ -3,6 +3,7 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Image from "react-bootstrap/esm/Image";
 import NavBar from "../Nav/nav";
+import alerta from "../Alerta/alerta.jsx"
 import "./cardProduct.css";
 import { getLogin, getProduct } from "../../action";
 import Productone from "../oneProduct/oneProduct";
@@ -37,6 +38,7 @@ export default function cardProduct() {
     <div>
       <div>
         <NavBar />
+        
         {loading=== true || login===true || login=== 'ERROR_LOGIN'? (
           <h1>cargandooo</h1>
         ) : (

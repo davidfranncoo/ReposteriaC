@@ -5,7 +5,9 @@ import Image from "react-bootstrap/esm/Image";
 import Nav from "../Nav/nav";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Alerta from "../Alerta/alerta.jsx"
 import "./oneProduct.css";
+
 import { getDetail, sendProduct } from "../../action";
 
 export default function OneProduct({ id, name, img, precio2 }) {
@@ -13,6 +15,7 @@ export default function OneProduct({ id, name, img, precio2 }) {
   const Token = JSON.parse(sinparsear);
 
   const [precio, setPrecio] = useState(precio2);
+  const [alerta,setAlerta]=useState(false)
   const [contador, setContador] = useState(1);
   const [product, setProduct] = useState({
     idname: id, // aquí puedes utilizar el id del producto si lo tienes
@@ -51,24 +54,31 @@ export default function OneProduct({ id, name, img, precio2 }) {
     });
     setPrecio(precio2);
     setContador(1);
-    return alert("se agrego correctamente al carrito");
+    setAlerta(true) 
+
+
+     setTimeout(() => {
+      setAlerta(false);
+    }, 3000);
+
+    
   }
 
   return (
     <div className=" pt-2 div_card_product">
       <Card className="responsive-card">
+        {
+          alerta==true?
+          <Alerta tipo={"agrego_producto"}/>
+        :
+        <></>
+        }
         <Card.Img className="img_cardProduct2" variant="top" src={img} />
         <Card.Body>
           <Card.Text>{name}</Card.Text>
           <Card.Title>${precio}</Card.Title>
 
-          {/* <div className="input-group mb-3">
-  <Button className="btn btn-outline-secondary" type="button">-</Button>
-  <input type="text" className="form-control" placeholder="" aria-label="Texto de ejemplo con complementos de dos botones"/>
-  <Button className="btn btn-outline-secondary" type="button">+</Button>  
-
-
-</div> */}
+        
 
           <div className="input-group ">
             <Button
