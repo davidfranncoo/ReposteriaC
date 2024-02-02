@@ -16,7 +16,7 @@ export default function CardCarrito({ name, precio, img, id, oneDelete }) {
 
   return (
     <div className=" one-store d-flex align-items-center justify-content-around">
-      <img className="w-25 " src={img} />
+      <img  src={img} />
       <h6>{name}</h6>
       <h1>${precio}</h1>
       <Button onClick={hanlerDelete}> eliminar</Button>

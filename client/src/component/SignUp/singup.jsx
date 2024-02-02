@@ -65,6 +65,9 @@ export default function SignUp() {
       email: "",
       password: "",
     });
+
+
+    
   }
   function handlerInputEmail(e) {
     setDatos({ ...datos, email: e.target.value });

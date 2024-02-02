@@ -1,7 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../src/component/Home/home';
-import Register from '../src/component/Register/Register';
 import Carrito from '../src/component/Carrito/carrito';
 import Productos from '../src/component/Productos/producto';
 import Admin from '../src/component/Admin/admin';
@@ -19,7 +18,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/singup" element={<SingUp />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/product/:category" element={<Productos />} />
         <Route path="/admin" element={<Admin />} />

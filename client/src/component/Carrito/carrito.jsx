@@ -4,6 +4,8 @@ import Nav from "../Nav/nav";
 import img1 from "../../Img/cupacake.jpg";
 import "./carrito.css";
 import Button from "react-bootstrap/Button";
+import Loading from "../Loading/loading.jsx"
+
 
 import CardCarrito from "../CarCarrito/carcarrito";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,21 +67,27 @@ export default function Carrito() {
     setLoading(true);
     alert("gracias por su compra");
   }
-
+ 
   return (
     <>
       <Nav />
     <div className="carrito-div">
       {loading === true || infoLoading === true ? (
-        <div>No hay productos</div>
+       <Loading/>
       ) : (
-        <div>
+        <div className="bg-white"> 
+          <div className="bg-info d-flex justify-content-around">
+            <h2 >Producto</h2>
+            <h2 >Deralle</h2>
+            <h2 >Precio</h2>
+            <h2 >Eliminar</h2>
+          </div>
           <div>
             {infoCarrito &&
             infoCarrito[0] &&
             infoCarrito[0].Carritos &&
             infoCarrito[0].Carritos.length === 0 ? (
-              <div>AGREGA PRODUCTOS</div>
+              <div className="p-3">Agregar Producto</div>
             ) : (
               infoCarrito &&
               infoCarrito[0] &&
@@ -99,7 +107,13 @@ export default function Carrito() {
           <div className="boton-comprar">
 
           <br />
-          <h1>Total: ${acc}</h1>
+          <div className="bg-info d-flex justify-content-between mb-2 ">
+          <h1 className=" pt-2 pl-2" >Total
+            </h1>
+            <h1 className=" pt-2 pl-2">
+           ${acc}</h1>
+
+          </div>
           <Button onClick={hanlerCompra}>Comprar</Button>
           </div>
         </div>

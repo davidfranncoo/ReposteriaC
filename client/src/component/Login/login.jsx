@@ -18,14 +18,14 @@ export default function Login() {
   useEffect(() => {
     if (productData.ERROR === true) {
       setAlerta(true) 
+     
 
-
-     setTimeout(() => {
+       setTimeout(() => {
       setAlerta(false);
     }, 3000);
 
     }
-    if (productData.length !== 0) {
+    if (productData.ERROR !== true && productData.length !== 0) {
       window.location.href = "/home";
     }
   }, [productData]);
@@ -75,7 +75,7 @@ export default function Login() {
     <div className="div_login">
       {
           alerta==true?
-          <Alerta tipo={"agrego_producto"}/>
+          <Alerta tipo={"contraseña_incorrecta"}/>
         :
         <></>
         }

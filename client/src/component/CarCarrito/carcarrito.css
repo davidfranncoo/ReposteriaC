@@ -1,24 +1,24 @@
-.cardcarrito img{
+/* .cardcarrito img{
     width: 4rem;
     height: 4rem;
 
 
-}
+} */
 .cardcarrito{
     display: flex;
     justify-content: space-around;
 }
 .one-store{
-    border-radius: 15px;
-    background-color: aliceblue;
+  
+    background-color: #fdd6e3;
     margin : 40px 0px;
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+   
 }
 .one-store img{
 border-radius: 5%;
-height: 250px;
+width: 100px;
 margin: 10px;
 }
 .one-store h6{
-    font-size: 50px;
+    font-size: 35px;
 }

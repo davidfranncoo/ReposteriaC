@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import tortaPng from "../../Img/tortasinfondo.png";
+import Loading from "../Loading/loading.jsx"
+
 import "./home.css";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +27,7 @@ export default function Home() {
       <NavBar />
 
       {loading === true ? (
-        <div>cargandoooo</div>
+        <Loading/>
       ) : (
         <div className="baground_prueba container-fluid p-0">
           <div className="ultimo_momento">
@@ -108,7 +110,7 @@ export default function Home() {
             <Row className="">
               <Col className="col-10 ">
                 {" "}
-                <h4 className="text-center-home "> Tortas</h4>
+                <h4 className="text-center-home "> TORTAS</h4>
               </Col>
 
               <Col className="col-1 ">

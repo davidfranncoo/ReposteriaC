@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
-import Image from "react-bootstrap/esm/Image";
+
 import NavBar from "../Nav/nav";
-import alerta from "../Alerta/alerta.jsx"
+import Loading from "../Loading/loading.jsx"
 import "./cardProduct.css";
 import { getLogin, getProduct } from "../../action";
 import Productone from "../oneProduct/oneProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
+import Alerta from "../Alerta/alerta.jsx"
+
 
 export default function cardProduct() {
+  const [alerta,setAlerta]=useState(false)
   const [loading, setLoading] = useState(true);
  
   const params = useParams();
@@ -29,8 +30,13 @@ export default function cardProduct() {
     dispatch(getProduct()).then(() => setLoading(false))
     dispatch(getLogin())
     if(login==='ERROR_LOGIN'){
-      alert("debes iniciar sesion")
-      window.location.href = "/login";
+      setAlerta(true) 
+     
+
+      setTimeout(() => {
+   
+        window.location.href = "/login";
+   }, 3000);
     }
   }, [login]);
 
@@ -38,19 +44,27 @@ export default function cardProduct() {
     <div>
       <div>
         <NavBar />
+        {
+          alerta==true?
+          <Alerta tipo={"ingresar_usuario"}/>
+        :
+        <></>
+        }
         
         {loading=== true || login===true || login=== 'ERROR_LOGIN'? (
-          <h1>cargandooo</h1>
+          <Loading/>
         ) : (
           <div className=" row_Card">
+            <h4 className="text-center-product" > TORTAS</h4>
             {producdata.map((e, index) => {
               return (
-             
-                  <Productone  id={e.id} img={e.img} name={e.name} precio2={e.preciouni} />
                 
-              );
-            })}
+                <Productone key={e.id}  id={e.id} img={e.img} name={e.name} precio2={e.preciouni} />
+                
+                );
+              })}
           </div>
+       
         )}
       </div>
     </div>

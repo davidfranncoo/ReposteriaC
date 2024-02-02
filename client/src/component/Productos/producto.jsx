@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../Nav/nav";
 import "./producto.css";
+import Loading from "../Loading/loading.jsx"
+
 
 import { Link } from "react-router-dom";
 import { seachProduct } from "../../action";
@@ -37,8 +39,9 @@ export default function Productos() {
       <Nav />
       PRODUCTOS
       {loading === true ? (
-        <div>cargandoooo</div>
-      ) : (
+        <Loading/>
+      ) : (<>
+          
         <div className=" div_producto">
           {productData.map((e) => (
             <Link key={e.id} to={"/detail/" + e.id}>
@@ -46,6 +49,7 @@ export default function Productos() {
             </Link>
           ))}
         </div>
+          </>
       )}
     </div>
   );

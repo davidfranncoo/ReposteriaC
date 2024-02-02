@@ -41,6 +41,14 @@
     background-color: rgba(152, 195, 232, 0);
 
 }
+.text-center-product{
+    background-color: #d8d8d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1%;
+    
+}
 
 
 
