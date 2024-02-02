@@ -9,6 +9,7 @@ import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../action/index";
 import CardHome from "../CardHome/cardHome";
+import Footer from"../Footer/footer.jsx"
 import NavBar from "../Nav/nav";
 import NavProduct from "../NavProduct/navproduct";
 
@@ -229,8 +230,9 @@ export default function Home() {
               ></path>
             </svg>
           </div>
-          <div className="footer bg-primary">
-            <h6>copyritin| lode caleb</h6>
+          <div >
+          
+            <Footer/>
           </div>
         </div>
       )}

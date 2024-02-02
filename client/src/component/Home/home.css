@@ -149,11 +149,7 @@ i {
   .custom-shape-divider-bottom-1700336914 .shape-fill {
     fill: #AB254E;
   }
-    .footer {
-    
-      width: 100%;
-      height: 100px;
-    }
+   
 
     @media (max-width: 600px) {
       .ultimo_momento h4 {

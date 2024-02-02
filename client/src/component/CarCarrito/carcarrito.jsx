@@ -19,7 +19,10 @@ export default function CardCarrito({ name, precio, img, id, oneDelete }) {
       <img  src={img} />
       <h6>{name}</h6>
       <h1>${precio}</h1>
-      <Button onClick={hanlerDelete}> eliminar</Button>
+      <Button onClick={hanlerDelete} > 
+      <span class="material-symbols-outlined">
+delete
+</span></Button>
     </div>
   );
 }

@@ -16,9 +16,14 @@
 }
 .one-store img{
 border-radius: 5%;
-width: 100px;
-margin: 10px;
+width: 50px;
+
 }
 .one-store h6{
-    font-size: 35px;
+    font-size: 25px;
 }
+.one-store h1{
+    font-size: 20px;
+}
+
+

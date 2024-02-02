@@ -8,3 +8,14 @@
     
     width: 100%;
 }
+.carrito-div h3{
+    display: flex;
+font-size: 10px;
+padding-top: 10px;
+
+
+}
+@media (max-width: 600px) {
+    
+}
+

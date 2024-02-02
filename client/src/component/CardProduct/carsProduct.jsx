@@ -7,7 +7,9 @@ import { getLogin, getProduct } from "../../action";
 import Productone from "../oneProduct/oneProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import Alerta from "../Alerta/alerta.jsx"
+import Alerta from "../Alerta/alerta.jsx";
+import Footer from"../Footer/footer.jsx"
+
 
 
 export default function cardProduct() {
@@ -38,12 +40,20 @@ export default function cardProduct() {
         window.location.href = "/login";
    }, 3000);
     }
+   
   }, [login]);
-
+  if(producdata[0].category){
+var titulo=producdata[0].category.toUpperCase();
+console.log("totulo",titulo)
+  }
+ 
   return (
     <div>
       <div>
         <NavBar />
+        <div>
+       
+        </div>
         {
           alerta==true?
           <Alerta tipo={"ingresar_usuario"}/>
@@ -53,9 +63,9 @@ export default function cardProduct() {
         
         {loading=== true || login===true || login=== 'ERROR_LOGIN'? (
           <Loading/>
-        ) : (
+        ) : (<>
+           <h5 className="text-center-product" > {titulo}</h5>
           <div className=" row_Card">
-            <h4 className="text-center-product" > TORTAS</h4>
             {producdata.map((e, index) => {
               return (
                 
@@ -64,9 +74,11 @@ export default function cardProduct() {
                 );
               })}
           </div>
+        </>
        
         )}
       </div>
-    </div>
-  );
+      <Footer/>
+      </div>
+      );
 }
