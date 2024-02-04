@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import createUser from "../../action/createUser";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./signin.css";
 import iconoT from "../../Img/logo1.png";
-
+import Alerta from "../Alerta/alerta.jsx";
 
 export default function SignUp() {
+  const [alerta, setAlerta] = useState(false);
+  const [aviso, setAviso] = useState(false);
   const [error, setError] = useState({
     username: true,
     email: true,
@@ -42,7 +44,6 @@ export default function SignUp() {
     if (clave[0] === "password" && valor[0] === true) {
       setError({ ...error, password: true });
     }
-
   }
 
   const [datos, setDatos] = useState({
@@ -56,12 +57,24 @@ export default function SignUp() {
 
   function handlerSubmit(e) {
     e.preventDefault();
-  
+    
     createUser(datos)
       .then((response) => {
-        // Código a ejecutar cuando la promesa se resuelve correctamente
-        console.log("Respuesta exitosa:", response);
-  
+        if (response === 200) {
+          setAlerta(true);
+          setAviso("New_User");
+          setTimeout(() => {
+            window.location.href = "/login";
+          }, 3000);
+        }
+        if (response === 409 || response === 300) {
+          setAlerta(true);
+          setAviso("Error_New_User");
+          setTimeout(() => {
+           setAlerta(false);
+          }, 3000);
+        
+        }
         // Actualiza el estado u realiza otras operaciones si es necesario
         setDatos({
           username: "",
@@ -72,7 +85,7 @@ export default function SignUp() {
       .catch((error) => {
         // Código a ejecutar cuando la promesa se rechaza con un error
         console.error("Error en la solicitud:", error);
-  
+
         // Puedes manejar el error, mostrar un mensaje al usuario, etc.
       });
   }
@@ -107,101 +120,88 @@ export default function SignUp() {
   return (
     <div className="div_login">
       <div className="Icon_back">
-
-      <Link to="/home">
+        {alerta == true ? <Alerta tipo={aviso} /> : <></>}
+        <Link to="/home">
           <img src={iconoT} className="icon_img"></img>
           <i class="bi bi-backspace-fill"></i>
         </Link>
       </div>
 
-
       <div className="div_form">
-
-
-
-
-
-      <Form onSubmit={(e) => handlerSubmit(e)}>
-        
-
+        <Form onSubmit={(e) => handlerSubmit(e)}>
           <h1 className="d-flex justify-content-center">
             <i className="bi bi-person-circle"></i>
           </h1>
 
-        
-         
           <div className="d-flex flex-column">
             <h6>Usuario</h6>
-              <Form.Control
-                size="sm"
-                type="username"
-                value={datos.username}
-                onChange={(e) => handlerInputName(e)}
-              ></Form.Control>
-              {error.username === false ? (
-                <Form.Label className="error">{error.usernameError}</Form.Label>
-              ) : (
-                ""
-              )}
- </div>
-              {/*----------------------- correo --------------------------------------------------  */}
+            <Form.Control
+              size="sm"
+              type="username"
+              value={datos.username}
+              onChange={(e) => handlerInputName(e)}
+            ></Form.Control>
+            {error.username === false ? (
+              <Form.Label className="error">{error.usernameError}</Form.Label>
+            ) : (
+              ""
+            )}
+          </div>
+          {/*----------------------- correo --------------------------------------------------  */}
 
-              <div className="d-flex flex-column">
+          <div className="d-flex flex-column">
             <h6>Correo</h6>
-              <Form.Control
-                size="sm"
-                type="email"
-                value={datos.email}
-                onChange={(e) => handlerInputEmail(e)}
-              ></Form.Control>
-              {error.email === false ? (
-                <Form.Label className="error">{error.emailError}</Form.Label>
-              ) : (
-                ""
-              )}
- </div>
- <div className="d-flex flex-column">
+            <Form.Control
+              size="sm"
+              type="email"
+              value={datos.email}
+              onChange={(e) => handlerInputEmail(e)}
+            ></Form.Control>
+            {error.email === false ? (
+              <Form.Label className="error">{error.emailError}</Form.Label>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="d-flex flex-column">
             <h6>Contraseña</h6>
 
-              {/*-----------------------  password--------------------------------------------------  */}
+            {/*-----------------------  password--------------------------------------------------  */}
 
-              <Form.Control
-                size="sm"
-                type="password"
-                value={datos.password}
-                onChange={(e) => handlerInputPassword(e)}
-              ></Form.Control>
-              {error.password === false ? (
-                <Form.Label className="error">{error.passwordError}</Form.Label>
-              ) : (
-                ""
-              )}
+            <Form.Control
+              size="sm"
+              type="password"
+              value={datos.password}
+              onChange={(e) => handlerInputPassword(e)}
+            ></Form.Control>
+            {error.password === false ? (
+              <Form.Label className="error">{error.passwordError}</Form.Label>
+            ) : (
+              ""
+            )}
           </div>
-        
-       
-          <div className="d-flex flex-column justify-content-center">
-          <Link to={"/login"}>
-            <h6>Log in</h6>
-          </Link>
-              <Button
-                type="submit"
-                size="sm"
-                disabled={
-                  !datos.username ||
-                  !datos.email ||
-                  !datos.password ||
-                  error.username === false ||
-                  error.email === false ||
-                  error.password === false
-                }
-              >
-                Crear Usuario
-              </Button>
-              {""}
 
-          
-              </div>
-      </Form>
+          <div className="d-flex flex-column justify-content-center">
+            <Link to={"/login"}>
+              <h6>Log in</h6>
+            </Link>
+            <Button
+              type="submit"
+              size="sm"
+              disabled={
+                !datos.username ||
+                !datos.email ||
+                !datos.password ||
+                error.username === false ||
+                error.email === false ||
+                error.password === false
+              }
+            >
+              Crear Usuario
+            </Button>
+            {""}
+          </div>
+        </Form>
       </div>
     </div>
   );

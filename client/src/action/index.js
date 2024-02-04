@@ -96,7 +96,7 @@ export function sendProduct(payload, token) {
 
 export function loginUser(user) {
   return async function (dispatch) {
-    console.log("acaaaaaaaa")
+    console.log("acaaaaaaaa");
     try {
       const requeri = await axios.post("http://localhost:3001/login", user);
 
@@ -185,25 +185,25 @@ export function deleteAllCarrito(ids) {
     };
   };
 }
-export function createUser(payload) {
-  return async function (dispatch) {
-    console.log("acaaaestoy");
+// export function createUser(payload) {
+//   return async function (dispatch) {
+//     console.log("acaaaestoy");
 
-    try {
-      const statu = await axios.post("http://localhost:3001/singup", payload);
-      console.log("paseporaccccc", statu);
+//     try {
+//       const statu = await axios.post("http://localhost:3001/singup", payload);
+//       console.log("paseporaccccc", statu);
 
-      dispatch({
-        type: "CREATE_USER",
-        payload: statu.data, // Asumiendo que el objeto statu tiene una propiedad data
-      });
-    } catch (error) {
-      console.error("Error en createUser:", error);
+//       dispatch({
+//         type: "CREATE_USER",
+//         payload: statu.data, // Asumiendo que el objeto statu tiene una propiedad data
+//       });
+//     } catch (error) {
+//       console.error("Error en createUser:", error);
 
-      dispatch({
-        type: "CREATE_USER",
-        payload: error.message,
-      });
-    }
-  };
-}
+//       dispatch({
+//         type: "CREATE_USER",
+//         payload: error.message,
+//       });
+//     }
+//   };
+// }
