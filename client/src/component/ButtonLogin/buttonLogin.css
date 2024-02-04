@@ -2,17 +2,21 @@
     position: absolute;
     top: 55px;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.864);
+    background-color: rgba(243, 238, 238, 0.864);
     width:150px;
     height: 200px;
-    border-radius: 2px;
+    border-radius: 1%;
 }
 
 .h6_login{
-    color: #E4597C;
+    
+    color: #ffffff;
     margin: 0.5rem;
 }
 .img_perfil{
-    width: 50px;
-    margin: 5px;
+    width: 60px;
+    margin: 20px;
+}
+.buton-sesion{
+    height: 2.5rem;
 }

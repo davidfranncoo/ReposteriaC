@@ -25,6 +25,12 @@ export default function Alerta({ tipo }) {
            Inicia Sesión
           </Alert>
         </div>
+      ) : tipo === "gracias-compra" ? (
+        <div className="alert-container">
+          <Alert variant="info">
+           Gracias Por Tu Compra
+          </Alert>
+        </div>
       ) : (
         <></>
       )}

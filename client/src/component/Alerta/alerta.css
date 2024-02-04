@@ -5,6 +5,9 @@
     transform: translateX(-50%);
     opacity: 0;
     animation: slideIn 0.5s ease-in-out forwards;
+    z-index: 999;
+
+    
   }
   
   .alert-container.show {

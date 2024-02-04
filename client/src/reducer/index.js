@@ -9,7 +9,7 @@ alerta:false,
 user:[]
 }
 export default function rootRecuducer(state=intialState,action){
-   
+   console.log("esto es el sate")
     switch(action.type){
         case "GET_PRODUCT":
             
@@ -67,6 +67,10 @@ export default function rootRecuducer(state=intialState,action){
                     myCarrito:action.payload
                 
                 }
+        case "CREATE_USER":
+            return{
+                ...state
+            }
                 
                 default:
                     return state;

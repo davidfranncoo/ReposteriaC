@@ -3,14 +3,9 @@ import createUser from "../../action/createUser";
 import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./signin.css";
 import iconoT from "../../Img/logo1.png";
 
-
-// or less ideally
 
 export default function SignUp() {
   const [error, setError] = useState({
@@ -55,19 +50,31 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+  // setTimeout(() => {
+  //   window.location.href = "/login";
+  // }, 3000);
 
   function handlerSubmit(e) {
     e.preventDefault();
-
-    createUser(datos);
-    setDatos({
-      username: "",
-      email: "",
-      password: "",
-    });
-
-
-    
+  
+    createUser(datos)
+      .then((response) => {
+        // Código a ejecutar cuando la promesa se resuelve correctamente
+        console.log("Respuesta exitosa:", response);
+  
+        // Actualiza el estado u realiza otras operaciones si es necesario
+        setDatos({
+          username: "",
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        // Código a ejecutar cuando la promesa se rechaza con un error
+        console.error("Error en la solicitud:", error);
+  
+        // Puedes manejar el error, mostrar un mensaje al usuario, etc.
+      });
   }
   function handlerInputEmail(e) {
     setDatos({ ...datos, email: e.target.value });

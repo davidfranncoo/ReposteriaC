@@ -26,6 +26,9 @@ export default function buttonLogin() {
     window.localStorage.clear("TOKEN");
     window.location.reload();
   }
+  if(infoUser.username){
+    var username=infoUser.username.toUpperCase();}
+    
   return (
     <div>
       {token ? (
@@ -33,12 +36,12 @@ export default function buttonLogin() {
           <div className="w-100 d-flex flex-column align-items-center">
             <img src={perfilPng} className="img_perfil"></img>
 
-            <h6>{`Hola ${infoUser.username}`}</h6>
-            <h6>{` ${infoUser.email}`}</h6>
+            <h6>{`Hola ${username}`}</h6>
+            
 
-            <button onClick={handlerSesion}>
-              <h6 className="h6_login">cerrar sesion</h6>
-            </button>
+            <Button className="buton-sesion"  onClick={handlerSesion}>
+              <h6 className="h6_login">Cerrar Sesión</h6>
+            </Button>
           </div>
         </div>
       ) : (
@@ -47,7 +50,7 @@ export default function buttonLogin() {
             <img src={perfilPng} className="img_perfil"></img>
 
             <Link to="/login">
-              <h6 className="h6_login">iniciar sesion</h6>
+              <h6 className="h6_login">Iniciar Sesión</h6>
             </Link>
           </div>
         </div>
