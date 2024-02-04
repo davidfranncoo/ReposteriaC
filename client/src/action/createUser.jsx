@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function newUser(payload) {
   try {
-    const response = await axios.post("http://localhost:3001/singup", payload);
+    const response = await axios.post("/singup", payload);
     const status = response.status;
     console.log("statussss", status);
     return handleAlert(status);

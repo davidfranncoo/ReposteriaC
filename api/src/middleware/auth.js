@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 function authenticateToken(req, res, next) {
   const authorization = req.get("authorization");
   
-console.log("autoooooo",authorization)
   if (!authorization) {
     return res.status(400).send("Faltan Datos de Autorizacion");
   }
@@ -19,10 +18,10 @@ console.log("autoooooo",authorization)
   } catch (error) {
     return res.status(402).send({ error: "error del token" });
   }
-  console.log(
-    "para ver si tiene algn elemento",
-    Object.keys(decodedToken).length
-  );
+  // console.log(
+  //   "para ver si tiene algn elemento",
+  //   Object.keys(decodedToken).length
+  // );
   if (token && Object.keys(decodedToken).length === 0) {
     //res.redirect(302, 'https://www.ejemplo.com');
   

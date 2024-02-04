@@ -2,16 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import tortaPng from "../../Img/tortasinfondo.png";
-import Loading from "../Loading/loading.jsx"
-
-import "./home.css";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import Loading from "../Loading/loading.jsx";
+import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../action/index";
 import CardHome from "../CardHome/cardHome";
-import Footer from"../Footer/footer.jsx"
+import Footer from "../Footer/footer.jsx";
 import NavBar from "../Nav/nav";
-import NavProduct from "../NavProduct/navproduct";
+import "./home.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -26,19 +24,17 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-
       {loading === true ? (
-        <Loading/>
+        <Loading />
       ) : (
         <div className="baground_prueba container-fluid p-0">
           <div className="ultimo_momento">
             <h4 className=" text-center text-white ">
-              Pedí tu torta a
-              <br /> último momento
+              Pedí las Tortas 
+              <br/>
+               más Deliciosas!!
             </h4>
-            <Button variant="info" size="sm" active>
-              Aquí
-            </Button>
+           
           </div>
 
           <div className="divider_shape"> </div>
@@ -115,7 +111,9 @@ export default function Home() {
               </Col>
 
               <Col className="col-1 ">
-                <Link  className="link-home" to="/products/tortas">ver</Link>
+                <Link className="link-home" to="/products/tortas">
+                  ver
+                </Link>
               </Col>
             </Row>
 
@@ -147,16 +145,18 @@ export default function Home() {
               </Col>
 
               <Col className="col-1 ">
-                <Link className="link-home" to="/products/postres">ver</Link>
+                <Link className="link-home" to="/products/postres">
+                  ver
+                </Link>
               </Col>
             </Row>
 
             <div className="row_Card">
-                {productData.map((e, index) => {
-                  if (e.category === "postres" && contador < 8) {
-                    contador++;
-                    return (
-                      <div key={index} className=" ">
+              {productData.map((e, index) => {
+                if (e.category === "postres" && contador < 8) {
+                  contador++;
+                  return (
+                    <div key={index} className=" ">
                       <CardHome
                         categori={"postres"}
                         name={e.name}
@@ -164,12 +164,11 @@ export default function Home() {
                         preciouni={e.preciouni}
                       />
                     </div>
-                    );
-                  }
+                  );
+                }
 
-                  return;
-                })}
-              
+                return;
+              })}
             </div>
           </div>
 
@@ -181,15 +180,17 @@ export default function Home() {
               </Col>
 
               <Col className="col-1 ">
-                <Link className="link-home" to="/products/tartas">ver</Link>
+                <Link className="link-home" to="/products/tartas">
+                  ver
+                </Link>
               </Col>
             </Row>
             <div className="row_Card">
-                {productData.map((e, index) => {
-                  if (e.category === "tartas" && contador < 12) {
-                    contador++;
-                    return (
-                      <div key={index} className=" ">
+              {productData.map((e, index) => {
+                if (e.category === "tartas" && contador < 12) {
+                  contador++;
+                  return (
+                    <div key={index} className=" ">
                       <CardHome
                         categori={"tartas"}
                         name={e.name}
@@ -197,12 +198,12 @@ export default function Home() {
                         preciouni={e.preciouni}
                       />
                     </div>
-                    );
-                  }
+                  );
+                }
 
-                  return;
-                })}
-              </div>
+                return;
+              })}
+            </div>
           </div>
 
           <br />
@@ -230,9 +231,8 @@ export default function Home() {
               ></path>
             </svg>
           </div>
-          <div >
-          
-            <Footer/>
+          <div>
+            <Footer />
           </div>
         </div>
       )}

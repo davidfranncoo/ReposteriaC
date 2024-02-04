@@ -82,14 +82,14 @@ export default function Login() {
       <div className="Icon_back">
         <Link to="/home">
           <img src={iconoT} className="icon_img"></img>
-          <i class="bi bi-backspace-fill"></i>
+          <i className="bi bi-backspace-fill"></i>
         </Link>
       </div>
 
       <div className="div_form">
         <Form onSubmit={(e) => handlerSubmit(e)}>
           <h1 className="d-flex justify-content-center">
-            <i class="bi bi-person-circle"></i>
+            <i className="bi bi-person-circle"></i>
           </h1>
 
           <div className="d-flex flex-column">

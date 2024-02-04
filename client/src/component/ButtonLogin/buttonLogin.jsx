@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { getUser } from "../../action";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import perfilPng from "../../Img/perfil.png";
 
 import "./buttonLogin.css";

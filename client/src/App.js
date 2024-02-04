@@ -8,6 +8,7 @@ import DetailCard from './component/DetailsCard/detailcard';
 import SingUp from './component/SignUp/singup';
 import Login from './component/Login/login';
 import CardProduct from './component/CardProduct/carsProduct';
+import NotFoundPage from './component/NotFound/notfound';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="/product/:category" element={<Productos />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/detail/:id" element={<DetailCard />} />
+         {/* Ruta 404 */}
+         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getProduct() {
   return async function (dispatch) {
-    const json = await axios("http://localhost:3001/product");
+    const json = await axios("/product");
     return dispatch({
       type: "GET_PRODUCT",
       payload: json.data,
@@ -12,7 +12,7 @@ export function getProduct() {
 export function seachProduct(seach) {
   return async function (dispatch) {
     const category = seach.category;
-    const json = await axios("http://localhost:3001/product/" + category);
+    const json = await axios("/product/" + category);
 
     return dispatch({
       type: "SEACH_PRODUCT",
@@ -26,7 +26,7 @@ export function getDetail(id, token) {
     try {
       const Autenticaion = `Bearer ${token}`;
 
-      const json = await axios("http://localhost:3001/product/detail/" + id, {
+      const json = await axios("/product/detail/" + id, {
         headers: {
           Authorization: Autenticaion,
         },
@@ -50,7 +50,7 @@ export function getCarrito() {
   return async function (dispatch) {
     const autenticacion = `Bearer ${token}`;
 
-    const requeri = await axios.get("http://localhost:3001/carrito", {
+    const requeri = await axios.get("/carrito", {
       headers: {
         Authorization: autenticacion,
       },
@@ -81,7 +81,7 @@ export function deleteteAllCarrito(info) {
 export function sendProduct(payload, token) {
   const autenticacion = `Bearer ${token}`;
 
-  const response = axios.post(`http://localhost:3001/carrito`, payload, {
+  const response = axios.post(`/carrito`, payload, {
     headers: {
       Authorization: autenticacion,
     },
@@ -98,7 +98,7 @@ export function loginUser(user) {
   return async function (dispatch) {
     console.log("acaaaaaaaa");
     try {
-      const requeri = await axios.post("http://localhost:3001/login", user);
+      const requeri = await axios.post("/login", user);
 
       const clave = requeri.data.token;
 
@@ -137,7 +137,7 @@ export function getUser() {
 
   const autenticacion = `Bearer ${user}`;
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/user`, {
+    const response = await axios.get(`/user`, {
       headers: {
         Authorization: autenticacion,
       },
@@ -155,7 +155,7 @@ export function deleteCarritoUni(id) {
     const token = JSON.parse(noParse);
 
     const autenticacion = `Bearer ${token}`;
-    await axios.delete(`http://localhost:3001/carrito`, {
+    await axios.delete(`/carrito`, {
       headers: {
         Authorization: autenticacion,
       },
@@ -173,7 +173,7 @@ export function deleteAllCarrito(ids) {
     const token = JSON.parse(noParse);
 
     const autenticacion = `Bearer ${token}`;
-    await axios.delete(`http://localhost:3001/carrito/compra`, {
+    await axios.delete(`/carrito/compra`, {
       headers: {
         Authorization: autenticacion,
       },
@@ -190,7 +190,7 @@ export function deleteAllCarrito(ids) {
 //     console.log("acaaaestoy");
 
 //     try {
-//       const statu = await axios.post("http://localhost:3001/singup", payload);
+//       const statu = await axios.post("/singup", payload);
 //       console.log("paseporaccccc", statu);
 
 //       dispatch({

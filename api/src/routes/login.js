@@ -1,7 +1,8 @@
 var express = require('express');
 const jwt= require("jsonwebtoken")
 const {User} = require('../db');
-const bcrypt=require("bcrypt")   
+const bcrypt=require("bcrypt") 
+require('dotenv').config();  
 
 const router = express();
 
@@ -29,7 +30,7 @@ router.post("/login",async(req,res)=>{
     }
 
     //formamos el token, lo que esta en "" es lo que se debe poner en .env
-    const token= jwt.sign(userFrotToken, "1234")
+    const token= jwt.sign(userFrotToken,  process.env.SECRET_KEY)
 
    
 

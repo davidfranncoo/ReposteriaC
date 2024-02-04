@@ -1,6 +1,12 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
-const { Product, Carrito, User, ProductCarrito,UserCarrito } = require("../db");
+const {
+  Product,
+  Carrito,
+  User,
+  ProductCarrito,
+  UserCarrito,
+} = require("../db");
 const {
   getProduct,
   getProductByCategory,
@@ -9,6 +15,7 @@ const {
 const router = Router();
 const bcrypt = require("bcrypt");
 const authenticateToken = require("../middleware/auth");
+require("dotenv").config();
 const saltRounds = 10; // Número de rondas de sal para la encriptación
 
 // -------------------USUARIO----------------------
@@ -32,10 +39,9 @@ router.post("/singup", async (req, res) => {
 
       bcrypt.hash(passwordHash, saltRounds, function (err, hash) {
         if (err) {
-          console.error("Error al generar el hash:", err);
         } else {
           // Aquí puedes almacenar el 'hash' en tu base de datos junto con otros datos del usuario
-         
+
           User.create({
             username: username,
             email: email.toLowerCase(),
@@ -59,21 +65,16 @@ router.post("/singup", async (req, res) => {
 });
 
 router.get("/user", authenticateToken, async (req, res) => {
- 
   try {
     const infouser = req.user;
-    console.log("Info de usuario:", infouser); // Agrega este log para verificar la información del usuario
 
     if (infouser) {
       return res.status(200).send(infouser);
-    }  
+    }
   } catch (error) {
-   
     return res.status(400).send({ error: "Hay un error" });
   }
 });
-
-
 
 router.get("/product", getProduct);
 router.get("/product/:category", getProductByCategory);
@@ -98,15 +99,11 @@ router.post("/carrito", async (req, res) => {
   }
   let decodedToken = {};
   try {
-    decodedToken = jwt.verify(token, "1234");
+    decodedToken = jwt.verify(token, process.env.SECRET_KEY);
   } catch (error) {
     //return res.status(402).send({error:"error del token"})
   }
 
-  console.log(
-    "para ver si tiene algn elemento",
-    Object.keys(decodedToken).length
-  );
   if (token && Object.keys(decodedToken).length === 0) {
     //res.redirect(302, 'https://www.ejemplo.com');
     return res.status(302).send({ redirect: "/login" });
@@ -115,7 +112,6 @@ router.post("/carrito", async (req, res) => {
                        a) Desde el token debo obtener el username para poder guardarlo  
                         b) Tengo que guardar  el idname(producto) con el id del producto en cuestion
   */
- console.log("esto llega",decodedToken)
 
   try {
     if (idname && precio && descripcion && texto) {
@@ -131,14 +127,13 @@ router.post("/carrito", async (req, res) => {
           id: decodedToken.id,
         },
       });
- 
+
       const findProduct = await Product.findAll({
         where: {
           id: idname,
         },
       });
-      
-     
+
       await createCarrito.addUsers(findUser);
       await createCarrito.addProducts(findProduct);
 
@@ -167,15 +162,11 @@ router.get("/carrito", async (req, res) => {
   }
   let decodedToken = {};
   try {
-    decodedToken = jwt.verify(token, "1234");
+    decodedToken = jwt.verify(token, process.env.SECRET_KEY);
   } catch (error) {
-    return res.status(402).send({error:"error del token"})
+    return res.status(402).send({ error: "error del token" });
   }
 
-  console.log(
-    "para ver si tiene algn elemento",
-    Object.keys(decodedToken).length
-  );
   if (token && Object.keys(decodedToken).length === 0) {
     //res.redirect(302, 'https://www.ejemplo.com');
     return res.status(302).send({ redirect: "/login" });
@@ -192,23 +183,21 @@ router.get("/carrito", async (req, res) => {
 
 */
 
-
     const data = await User.findAll({
       where: {
-        id: decodedToken.id
+        id: decodedToken.id,
       },
       include: [
         {
           model: Carrito,
           include: [
             {
-              model: Product
-            }
-          ]
-        }
-      ]
+              model: Product,
+            },
+          ],
+        },
+      ],
     });
-  
 
     if (!data) {
       return res.status(400).send("no hay data");
@@ -219,53 +208,44 @@ router.get("/carrito", async (req, res) => {
   }
 });
 
-router.delete("/carrito",authenticateToken, async (req, res) => {
-
- const {id}=req.body
- console.log("idddddd",id)
- try {
-  
-   await Carrito.destroy({
-    where: {
-    id: id
-    }
-   });
-  return res.status(200).send("se elimino prodducto del carrito  correctamente")
- } catch (error) {
-
-  return res.status(400).setDefaultEncoding({error:"hay error para eliminar"})
-  
- }
-})
-router.delete("/carrito/compra",authenticateToken, async (req, res) => {
-const {idsCarritos}=req.body
-console.log("delete1",idsCarritos)
-
-  
-
-
-
+router.delete("/carrito", authenticateToken, async (req, res) => {
+  const { id } = req.body;
 
   try {
+    await Carrito.destroy({
+      where: {
+        id: id,
+      },
+    });
+    return res
+      .status(200)
+      .send("se elimino prodducto del carrito  correctamente");
+  } catch (error) {
+    return res
+      .status(400)
+      .setDefaultEncoding({ error: "hay error para eliminar" });
+  }
+});
+router.delete("/carrito/compra", authenticateToken, async (req, res) => {
+  const { idsCarritos } = req.body;
 
-
+  try {
     await Promise.all(
       idsCarritos.map(async (e) => {
         await Carrito.destroy({
           where: {
-            id: e
-          }
+            id: e,
+          },
         });
       })
     );
 
-   return res.status(200).send("se elimino prodducto del carrito  correctamente")
+    return res
+      .status(200)
+      .send("se elimino prodducto del carrito  correctamente");
   } catch (error) {
- 
-   return res.status(400).send({error:"hay error para eliminar"})
-   
+    return res.status(400).send({ error: "hay error para eliminar" });
   }
- })
- 
+});
 
 module.exports = router;
