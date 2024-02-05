@@ -15,8 +15,8 @@ import { createRoot } from 'react-dom/client';
 const root = createRoot(document.getElementById('root'));
 
 
- axios.defaults.baseURL="http://localhost:3001" //!deploy
-//axios.defaults.baseURL="https://countries-production-67fa.up.railway.app/" //!deploy
+// axios.defaults.baseURL="http://localhost:3001" //!deploy
+axios.defaults.baseURL="https://api-reposteric-dev-ehte.3.us-1.fl0.io" //!deploy
 
 root.render(
   <Provider store={store}>

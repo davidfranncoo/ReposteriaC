@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const { SECRET_KEY } = process.env;
 const {
   Product,
   Carrito,
@@ -99,7 +101,7 @@ router.post("/carrito", async (req, res) => {
   }
   let decodedToken = {};
   try {
-    decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    decodedToken = jwt.verify(token, SECRET_KEY);
   } catch (error) {
     //return res.status(402).send({error:"error del token"})
   }
@@ -162,7 +164,7 @@ router.get("/carrito", async (req, res) => {
   }
   let decodedToken = {};
   try {
-    decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    decodedToken = jwt.verify(token, SECRET_KEY);
   } catch (error) {
     return res.status(402).send({ error: "error del token" });
   }
@@ -209,8 +211,8 @@ router.get("/carrito", async (req, res) => {
 });
 
 router.delete("/carrito", authenticateToken, async (req, res) => {
+  console.log("este es el id ", req.body);
   const { id } = req.body;
-
   try {
     await Carrito.destroy({
       where: {
@@ -226,6 +228,7 @@ router.delete("/carrito", authenticateToken, async (req, res) => {
       .setDefaultEncoding({ error: "hay error para eliminar" });
   }
 });
+
 router.delete("/carrito/compra", authenticateToken, async (req, res) => {
   const { idsCarritos } = req.body;
 

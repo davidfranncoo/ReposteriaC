@@ -1,7 +1,6 @@
 DELETE http://localhost:3001/carrito
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRpdGEiLCJpZCI6IjA3NGI0NGUyLTZiNDUtNGQ0OC1hYTZiLTI0NjU0Zjc3YTg4OSIsImlhdCI6MTcwMTYzODc1NX0.jmoGEzz1d1uqJIKBnq1hnSEEk8fA69VPID8VkucjfdM
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImYiLCJpZCI6IjRiYTM2MmM3LThhM2UtNGQ0Ni05YzcwLTcxYTE0ZGIxOWJmMSIsImlhdCI6MTcwNzE0NTY5N30.BtCG-yb8iEX5bbgzTFHq-7W8XSS3eHcXdMzMQMsQTSY
 {
   "id": "3"
 }
