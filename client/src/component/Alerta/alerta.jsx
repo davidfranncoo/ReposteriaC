@@ -15,7 +15,7 @@ export default function Alerta({ tipo }) {
         </div>
       ) : tipo === "ingresar_usuario" ? (
         <div className="alert-container">
-          <Alert variant="info">Inicia Sesión</Alert>
+          <Alert variant="info">Debes Iniciar Sesión</Alert>
         </div>
       ) : tipo === "gracias-compra" ? (
         <div className="alert-container">
@@ -23,7 +23,7 @@ export default function Alerta({ tipo }) {
         </div>
       ) : tipo === "New_User" ? (
         <div className="alert-container">
-          <Alert variant="info">Ussuario Creado</Alert>
+          <Alert variant="info">Usuario Creado</Alert>
         </div>
       ) : tipo === "Error_New_User" ? (
         <div className="alert-container">
