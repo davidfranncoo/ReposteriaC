@@ -76,7 +76,7 @@ export default function OneProduct({ id, name, img, precio2 }) {
         <Card.Img className="img_cardProduct2" variant="top" src={img} />
         <Card.Body>
           <Card.Text>{name}</Card.Text>
-          <Card.Title>${precio}</Card.Title>
+          <Card.Title className="title_card">${precio}</Card.Title>
 
         
 

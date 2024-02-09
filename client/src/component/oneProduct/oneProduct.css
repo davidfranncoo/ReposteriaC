@@ -89,3 +89,26 @@
           padding: 5px !important;
         }
       }
+
+      @media screen and (min-width: 1200px) {
+
+        .img_cardProduct2{
+            
+            height: 250px;
+            
+          }
+          .row_Card {
+            background-color: rgb(216, 216, 216);
+            display: grid;
+            grid-template-columns: repeat( auto-fit, minmax(350px,1fr) );
+            gap: 30px;
+            padding: 7%;
+        }
+
+        .responsive-card{
+            width: 18rem;
+        }
+        .title_card{
+            font-size: 1300px;
+        }
+      }

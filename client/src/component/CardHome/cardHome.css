@@ -8,3 +8,19 @@
     height:200px;
     
 }
+
+@media screen and (min-width: 1200px) and (max-width: 2500px) {
+    .home-card img{
+        height:300px;
+        
+    }
+    .home-card h6 {
+        font-size: 50px;
+        
+    }
+    .home-card h4 {
+        font-size: 50px;
+        
+    }
+   
+  }

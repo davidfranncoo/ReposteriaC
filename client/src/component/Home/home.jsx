@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import tortaPng from "../../Img/tortasinfondo.png";
+import relojpng from "../../Img/relojpng.png";
+import calendariopng from "../../Img/calendariopng.png";
+import cumplepng from "../../Img/tortapng.png";
 import Loading from "../Loading/loading.jsx";
 import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,9 +60,8 @@ export default function Home() {
           <div className="miniaturas bg-info  mt-5">
             <Row className="d-flex justify-content-center">
               <Col className="col-3 text-center p-1">
-                <span className="material-symbols-outlined ">
-                  nest_clock_farsight_analog
-                </span>
+                <img src={relojpng} className="icono_png"></img>
+               
                 <h4>Pedidos Express</h4>
                 <h6>
                   Elige una de nuestras opciones, la personalizamos en 2 horas.
@@ -68,7 +70,8 @@ export default function Home() {
               </Col>
 
               <Col className="col-3 text-center p-1">
-                <span className="material-symbols-outlined">cake</span>
+              <img src={cumplepng} className="icono_png"></img>
+
                 <h4>Crea Tu Torta</h4>
 
                 <h6>
@@ -77,9 +80,8 @@ export default function Home() {
                 </h6>
               </Col>
               <Col className="col-3 text-center p-1">
-                <span className="material-symbols-outlined">
-                  calendar_month
-                </span>
+              <img src={calendariopng} className="icono_png"></img>
+
                 <h4>Agenda tu Pedido</h4>
 
                 <h6>

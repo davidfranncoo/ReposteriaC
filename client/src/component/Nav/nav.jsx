@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./nav.css";
 import img1 from "../../Img/lodecaleb-white.png";
+import homepng from "../../Img/homepng.png";
+import tortapng from "../../Img/tortapng.png";
+import heladopng from "../../Img/heladopng.png";
+import cookiepng from "../../Img/cookiepng.png";
+import cuernitopng from "../../Img/cuernitopng.png";
+import "./nav.css";
+
+
 import { Image, Container, Navbar, Offcanvas, Nav } from "react-bootstrap";
 
 import ButtonLogin from "../ButtonLogin/buttonLogin.jsx";
@@ -60,9 +67,8 @@ export default function NavBar() {
               <Offcanvas.Body className="body_nav">
                 <Nav className="justify-content-end flex-grow-1 pe-3 ">
                   <Link className=" d-flex text-decoration-none" to="/home">
-                    <span className="p-1 text-primary material-symbols-outlined">
-                      home
-                    </span>
+                  <img src={homepng} className="icono_png_nav"></img>
+
                     <h4>Home</h4>
                   </Link>
                   <Link
@@ -70,9 +76,7 @@ export default function NavBar() {
                     to="/products/tortas"
                   >
                     {" "}
-                    <span className="p-1 text-primary material-symbols-outlined">
-                      cake
-                    </span>
+                    <img src={tortapng} className="icono_png_nav"></img>
                     <h4>Tortas</h4>
                   </Link>
                   <Link
@@ -80,9 +84,8 @@ export default function NavBar() {
                     to="/products/postres"
                   >
                     {" "}
-                    <span className="p-1 text-primary material-symbols-outlined">
-                      icecream{" "}
-                    </span>
+                    <img src={heladopng} className="icono_png_nav"></img>
+
                     <h4>Postres</h4>
                   </Link>
                   <Link
@@ -90,18 +93,16 @@ export default function NavBar() {
                     to="/products/tartas"
                   >
                     {" "}
-                    <span className="p-1 text-primary material-symbols-outlined">
-                      cookie
-                    </span>
+                    <img src={cookiepng} className="icono_png_nav"></img>
+
                     <h4>Tartas</h4>
                   </Link>
                   <Link
                     className="d-flex text-decoration-none"
                     to="/poroducts/bandejas"
                   >
-                    <span className="p-1 text-primary material-symbols-outlined">
-                      bakery_dining
-                    </span>{" "}
+                 <img src={cuernitopng} className="icono_png_nav"></img>
+
                     <h4>Bandejas</h4>
                   </Link>
                 </Nav>

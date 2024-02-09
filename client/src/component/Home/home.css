@@ -149,7 +149,10 @@ i {
   .custom-shape-divider-bottom-1700336914 .shape-fill {
     fill: #AB254E;
   }
-   
+  .icono_png{
+    width: 30px;
+  }
+   /* filter: invert(10%) sepia(77%) saturate(2614%) hue-rotate(323deg) brightness(96%) contrast(118%);*/
 
     @media (max-width: 600px) {
       .ultimo_momento h4 {

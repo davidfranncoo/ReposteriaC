@@ -61,3 +61,11 @@ margin-right: 10%;
     background: linear-gradient(to bottom, #FFA8EE, #ad3b5d)
   }
 
+  .icono_png_nav{
+    width: 20px;
+    height: 20px; 
+    margin: 5px;
+    filter: invert(10%) sepia(77%) saturate(2614%) hue-rotate(323deg) brightness(96%) contrast(118%);
+  }
+
+
